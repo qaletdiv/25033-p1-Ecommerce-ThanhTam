@@ -5,15 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/variables/variables.css">
+    <link rel="stylesheet" href="/css/components/components.css">
+    <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/pages/index.css">
 </head>
 
 <body>
-    <h1>Welcome to AllTech</h1>
-    <div id="products"></div>
-    <script type="module" src="/js/mock-data.js"></script>
+    <header class="header">
+        <div class="header-container">
+            <a href="/" class="nav-logo">AllTech.</a>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a class="nav-item" href="#">Trang chủ</a></li>
+                    <li><a class="nav-item" href="#">Sản phẩm</a></li>
+                    <li><a class="nav-item" href="#">Liên hệ</a></li>
+                </ul>
+            </nav>
+            <div class="nav-search-container">
+                <form>
+                    <input type="search" id="search-input" class="input search-input"
+                        placeholder="Nhập tên điện thoại, laptop, phụ kiện cần tìm">
+                    <button type="submit" class="btn search-btn"><i data-lucide="search"></i></button>
+                </form>
+            </div>
+            <div class="nav-actions">
+                <button class="btn--link btn--icon-only"><i data-lucide="user"></i></button>
+                <button class="btn--link btn--icon-only"><i data-lucide="shopping-cart"></i></button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <h1 style="font-size: 2rem; margin-bottom: 1.5rem;">Sản phẩm mới ra mắt</h1>
+            <div id="products" class="products-container"></div>
+        </div>
+    </main>
     <script type="module" src="/js/main.js"></script>
 </body>
 

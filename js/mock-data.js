@@ -1,16 +1,16 @@
-const products = [
+export const products = [
 	{
 		id: 1,
-		name: "iPhone 15 Pro Max",
+		name: "iPhone 15 Pro Max 256GB",
 		brand: "Apple",
 		category: "smartphone",
-		price: 29990000,
+		price: 34990000,
 
 		images: [
 			{
 				id: 1,
-				url: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&h=600&fit=crop&crop=center",
-				alt: "iPhone 15 Pro Max màu xanh titan",
+				url: "/assets/images/iphone-main.png",
+				alt: "iPhone 15 Pro Max màu Titan tự nhiên",
 				isMain: true,
 			},
 			{
@@ -22,68 +22,68 @@ const products = [
 			{
 				id: 3,
 				url: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&h=600&fit=crop&crop=bottom",
-				alt: "iPhone 15 Pro Max camera",
+				alt: "iPhone 15 Pro Max hệ thống camera",
 				isMain: false,
 			},
 		],
 
 		description:
-			"iPhone 15 Pro Max với chip A17 Pro mạnh mẽ, camera chuyên nghiệp 48MP và thiết kế titan cao cấp. Màn hình 6.7 inch Super Retina XDR cùng pin dung lượng lớn cho trải nghiệm đỉnh cao.",
+			"iPhone 15 Pro Max với chip A17 Pro mạnh mẽ, khung titan cao cấp và nút Action Button có thể tùy chỉnh. Camera chính 48MP, zoom quang học 5x và màn hình 6.7 inch Super Retina XDR với Dynamic Island.",
 
 		specifications: [
-			"Màn hình: 6.7 inch Super Retina XDR OLED",
-			"Chip: A17 Pro 6-core CPU",
-			"Camera: 48MP chính + 12MP telephoto + 12MP ultra-wide",
-			"Pin: 4441mAh, sạc nhanh 27W",
-			"Kết nối: 5G, Wi-Fi 6E, USB-C",
-			"Chống nước: IP68",
+			"Màn hình: 6.7 inch Super Retina XDR OLED với Dynamic Island",
+			"Chip: A17 Pro 6-core CPU (3nm)",
+			"Camera: 48MP chính + 12MP Ultra Wide + 12MP Telephoto 5x",
+			"Pin: 4422mAh, sạc nhanh 27W, MagSafe 15W",
+			"Kết nối: 5G, Wi-Fi 6E, USB-C (USB 3.0)",
+			"Chống nước: IP68, khung Titan chuẩn hàng không vũ trụ",
 		],
 	},
 
 	{
 		id: 2,
-		name: "Samsung Galaxy S24 Ultra",
-		brand: "Samsung",
+		name: "Nothing Phone (2) 12GB RAM 256GB",
+		brand: "Nothing",
 		category: "smartphone",
-		price: 26990000,
+		price: 14990000,
 
 		images: [
 			{
 				id: 1,
-				url: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600&h=600&fit=crop&crop=center",
-				alt: "Samsung Galaxy S24 Ultra màu xám",
+				url: "/assets/images/Nothing.png",
+				alt: "Nothing Phone (2) màu trắng trong suốt",
 				isMain: true,
 			},
 			{
 				id: 2,
 				url: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600&h=600&fit=crop&crop=top",
-				alt: "Galaxy S24 Ultra mặt sau",
+				alt: "Nothing Phone (2) mặt sau",
 				isMain: false,
 			},
 			{
 				id: 3,
 				url: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600&h=600&fit=crop&crop=bottom",
-				alt: "Galaxy S24 Ultra S Pen",
+				alt: "Nothing Phone (2) Glyph Interface",
 				isMain: false,
 			},
 		],
 
 		description:
-			"Galaxy S24 Ultra với S Pen tích hợp, camera zoom 100x và AI thông minh. Màn hình 6.8 inch Dynamic AMOLED 2X cùng pin 5000mAh cho trải nghiệm flagship đỉnh cao.",
+			"Nothing Phone (2) với thiết kế trong suốt độc đáo, Glyph Interface sáng tạo và hiệu năng mạnh mẽ. Màn hình OLED 6.7 inch 120Hz cùng camera 50MP được tối ưu bởi AI.",
 
 		specifications: [
-			"Màn hình: 6.8 inch Dynamic AMOLED 2X QHD+",
-			"Chip: Snapdragon 8 Gen 3 for Galaxy",
-			"Camera: 200MP chính + 50MP telephoto + 10MP telephoto + 12MP ultra-wide",
+			"Màn hình: 6.7 inch LTPO OLED 120Hz",
+			"Chip: Snapdragon 8+ Gen 1",
+			"Camera: 50MP chính + 50MP ultra-wide",
 			"RAM/ROM: 12GB/256GB",
-			"Pin: 5000mAh, sạc nhanh 45W",
-			"Đặc biệt: S Pen tích hợp, Galaxy AI",
+			"Pin: 4700mAh, sạc nhanh 45W, sạc không dây 15W",
+			"Đặc biệt: Glyph Interface, Nothing OS 2.0",
 		],
 	},
 
 	{
 		id: 3,
-		name: "MacBook Pro 14 inch M3",
+		name: "MacBook Pro 14-inch M3 Pro Chip 18GB 512GB",
 		brand: "Apple",
 		category: "laptop",
 		price: 52990000,
@@ -91,7 +91,7 @@ const products = [
 		images: [
 			{
 				id: 1,
-				url: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&h=600&fit=crop&crop=center",
+				url: "/assets/images/Macbook.png",
 				alt: "MacBook Pro 14 inch M3 Space Gray",
 				isMain: true,
 			},
@@ -124,7 +124,7 @@ const products = [
 
 	{
 		id: 4,
-		name: "iPad Pro 11 inch M4",
+		name: "iPad Pro 11-inch M4 Chip Wi-Fi 256GB",
 		brand: "Apple",
 		category: "tablet",
 		price: 28990000,
@@ -132,7 +132,7 @@ const products = [
 		images: [
 			{
 				id: 1,
-				url: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&h=600&fit=crop&crop=center",
+				url: "/assets/images/ipad-main.png",
 				alt: "iPad Pro 11 inch M4 Silver",
 				isMain: true,
 			},
@@ -165,48 +165,48 @@ const products = [
 
 	{
 		id: 5,
-		name: "Samsung Odyssey G9 49 inch",
-		brand: "Samsung",
+		name: "Studio Display 27-inch 5K Retina Standard Glass Tilt-Adjustable Stand",
+		brand: "Apple",
 		category: "monitor",
-		price: 35990000,
+		price: 39990000,
 
 		images: [
 			{
 				id: 1,
-				url: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=600&fit=crop&crop=center",
-				alt: "Samsung Odyssey G9 49 inch",
+				url: "/assets/images/studio-display-main.png",
+				alt: "Apple Studio Display",
 				isMain: true,
 			},
 			{
 				id: 2,
 				url: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=600&fit=crop&crop=top",
-				alt: "Odyssey G9 màn hình cong",
+				alt: "Studio Display góc nghiêng",
 				isMain: false,
 			},
 			{
 				id: 3,
 				url: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=600&fit=crop&crop=bottom",
-				alt: "Odyssey G9 RGB lighting",
+				alt: "Studio Display chân đế",
 				isMain: false,
 			},
 		],
 
 		description:
-			"Màn hình gaming cong 49 inch với độ cong 1000R, độ phân giải Dual QHD và tần số quét 240Hz. Công nghệ Quantum Dot cho màu sắc sống động, RGB lighting đẹp mắt.",
+			"Apple Studio Display với màn hình Retina 5K 27 inch tuyệt đẹp, camera Center Stage 12MP và hệ thống âm thanh 6 loa chất lượng studio. Thiết kế nhôm nguyên khối sang trọng.",
 
 		specifications: [
-			"Màn hình: 49 inch cong 1000R VA Quantum Dot",
-			"Độ phân giải: 5120 x 1440 (Dual QHD)",
-			"Tần số quét: 240Hz, phản hồi 1ms",
-			"HDR: HDR1000, 95% DCI-P3",
-			"Gaming: G-Sync Compatible, FreeSync Premium Pro",
-			"Kết nối: 2x DP 1.4, 1x HDMI 2.1, USB-C 90W",
+			"Màn hình: 27 inch Retina 5K IPS",
+			"Độ phân giải: 5120 x 2880 (218 PPI)",
+			"Độ sáng: 600 nits, True Tone, P3 wide color",
+			"Camera: 12MP Ultra Wide với Center Stage",
+			"Âm thanh: 6 loa force-cancelling, 3 mic studio",
+			"Kết nối: 1x Thunderbolt 3, 3x USB-C",
 		],
 	},
 
 	{
 		id: 6,
-		name: "Google Pixel 8 Pro",
+		name: "Google Pixel 8 Pro 12GB 5G",
 		brand: "Google",
 		category: "smartphone",
 		price: 22990000,
@@ -214,7 +214,7 @@ const products = [
 		images: [
 			{
 				id: 1,
-				url: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&h=600&fit=crop&crop=center",
+				url: "/assets/images/Google Pixel.png",
 				alt: "Google Pixel 8 Pro Bay Blue",
 				isMain: true,
 			},
@@ -247,165 +247,206 @@ const products = [
 
 	{
 		id: 7,
-		name: "Xiaomi 14 Ultra",
-		brand: "Xiaomi",
-		category: "smartphone",
-		price: 29990000,
+		name: "Mac Studio M2 Max 12-Core CPU 30-Core GPU 32GB 512GB SSD",
+		brand: "Apple",
+		category: "desktop",
+		price: 49990000,
 
 		images: [
 			{
 				id: 1,
-				url: "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600&h=600&fit=crop&crop=center",
-				alt: "Xiaomi 14 Ultra Black",
+				url: "/assets/images/Mac Studio.png",
+				alt: "Mac Studio M2 Max Silver",
 				isMain: true,
 			},
 			{
 				id: 2,
 				url: "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600&h=600&fit=crop&crop=top",
-				alt: "Xiaomi 14 Ultra camera Leica",
+				alt: "Mac Studio cổng kết nối",
 				isMain: false,
 			},
 			{
 				id: 3,
 				url: "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600&h=600&fit=crop&crop=bottom",
-				alt: "Xiaomi 14 Ultra mặt sau",
+				alt: "Mac Studio thiết kế",
 				isMain: false,
 			},
 		],
 
 		description:
-			"Xiaomi 14 Ultra với camera Leica chuyên nghiệp, cảm biến Sony LYT-900 1 inch và sạc siêu nhanh 90W. Đi kèm Photography Kit với grip camera chuyên nghiệp.",
+			"Mac Studio với chip M2 Max mạnh mẽ, hiệu năng vượt trội cho các tác vụ chuyên nghiệp. Thiết kế nhỏ gọn nhưng đầy đủ cổng kết nối, làm mát hiệu quả và hoàn toàn yên tĩnh.",
 
 		specifications: [
-			"Màn hình: 6.73 inch LTPO AMOLED 2K 120Hz",
-			"Chip: Snapdragon 8 Gen 3",
-			'Camera: 50MP Leica chính 1" + 50MP telephoto 5x + 50MP ultra-wide',
-			"RAM/ROM: 16GB/512GB",
-			"Pin: 5300mAh, HyperCharge 90W (18 phút 100%)",
-			"Đặc biệt: Photography Kit, Leica watermark",
+			"Chip: Apple M2 Max (12-core CPU + 30-core GPU)",
+			"RAM/SSD: 32GB unified memory + 512GB SSD",
+			"Cổng kết nối: 4x Thunderbolt 4, 2x USB-A, HDMI, 10Gb Ethernet",
+			"Kết nối: Wi-Fi 6E, Bluetooth 5.3",
+			"Âm thanh: Jack 3.5mm hỗ trợ impedance cao",
+			"Kích thước: 19.7 x 19.7 x 9.5 cm, 2.7kg",
 		],
 	},
 
 	{
 		id: 8,
-		name: "AirPods Pro 2 (USB-C)",
+		name: "AirPods Max Headphones",
 		brand: "Apple",
 		category: "accessory",
-		price: 6490000,
+		price: 13990000,
 
 		images: [
 			{
 				id: 1,
-				url: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=600&h=600&fit=crop&crop=center",
-				alt: "AirPods Pro 2 USB-C",
+				url: "/assets/images/Airpod.png",
+				alt: "AirPods Max Space Gray",
 				isMain: true,
 			},
 			{
 				id: 2,
 				url: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=600&h=600&fit=crop&crop=top",
-				alt: "AirPods Pro 2 trong case",
+				alt: "AirPods Max earcups",
 				isMain: false,
 			},
 			{
 				id: 3,
 				url: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=600&h=600&fit=crop&crop=bottom",
-				alt: "AirPods Pro 2 đeo tai",
+				alt: "AirPods Max headband",
 				isMain: false,
 			},
 		],
 
 		description:
-			"AirPods Pro 2 với chip H2, chống ồn chủ động tốt nhất và case sạc USB-C. Spatial Audio với head tracking, 6 giờ nghe nhạc + 24 giờ với case sạc.",
+			"AirPods Max với thiết kế over-ear cao cấp, chống ồn chủ động xuất sắc và chất lượng âm thanh Hi-Fi. Driver 40mm tùy chỉnh, khung nhôm và đệm memory foam êm ái.",
 
 		specifications: [
-			"Chip: H2 thế hệ mới",
-			"Chống ồn: Active Noise Cancellation 2x tốt hơn",
-			"Pin: 6 giờ tai nghe + 24 giờ case (30 giờ tổng)",
-			"Sạc: USB-C + MagSafe + Qi wireless",
-			"Tính năng: Spatial Audio, Adaptive EQ, Find My",
-			"Tương thích: iPhone, iPad, Mac, Apple Watch, Apple TV",
+			"Driver: 40mm dynamic driver tùy chỉnh Apple",
+			"Chip: Apple H1 trong mỗi earcup",
+			"Chống ồn: Active Noise Cancellation + Transparency",
+			"Pin: 20 giờ nghe nhạc (ANC/Transparency bật)",
+			"Sạc: Lightning, 5 phút = 1.5 giờ nghe",
+			"Tính năng: Spatial Audio, Adaptive EQ, Audio Sharing",
 		],
 	},
 
 	{
 		id: 9,
-		name: "Samsung Galaxy Tab S9 Ultra",
+		name: "Samsung Galaxy Tab S9 FE 6GB 128GB",
 		brand: "Samsung",
 		category: "tablet",
-		price: 31990000,
+		price: 12990000,
 
 		images: [
 			{
 				id: 1,
-				url: "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=600&h=600&fit=crop&crop=center",
-				alt: "Samsung Galaxy Tab S9 Ultra Gray",
+				url: "/assets/images/samsung-tablet-main.png",
+				alt: "Samsung Galaxy Tab S9 FE Mint",
 				isMain: true,
 			},
 			{
 				id: 2,
 				url: "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=600&h=600&fit=crop&crop=top",
-				alt: "Galaxy Tab S9 Ultra S Pen",
+				alt: "Galaxy Tab S9 FE S Pen",
 				isMain: false,
 			},
 			{
 				id: 3,
 				url: "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=600&h=600&fit=crop&crop=bottom",
-				alt: "Galaxy Tab S9 Ultra màn hình",
+				alt: "Galaxy Tab S9 FE màn hình",
 				isMain: false,
 			},
 		],
 
 		description:
-			"Tablet Android cao cấp nhất với màn hình khổng lồ 14.6 inch, S Pen tích hợp và chế độ Samsung DeX. Pin 11200mAh cùng 4 loa AKG Dolby Atmos.",
+			"Samsung Galaxy Tab S9 FE với S Pen đi kèm, màn hình lớn 10.9 inch và pin 8000mAh. Thiết kế kim loại cao cấp với hiệu năng mạnh mẽ, giá cả phải chăng.",
 
 		specifications: [
-			"Màn hình: 14.6 inch Dynamic AMOLED 2X 120Hz",
-			"Chip: Snapdragon 8 Gen 2 for Galaxy",
-			"Camera: 13MP + 6MP sau, 12MP + 12MP trước",
-			"RAM/ROM: 12GB/256GB",
-			"Pin: 11200mAh, sạc nhanh 45W",
-			"Đặc biệt: S Pen, Samsung DeX, chống nước IP68",
+			"Màn hình: 10.9 inch LCD 90Hz",
+			"Chip: Exynos 1380 8-core",
+			"Camera: 8MP sau, 12MP ultra-wide trước",
+			"RAM/ROM: 6GB/128GB",
+			"Pin: 8000mAh, sạc nhanh 45W",
+			"Đặc biệt: S Pen đi kèm, chống nước IP68",
 		],
 	},
 
 	{
 		id: 10,
-		name: "Xiaomi Gaming Headset 7.1",
-		brand: "Xiaomi",
+		name: "Sony WH-1000XM5 Wireless Noise Cancelling Headphones",
+		brand: "Sony",
 		category: "accessory",
-		price: 1290000,
+		price: 8990000,
 
 		images: [
 			{
 				id: 1,
-				url: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600&h=600&fit=crop&crop=center",
-				alt: "Xiaomi Gaming Headset 7.1 Black",
+				url: "/assets/images/Sony-MX5.png",
+				alt: "Sony WH-1000XM5 Black",
 				isMain: true,
 			},
 			{
 				id: 2,
 				url: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600&h=600&fit=crop&crop=top",
-				alt: "Xiaomi Gaming Headset LED RGB",
+				alt: "Sony WH-1000XM5 đeo",
 				isMain: false,
 			},
 			{
 				id: 3,
 				url: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600&h=600&fit=crop&crop=bottom",
-				alt: "Xiaomi Gaming Headset microphone",
+				alt: "Sony WH-1000XM5 gập lại",
 				isMain: false,
 			},
 		],
 
 		description:
-			"Tai nghe gaming 7.1 surround sound với LED RGB 16.7 triệu màu, driver 40mm và mic chống nhiễu. Thiết kế thoải mái cho gaming sessions dài với giá cả phải chăng.",
+			"Sony WH-1000XM5 với công nghệ chống ồn hàng đầu thế giới, 8 microphone cho cuộc gọi rõ ràng và driver 30mm mới. Pin 30 giờ, sạc nhanh 3 phút = 3 giờ nghe.",
 
 		specifications: [
-			"Driver: 40mm Neodymium",
-			"Âm thanh: Virtual 7.1 surround sound",
-			"Mic: Omni-directional, chống nhiễu, gập 120°",
-			"LED: RGB 16.7 triệu màu, multiple effects",
-			"Kết nối: USB 2.0, cable 2.2m",
-			"Tương thích: PC, PS4, PS5 + Mi Gaming software",
+			"Driver: 30mm carbon fiber composite",
+			"Chip: Integrated Processor V1 + QN1",
+			"Chống ồn: 8 microphones, Auto NC Optimizer",
+			"Pin: 30 giờ (ANC bật), 40 giờ (ANC tắt)",
+			"Sạc: USB-C, 3 phút = 3 giờ nghe",
+			"Tính năng: LDAC, Multipoint, Speak-to-Chat, DSEE Extreme",
+		],
+	},
+
+	{
+		id: 11,
+		name: "Apple Watch Ultra 2 GPS + Cellular 49mm",
+		brand: "Apple",
+		category: "accessory",
+		price: 21990000,
+
+		images: [
+			{
+				id: 1,
+				url: "/assets/images/Apple Watch.png",
+				alt: "Apple Watch Ultra 2 Titanium with Trail Loop",
+				isMain: true,
+			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=600&h=600&fit=crop",
+				alt: "Apple Watch Ultra 2 mặt bên",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=600&h=600&fit=crop",
+				alt: "Apple Watch Ultra 2 Action Button",
+				isMain: false,
+			},
+		],
+
+		description:
+			"Apple Watch Ultra 2 với vỏ titan chuẩn hàng không vũ trụ, màn hình siêu sáng 3000 nits và pin 36 giờ. Action Button tùy chỉnh, GPS 2 tần số chính xác cao và khả năng lặn đến 40m.",
+
+		specifications: [
+			"Màn hình: 49mm Retina LTPO OLED (3000 nits)",
+			"Chip: Apple S9 SiP + U2 (UWB)",
+			"Pin: Lên đến 36 giờ (72 giờ ở chế độ tiết kiệm)",
+			"Cảm biến: ECG, Blood oxygen, Temperature, Depth, Altimeter",
+			"Chống nước: 100m (ISO 22810), Lặn 40m (EN 13319)",
+			"Tính năng: Action Button, Siren 86dB, Cellular, GPS 2 tần số",
 		],
 	},
 ];
