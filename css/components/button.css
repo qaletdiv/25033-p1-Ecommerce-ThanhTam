@@ -2,11 +2,11 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	padding: 0 2rem;
+	padding: 0 1.5rem;
 	font-size: var(--fs-caption);
 	font-weight: var(--fw-semibold);
 	text-transform: uppercase;
-	letter-spacing: 0.1em;
+	letter-spacing: 0.085em;
 	border: 1px solid transparent;
 	border-radius: 9999px;
 	gap: 0.5rem;
@@ -21,8 +21,8 @@
 }
 
 .btn:focus-visible {
-	outline: none;
-	box-shadow: var(--focus-ring);
+	outline: 2px solid var(--bd-brand);
+	outline-offset: 2px;
 }
 
 .btn:active:not(:disabled) {
@@ -46,18 +46,22 @@
 	border-color: var(--brand-800);
 }
 
+.btn--white {
+	background-color: white;
+	color: var(--txt-default);
+}
+
 .btn--link {
 	background-color: transparent;
 	color: var(--txt-brand);
 	border-color: transparent;
-	padding: 0;
 	font-weight: var(--fw-semibold);
 	text-decoration: none;
 	border-radius: 999px;
 }
 
 .btn--link:hover:not(:disabled) {
-	color: var(--brand-800);
+	color: var(--bg-light);
 	background-color: var(--bg-brand);
 	border-color: transparent;
 }
@@ -87,4 +91,17 @@
 .btn--icon-only svg {
 	width: 1.25rem;
 	height: 1.25rem;
+}
+
+/* Button Group */
+.btn-group {
+	display: inline-flex;
+	align-items: center;
+	gap: 1.5rem;
+
+	a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.125rem;
+	}
 }

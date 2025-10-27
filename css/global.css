@@ -65,10 +65,17 @@ p {
 	margin: 0 0 1rem 0;
 }
 
-/* Interactive Elements */
 button {
-	font-family: inherit;
 	cursor: pointer;
+}
+
+:focus-visible {
+	outline: 2px auto;
+	outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+	outline: none;
 }
 
 a {
@@ -79,10 +86,17 @@ a {
 
 a:hover {
 	text-decoration: underline;
+	text-underline-offset: 3px;
+	text-decoration-thickness: 1.3px;
+	text-decoration-skip-ink: auto;
 }
 
 .container {
 	margin: 0 auto;
 	padding: 0 40px;
 	max-width: 1440px;
+}
+
+.section {
+	padding: var(--section-space-md) 0;
 }
