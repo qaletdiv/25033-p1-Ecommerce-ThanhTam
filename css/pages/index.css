@@ -35,6 +35,7 @@
 
 	.product-name {
 		margin-bottom: 0.25rem;
+		text-wrap: balance;
 	}
 
 	.product-category {

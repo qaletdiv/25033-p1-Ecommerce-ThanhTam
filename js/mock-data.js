@@ -247,7 +247,7 @@ export const products = [
 
 	{
 		id: 7,
-		name: "Mac Studio M2 Max 12-Core CPU 30-Core GPU 32GB 512GB SSD",
+		name: "Mac Studio M2 Max 12-Core CPU 30-Core GPU 32GB 512GB",
 		brand: "Apple",
 		category: "desktop",
 		price: 49990000,
