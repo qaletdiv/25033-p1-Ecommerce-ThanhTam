@@ -36,8 +36,8 @@
                 </form>
             </div>
             <div class="nav-actions">
-                <button class="btn btn--icon-only"><i data-lucide="user"></i></button>
-                <button class="btn btn--icon-only"><i data-lucide="shopping-cart"></i></button>
+                <button class="btn btn--icon-only" id="userBtn"><i data-lucide="user"></i></button>
+                <button class="btn btn--icon-only" id="cartBtn"><i data-lucide="shopping-cart"></i></button>
             </div>
         </div>
     </header>
@@ -45,10 +45,20 @@
         <section class="section">
             <div class="container">
                 <h1 style="font-size: 2rem; margin-bottom: 1.5rem;">Sản phẩm mới ra mắt</h1>
-                <div id="products" class="products-container"></div>
+                <div id="products-container" class="products-container"></div>
             </div>
         </section>
     </main>
+    <dialog data-modal class="modal">
+        <div>
+            <p class="modal-title">Please login to proceed</p>
+            <button data-close-modal class="btn btn--icon-only btn--small modal-close"><i data-lucide="X"></i></button>
+            <div class="btn-group">
+                <button class="btn btn--primary">Đăng nhập</button>
+                <button class="btn">Đăng ký</button>
+            </div>
+        </div>
+    </dialog>
     <script type="module" src="/js/main.js"></script>
 </body>
 
