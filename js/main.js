@@ -24,8 +24,6 @@ let isLoggedin = false;
 //* DOM ====================================================================================================================
 
 const productList = JSON.parse(localStorage.getItem("productList"));
-const modal = document.querySelector("[data-modal]");
-const modalCloseBtn = document.querySelector("[data-close-modal]");
 const cartBtnEl = document.getElementById("cartBtn");
 const productContainerEl = document.getElementById("products-container");
 
@@ -62,30 +60,59 @@ function renderProducts() {
 		.join("");
 }
 
+function modalHandler() {
+	const existingModal = document.querySelector("[data-modal]");
+	if (!existingModal) {
+		document.body.insertAdjacentHTML(
+			"beforeend",
+			`<dialog data-modal class="modal">
+        <div>
+            <p class="modal-title">Please login to proceed</p>
+            <button class="btn btn--icon-only btn--small modal-close"><i data-lucide="X"></i></button>
+            <div class="btn-group">
+                <button class="btn btn--primary">Đăng nhập</button>
+                <button class="btn">Đăng ký</button>
+            </div>
+        </div>
+    </dialog>`,
+		);
+		createIcons({ icons: { X } });
+	}
+}
+
 function modalOpen() {
+	const modal = document.querySelector("[data-modal]");
 	if (!isLoggedin) {
 		modal.showModal();
 		document.body.style.overflow = "hidden";
-	} else {
-		return;
 	}
 }
 
 function modalClose() {
-	modal.close();
-	document.body.style.overflow = "";
+	const modal = document.querySelector("[data-modal]");
+	if (modal) {
+		modal.close();
+		document.body.style.overflow = "";
+	}
 }
 
-cartBtnEl.addEventListener("click", modalOpen);
-modalCloseBtn.addEventListener("click", modalClose);
+cartBtnEl.addEventListener("click", () => {
+	modalHandler();
+	modalOpen();
+});
+
+document.body.addEventListener("click", (e) => {
+	if (e.target.classList.contains("modal-close")) {
+		modalClose();
+	}
+});
 
 productContainerEl.addEventListener("click", (e) => {
 	if (!isLoggedin) {
 		const button = e.target.dataset.productId;
 		if (button) {
+			modalHandler();
 			modalOpen();
 		}
-	} else {
-		return;
 	}
 });
