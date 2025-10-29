@@ -93,6 +93,7 @@ function modalClose() {
 	if (modal) {
 		modal.close();
 		document.body.style.overflow = "";
+		modal.remove();
 	}
 }
 
