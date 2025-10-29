@@ -91,6 +91,83 @@ a:hover {
 	text-decoration-skip-ink: auto;
 }
 
+/* Typography Utility Classes */
+
+.fs-h1 {
+	font-size: var(--fs-h1);
+	line-height: 1.1;
+}
+
+.fs-h2 {
+	font-size: var(--fs-h2);
+	line-height: 1.2;
+}
+
+.fs-h3 {
+	font-size: var(--fs-h3);
+	line-height: 1.2;
+}
+
+.fs-h4 {
+	font-size: var(--fs-h4);
+	line-height: 1.4;
+}
+
+.fs-h5 {
+	font-size: var(--fs-h5);
+	line-height: 1.4;
+}
+
+.fs-h6 {
+	font-size: var(--fs-h6);
+	line-height: 1.5;
+}
+
+.fs-large {
+	font-size: var(--fs-large);
+}
+
+.fs-default {
+	font-size: var(--fs-default);
+}
+
+.fs-small {
+	font-size: var(--fs-small);
+}
+
+.fs-caption {
+	font-size: var(--fs-caption);
+}
+
+.fs-label {
+	font-size: var(--fs-label);
+}
+
+/* Font Weight Classes */
+.fw-default {
+	font-weight: var(--fw-default);
+}
+
+.fw-medium {
+	font-weight: var(--fw-medium);
+}
+
+.fw-semibold {
+	font-weight: var(--fw-semibold);
+}
+
+.fw-bold {
+	font-weight: var(--fw-bold);
+}
+
+.fw-extrabold {
+	font-weight: var(--fw-extrabold);
+}
+
+.fw-black {
+	font-weight: var(--fw-black);
+}
+
 .container {
 	margin: 0 auto;
 	padding: 0 40px;

@@ -26,6 +26,8 @@ let isLoggedin = false;
 const productList = JSON.parse(localStorage.getItem("productList"));
 const cartBtnEl = document.getElementById("cartBtn");
 const productContainerEl = document.getElementById("products-container");
+const searchInputEl = document.querySelector("[type=search]");
+const headerEl = document.querySelector("header");
 
 //* MAIN ===================================================================================================================
 
@@ -49,7 +51,7 @@ function renderProducts() {
 			<div class="product-info">
 				<a href="#" class="product-category">${product.category}</a>
 				<p class="product-name">${product.name}</p>
-				<p class="product-price">${product.price}</p>
+				<p class="product-price">${product.price.toLocaleString("vi-VN")}đ</p>
 			</div>
 			<div class="btn-group">
 				<button class="btn btn--primary" data-product-id="${product.id}">Thêm vào giỏ</button>
@@ -60,7 +62,7 @@ function renderProducts() {
 		.join("");
 }
 
-function modalHandler() {
+function modalRender() {
 	const existingModal = document.querySelector("[data-modal]");
 	if (!existingModal) {
 		document.body.insertAdjacentHTML(
@@ -82,10 +84,8 @@ function modalHandler() {
 
 function modalOpen() {
 	const modal = document.querySelector("[data-modal]");
-	if (!isLoggedin) {
-		modal.showModal();
-		document.body.style.overflow = "hidden";
-	}
+	document.body.style.overflow = "hidden";
+	modal.showModal();
 }
 
 function modalClose() {
@@ -97,10 +97,14 @@ function modalClose() {
 	}
 }
 
-cartBtnEl.addEventListener("click", () => {
-	modalHandler();
-	modalOpen();
-});
+function addToCartHandler() {
+	if (!isLoggedin) {
+		modalRender();
+		modalOpen();
+	}
+}
+
+cartBtnEl.addEventListener("click", addToCartHandler);
 
 document.body.addEventListener("click", (e) => {
 	if (e.target.classList.contains("modal-close")) {
@@ -109,11 +113,58 @@ document.body.addEventListener("click", (e) => {
 });
 
 productContainerEl.addEventListener("click", (e) => {
-	if (!isLoggedin) {
-		const button = e.target.dataset.productId;
-		if (button) {
-			modalHandler();
-			modalOpen();
-		}
+	const buttonId = e.target.dataset.productId;
+	if (!buttonId) {
+		return;
 	}
+	addToCartHandler();
+});
+
+function renderSearchModal() {
+	const searchKey = searchInputEl.value.trim();
+	const matchingProducts = products.filter((product) =>
+		product.name.trim().toLowerCase().includes(searchKey.toLowerCase()),
+	);
+
+	const searchResultEl = document.createElement("div");
+	searchResultEl.classList.add("search-result-container");
+	const existingSearchResult = document.querySelector(
+		".search-result-container",
+	);
+
+	if (searchKey === "") {
+		existingSearchResult.remove();
+		return;
+	}
+
+	if (existingSearchResult) {
+		existingSearchResult.remove();
+	}
+
+	if (matchingProducts.length === 0) {
+		searchResultEl.innerHTML = `<p class="no-result-text">Không tìm thấy tên sản phẩm</p>`;
+		headerEl.append(searchResultEl);
+	} else {
+		searchResultEl.innerHTML = matchingProducts
+			.map(
+				(product) => `
+		<a href="#" class="search-result-item">
+			<img src="${product.images[0].url}" alt="${product.name}" class="search-result-img">
+			<div class="search-result-info">
+				<p class="search-result-name">${product.name}</p>
+				<p class="search-result-price">${product.price.toLocaleString("vi-VN")}đ</p>
+			</div>
+		</a>`,
+			)
+			.join("");
+		headerEl.append(searchResultEl);
+	}
+}
+
+searchInputEl.addEventListener("keyup", renderSearchModal);
+searchInputEl.addEventListener("blur", () => {
+	const existingSearchResult = document.querySelector(
+		".search-result-container",
+	);
+	existingSearchResult.remove();
 });
