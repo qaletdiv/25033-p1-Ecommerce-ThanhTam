@@ -1,23 +1,4 @@
-import {
-	createIcons,
-	Search,
-	ShoppingCart,
-	User,
-	ChevronRight,
-	X,
-} from "lucide";
-
 import { products } from "./mock-data.js";
-
-const ICON_CONFIG = {
-	icons: {
-		Search,
-		ShoppingCart,
-		User,
-		ChevronRight,
-		X,
-	},
-};
 
 let isLoggedin = false;
 
@@ -36,7 +17,6 @@ localStorage.setItem("productList", JSON.stringify(products));
 
 document.addEventListener("DOMContentLoaded", () => {
 	renderProducts(productList, productContainerEl);
-	createIcons(ICON_CONFIG);
 });
 
 function renderProducts(arr, container) {
@@ -53,12 +33,11 @@ function renderProducts(arr, container) {
 			</div>
 			<div class="btn-group">
 				<button class="btn btn--primary" data-product-id="${product.id}">Thêm vào giỏ</button>
-				<a href="#">Xem chi tiết <i data-lucide="chevron-right" width="16" height="16"></i></a>
+				<a href="#">Xem chi tiết <i class="lucide lucide-chevron-right" style="width: 16px; height: 16px;"></i></a>
 			</div>
 		</div>`,
 		)
 		.join("");
-	createIcons({ icons: { ChevronRight } });
 }
 
 function modalRender() {
@@ -69,7 +48,7 @@ function modalRender() {
 			`<dialog data-modal class="modal">
         <div>
             <p class="modal-title">Please login to proceed</p>
-            <button class="btn btn--icon-only btn--small modal-close"><i data-lucide="X"></i></button>
+            <button class="btn btn--icon-only btn--small modal-close"><i class="lucide lucide-x"></i></button>
             <div class="btn-group">
                 <button class="btn btn--primary">Đăng nhập</button>
                 <button class="btn">Đăng ký</button>
@@ -77,7 +56,6 @@ function modalRender() {
         </div>
     </dialog>`,
 		);
-		createIcons({ icons: { X } });
 	}
 }
 
