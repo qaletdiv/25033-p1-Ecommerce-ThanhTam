@@ -172,7 +172,7 @@ searchInputEl.addEventListener("blur", () => {
 	existingSearchResult.remove();
 });
 
-//* Filter =========================================================================================
+//* Filter by categories =========================================================================================
 
 const productBycategories = Object.groupBy(
 	products,
@@ -200,5 +200,9 @@ filterEl.addEventListener("click", (e) => {
 
 	// tạo ra 1 array product thuộc category
 	const matchCategoryProducts = productBycategories[buttonId];
-	renderProducts(matchCategoryProducts, productContainerEl);
+	if (!matchCategoryProducts) {
+		return;
+	} else {
+		renderProducts(matchCategoryProducts, productContainerEl);
+	}
 });
