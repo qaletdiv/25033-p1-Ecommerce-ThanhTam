@@ -1,23 +1,23 @@
-// import {
-// 	createIcons,
-// 	Search,
-// 	ShoppingCart,
-// 	User,
-// 	ChevronRight,
-// 	X,
-// } from "lucide";
+import {
+	createIcons,
+	Search,
+	ShoppingCart,
+	User,
+	ChevronRight,
+	X,
+} from "lucide";
 
 import { products } from "./mock-data.js";
 
-// const ICON_CONFIG = {
-// 	icons: {
-// 		Search,
-// 		ShoppingCart,
-// 		User,
-// 		ChevronRight,
-// 		X,
-// 	},
-// };
+const ICON_CONFIG = {
+	icons: {
+		Search,
+		ShoppingCart,
+		User,
+		ChevronRight,
+		X,
+	},
+};
 
 let isLoggedin = false;
 
@@ -36,7 +36,7 @@ localStorage.setItem("productList", JSON.stringify(products));
 
 document.addEventListener("DOMContentLoaded", () => {
 	renderProducts(productList, productContainerEl);
-	// createIcons(ICON_CONFIG);
+	createIcons(ICON_CONFIG);
 });
 
 function renderProducts(arr, container) {
@@ -58,7 +58,7 @@ function renderProducts(arr, container) {
 		</div>`,
 		)
 		.join("");
-	// createIcons({ icons: { ChevronRight } });
+	createIcons({ icons: { ChevronRight } });
 }
 
 function modalRender() {
@@ -77,7 +77,7 @@ function modalRender() {
         </div>
     </dialog>`,
 		);
-		// createIcons({ icons: { X } });
+		createIcons({ icons: { X } });
 	}
 }
 
