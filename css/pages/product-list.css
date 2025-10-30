@@ -2,5 +2,12 @@
 
 .filter-container {
 	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	margin-bottom: 1rem;
+}
+
+.empty-message {
+	text-align: center;
+	margin-top: 2rem;
 }

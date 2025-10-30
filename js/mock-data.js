@@ -5,6 +5,7 @@ export const products = [
 		brand: "Apple",
 		category: "smartphone",
 		price: 34990000,
+		keywords: ["điện thoại", "smartphone", "di động", "phone", "iphone", "apple"],
 
 		images: [
 			{
@@ -46,6 +47,7 @@ export const products = [
 		brand: "Nothing",
 		category: "smartphone",
 		price: 14990000,
+		keywords: ["điện thoại", "smartphone", "di động", "phone", "nothing"],
 
 		images: [
 			{
@@ -87,6 +89,7 @@ export const products = [
 		brand: "Apple",
 		category: "laptop",
 		price: 52990000,
+		keywords: ["máy tính", "laptop", "máy tính xách tay", "macbook", "apple"],
 
 		images: [
 			{
@@ -128,6 +131,7 @@ export const products = [
 		brand: "Apple",
 		category: "tablet",
 		price: 28990000,
+		keywords: ["máy tính bảng", "tablet", "ipad", "apple"],
 
 		images: [
 			{
@@ -169,6 +173,7 @@ export const products = [
 		brand: "Apple",
 		category: "monitor",
 		price: 39990000,
+		keywords: ["màn hình", "monitor", "display", "apple"],
 
 		images: [
 			{
@@ -210,6 +215,7 @@ export const products = [
 		brand: "Google",
 		category: "smartphone",
 		price: 22990000,
+		keywords: ["điện thoại", "smartphone", "di động", "phone", "pixel", "google"],
 
 		images: [
 			{
@@ -251,6 +257,7 @@ export const products = [
 		brand: "Apple",
 		category: "desktop",
 		price: 49990000,
+		keywords: ["máy tính để bàn", "desktop", "pc", "mac", "apple"],
 
 		images: [
 			{
@@ -292,6 +299,7 @@ export const products = [
 		brand: "Apple",
 		category: "accessory",
 		price: 13990000,
+		keywords: ["tai nghe", "headphone", "earphone", "airpods", "apple", "phụ kiện"],
 
 		images: [
 			{
@@ -333,6 +341,7 @@ export const products = [
 		brand: "Samsung",
 		category: "tablet",
 		price: 29990000,
+		keywords: ["máy tính bảng", "tablet", "samsung", "galaxy"],
 
 		images: [
 			{
@@ -374,6 +383,7 @@ export const products = [
 		brand: "Sony",
 		category: "accessory",
 		price: 8990000,
+		keywords: ["tai nghe", "headphone", "earphone", "sony", "phụ kiện"],
 
 		images: [
 			{
@@ -415,6 +425,7 @@ export const products = [
 		brand: "Apple",
 		category: "accessory",
 		price: 21990000,
+		keywords: ["đồng hồ thông minh", "smartwatch", "watch", "apple", "phụ kiện"],
 
 		images: [
 			{
@@ -457,6 +468,7 @@ export const products = [
 		brand: "Samsung",
 		category: "smartphone",
 		price: 29990000,
+		keywords: ["điện thoại", "smartphone", "di động", "phone", "samsung", "galaxy"],
 
 		images: [
 			{
@@ -498,6 +510,7 @@ export const products = [
 		brand: "Xiaomi",
 		category: "smartphone",
 		price: 27990000,
+		keywords: ["điện thoại", "smartphone", "di động", "phone", "xiaomi"],
 
 		images: [
 			{
@@ -539,6 +552,7 @@ export const products = [
 		brand: "OPPO",
 		category: "smartphone",
 		price: 24990000,
+		keywords: ["điện thoại", "smartphone", "di động", "phone", "oppo"],
 
 		images: [
 			{
@@ -580,6 +594,7 @@ export const products = [
 		brand: "OnePlus",
 		category: "smartphone",
 		price: 19990000,
+		keywords: ["điện thoại", "smartphone", "di động", "phone", "oneplus"],
 
 		images: [
 			{
@@ -622,6 +637,7 @@ export const products = [
 		brand: "Dell",
 		category: "laptop",
 		price: 44990000,
+		keywords: ["máy tính", "laptop", "máy tính xách tay", "dell"],
 
 		images: [
 			{
@@ -663,6 +679,7 @@ export const products = [
 		brand: "ASUS",
 		category: "laptop",
 		price: 39990000,
+		keywords: ["máy tính", "laptop", "máy tính xách tay", "asus", "gaming"],
 
 		images: [
 			{
@@ -704,6 +721,7 @@ export const products = [
 		brand: "Lenovo",
 		category: "laptop",
 		price: 41990000,
+		keywords: ["máy tính", "laptop", "máy tính xách tay", "lenovo", "thinkpad"],
 
 		images: [
 			{
@@ -746,6 +764,7 @@ export const products = [
 		brand: "HP",
 		category: "desktop",
 		price: 69990000,
+		keywords: ["máy tính để bàn", "desktop", "pc", "hp", "gaming"],
 
 		images: [
 			{
@@ -787,6 +806,7 @@ export const products = [
 		brand: "Dell",
 		category: "desktop",
 		price: 24990000,
+		keywords: ["máy tính để bàn", "desktop", "pc", "dell"],
 
 		images: [
 			{
@@ -828,6 +848,7 @@ export const products = [
 		brand: "Intel",
 		category: "desktop",
 		price: 29990000,
+		keywords: ["máy tính để bàn", "desktop", "pc", "intel", "mini pc"],
 
 		images: [
 			{
@@ -870,6 +891,7 @@ export const products = [
 		brand: "Samsung",
 		category: "monitor",
 		price: 44990000,
+		keywords: ["màn hình", "monitor", "display", "samsung", "gaming"],
 
 		images: [
 			{
@@ -911,6 +933,7 @@ export const products = [
 		brand: "LG",
 		category: "monitor",
 		price: 32990000,
+		keywords: ["màn hình", "monitor", "display", "lg"],
 
 		images: [
 			{
@@ -952,6 +975,7 @@ export const products = [
 		brand: "ASUS",
 		category: "monitor",
 		price: 89990000,
+		keywords: ["màn hình", "monitor", "display", "asus"],
 
 		images: [
 			{
@@ -993,6 +1017,7 @@ export const products = [
 		brand: "Dell",
 		category: "monitor",
 		price: 14990000,
+		keywords: ["màn hình", "monitor", "display", "dell"],
 
 		images: [
 			{
@@ -1035,6 +1060,7 @@ export const products = [
 		brand: "Logitech",
 		category: "accessory",
 		price: 2490000,
+		keywords: ["chuột", "mouse", "logitech", "phụ kiện"],
 
 		images: [
 			{
@@ -1076,6 +1102,7 @@ export const products = [
 		brand: "Keychron",
 		category: "accessory",
 		price: 4990000,
+		keywords: ["bàn phím", "keyboard", "keychron", "phụ kiện"],
 
 		images: [
 			{
@@ -1117,6 +1144,7 @@ export const products = [
 		brand: "Anker",
 		category: "accessory",
 		price: 4490000,
+		keywords: ["sạc dự phòng", "power bank", "pin dự phòng", "anker", "phụ kiện"],
 
 		images: [
 			{
@@ -1158,6 +1186,7 @@ export const products = [
 		brand: "Razer",
 		category: "accessory",
 		price: 3290000,
+		keywords: ["chuột", "mouse", "razer", "gaming", "phụ kiện"],
 
 		images: [
 			{

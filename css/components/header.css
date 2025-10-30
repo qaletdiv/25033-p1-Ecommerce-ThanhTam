@@ -57,7 +57,8 @@
 
 .nav-search-container {
 	position: relative;
-	min-width: 640px;
+	min-width: 32rem;
+	max-width: 100%;
 }
 
 .search-icon {
@@ -93,12 +94,12 @@
 	background-color: var(--bg-default);
 	border-radius: 8px;
 	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-	min-height: 400px;
-	max-height: 400px;
+	min-height: 20rem;
+	max-height: 20rem;
 	overflow-y: auto;
 	z-index: 1000;
-	min-width: 640px;
-	max-width: 100%;
+	min-width: 32rem;
+	max-width: 32rem;
 	padding: 0.5rem;
 }
 
