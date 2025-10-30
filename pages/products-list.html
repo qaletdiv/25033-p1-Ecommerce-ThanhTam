@@ -24,7 +24,6 @@
                 <a href="/" class="nav-logo">AllTech.</a>
                 <nav class="nav-menu">
                     <ul>
-                        <li><a class="nav-item" href="/index.html">Trang chủ</a></li>
                         <li><a class="nav-item" href="/pages/products-list.html">Sản phẩm</a></li>
                         <li><a class="nav-item" href="#">Liên hệ</a></li>
                     </ul>
@@ -46,11 +45,23 @@
     <main>
         <section class="section">
             <div class="container">
-                <h1 class="section-title">Tất cả sản phẩm</h1>
+                <h1 class="section-title" id="product-category-name">Tất cả sản phẩm</h1>
                 <div class="filter-container" id="filter-container">
-                    <button class="btn btn--link btn--sm" id="show-all-btn">Tất cả</button>
+                    <div class="categories-container" id="categories-container">
+                        <button class="btn btn--link btn--sm" id="show-all-btn">Tất cả</button>
+                    </div>
+                    <div class="prices-container">
+                        <select class="dropdown" id="price-range">
+                            <option value="all">Lọc theo giá</option>
+                            <option value="0-5">Dưới 5tr</option>
+                            <option value="5-10"> Từ 5-10tr</option>
+                            <option value="10-20">Từ 10-20tr</option>
+                            <option value="20-40">Từ 20-40tr</option>
+                            <option value="40-100">Trên 40tr</option>
+                        </select>
+                    </div>
                 </div>
-                <div id="products-container" class="products-container"></div>
+                <div id="products-container" class="products-container" data-category="all"></div>
             </div>
         </section>
     </main>
