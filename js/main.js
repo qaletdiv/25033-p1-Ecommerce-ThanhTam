@@ -23,7 +23,6 @@ let isLoggedin = false;
 
 //* DOM ====================================================================================================================
 
-const productList = JSON.parse(localStorage.getItem("productList"));
 const cartBtnEl = document.getElementById("cartBtn");
 const productContainerEl = document.getElementById("products-container");
 const searchInputEl = document.querySelector("[type=search]");
@@ -33,7 +32,8 @@ const headerEl = document.querySelector("header");
 
 document.addEventListener("DOMContentLoaded", () => {
 	initProductData();
-	renderProducts();
+	const productList = JSON.parse(localStorage.getItem("productList"));
+	renderProducts(productList, productContainerEl);
 	createIcons(ICON_CONFIG);
 });
 
@@ -41,9 +41,9 @@ function initProductData() {
 	localStorage.setItem("productList", JSON.stringify(products));
 }
 
-function renderProducts() {
-	productContainerEl.innerHTML = "";
-	productContainerEl.innerHTML = productList
+function renderProducts(arr, container) {
+	container.innerHTML = "";
+	container.innerHTML = arr
 		.map(
 			(product) => `
 		<div class="product-card">
@@ -60,6 +60,7 @@ function renderProducts() {
 		</div>`,
 		)
 		.join("");
+	createIcons({ icons: { ChevronRight } });
 }
 
 function modalRender() {
@@ -104,22 +105,6 @@ function addToCartHandler() {
 	}
 }
 
-cartBtnEl.addEventListener("click", addToCartHandler);
-
-document.body.addEventListener("click", (e) => {
-	if (e.target.classList.contains("modal-close")) {
-		modalClose();
-	}
-});
-
-productContainerEl.addEventListener("click", (e) => {
-	const buttonId = e.target.dataset.productId;
-	if (!buttonId) {
-		return;
-	}
-	addToCartHandler();
-});
-
 function renderSearchModal() {
 	const searchKey = searchInputEl.value.trim();
 	const matchingProducts = products.filter((product) =>
@@ -161,10 +146,59 @@ function renderSearchModal() {
 	}
 }
 
+cartBtnEl.addEventListener("click", addToCartHandler);
+
+document.body.addEventListener("click", (e) => {
+	if (e.target.classList.contains("modal-close")) {
+		modalClose();
+	}
+});
+
+productContainerEl.addEventListener("click", (e) => {
+	const buttonId = e.target.dataset.productId;
+	if (!buttonId) {
+		return;
+	}
+	addToCartHandler();
+});
 searchInputEl.addEventListener("keyup", renderSearchModal);
 searchInputEl.addEventListener("blur", () => {
 	const existingSearchResult = document.querySelector(
 		".search-result-container",
 	);
+	if (!existingSearchResult) {
+		return;
+	}
 	existingSearchResult.remove();
+});
+
+//* Filter =========================================================================================
+
+const productBycategories = Object.groupBy(
+	products,
+	(product) => product.category,
+);
+
+const categoriesName = Object.keys(productBycategories);
+
+const filterEl = document.getElementById("filter-container");
+
+categoriesName.forEach((category) => {
+	const item = document.createElement("button");
+	item.classList.add("btn", "btn--link", "btn--sm");
+	item.innerText = `${category}`;
+	filterEl.append(item);
+});
+
+filterEl.addEventListener("click", (e) => {
+	const buttonId = e.target.innerText.toLowerCase();
+
+	if (e.target.id === "show-all-btn") {
+		renderProducts(products, productContainerEl);
+		return;
+	}
+
+	// tạo ra 1 array product thuộc category
+	const matchCategoryProducts = productBycategories[buttonId];
+	renderProducts(matchCategoryProducts, productContainerEl);
 });

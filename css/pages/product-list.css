@@ -1,1 +1,6 @@
 @import url("../components/product-card.css");
+
+.filter-container {
+	display: flex;
+	margin-bottom: 1rem;
+}

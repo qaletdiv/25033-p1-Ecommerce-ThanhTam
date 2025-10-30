@@ -1,4 +1,3 @@
-/* Base Styles */
 * {
 	box-sizing: border-box;
 }
@@ -19,6 +18,7 @@ body {
 	padding: 0;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	overflow: scroll;
 }
 
 /* Typography Defaults */
@@ -176,4 +176,8 @@ a:hover {
 
 .section {
 	padding: var(--section-space-md) 0;
+}
+
+.section-title {
+	margin-bottom: 2rem;
 }
