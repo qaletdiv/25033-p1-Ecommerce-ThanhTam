@@ -33,7 +33,7 @@ function renderProducts(arr, container) {
 			</div>
 			<div class="btn-group">
 				<button class="btn btn--primary" data-product-id="${product.id}">Thêm vào giỏ</button>
-				<a href="#">Xem chi tiết <i class="lucide lucide-chevron-right" style="width: 16px; height: 16px;"></i></a>
+				<a href="#">Xem chi tiết <span><i class="lucide icon-chevron-right size-small"></i></span></a>
 			</div>
 		</div>`,
 		)
@@ -48,7 +48,7 @@ function modalRender() {
 			`<dialog data-modal class="modal">
         <div>
             <p class="modal-title">Please login to proceed</p>
-            <button class="btn btn--icon-only btn--small modal-close"><i class="lucide lucide-x"></i></button>
+            <button class="btn btn--icon-only btn--small modal-close"><i class="lucide icon-x size-default"></i></button>
             <div class="btn-group">
                 <button class="btn btn--primary">Đăng nhập</button>
                 <button class="btn">Đăng ký</button>
