@@ -1,22 +1,39 @@
+//* Local Storage ===============================================================================================================================
+
 import { products } from "./mock-data.js";
 
-let isLoggedin = false;
+const mockUser = {
+	name: "Tam",
+	email: "thanhtamktvn600@gmail.com",
+	password: "123456789",
+	isLoggedin: false,
+};
 
-//* DOM ====================================================================================================================
+if (!localStorage.getItem("productList")) {
+	localStorage.setItem("productList", JSON.stringify(products));
+}
 
-const cartBtnEl = document.getElementById("cartBtn");
+const productList = JSON.parse(localStorage.getItem("productList"));
+
+if (!localStorage.getItem("user")) {
+	localStorage.setItem("user", JSON.stringify(mockUser));
+}
+const user = JSON.parse(localStorage.getItem("user"));
+
+//* DOM ================================================================================================================================================================
 const productContainerEl = document.getElementById("products-container");
+const cartBtnEl = document.getElementById("cartBtn");
+const userBtnEl = document.getElementById("userBtn");
 const searchInputEl = document.querySelector("[type=search]");
 const headerEl = document.querySelector("header");
 const filterEl = document.getElementById("filter-container");
-const productList = JSON.parse(localStorage.getItem("productList"));
 const selectEl = document.getElementById("price-range");
-localStorage.setItem("productList", JSON.stringify(products));
 
-//* Main ===================================================================================================================
-
+//* Render Product & Login Modal ========================================================================================================================================
 document.addEventListener("DOMContentLoaded", () => {
-	renderProducts(productList, productContainerEl);
+	if (document.getElementById("products-container")) {
+		renderProducts(productList, productContainerEl);
+	}
 });
 
 function renderProducts(arr, container) {
@@ -48,10 +65,10 @@ function modalRender() {
 			`<dialog data-modal class="modal">
         <div>
             <p class="modal-title">Please login to proceed</p>
-            <button class="btn btn--icon-only btn--small modal-close"><i class="lucide icon-x size-default"></i></button>
+            <button class="btn btn--icon-only btn--small modal-close" aria-label="Close modal"><i class="lucide icon-x size-default"></i></button>
             <div class="btn-group">
-                <button class="btn btn--primary">Đăng nhập</button>
-                <button class="btn">Đăng ký</button>
+                <a class="btn btn--primary" href="/pages/login.html">Đăng nhập</a>
+                <a class="btn btn--outline" href="/pages/signup.html">Đăng ký</a>
             </div>
         </div>
     </dialog>`,
@@ -59,7 +76,7 @@ function modalRender() {
 	}
 }
 
-//* Login Notification ==============================================================================================
+//* Login ===========================================================================================================================================
 
 function modalOpen() {
 	const modal = document.querySelector("[data-modal]");
@@ -67,17 +84,8 @@ function modalOpen() {
 	modal.showModal();
 }
 
-function modalClose() {
-	const modal = document.querySelector("[data-modal]");
-	if (modal) {
-		modal.close();
-		document.body.style.overflow = "";
-		modal.remove();
-	}
-}
-
 function addToCartHandler() {
-	if (!isLoggedin) {
+	if (!user.isLoggedin) {
 		modalRender();
 		modalOpen();
 	}
@@ -86,20 +94,25 @@ function addToCartHandler() {
 cartBtnEl.addEventListener("click", addToCartHandler);
 
 document.body.addEventListener("click", (e) => {
-	if (e.target.classList.contains("modal-close")) {
-		modalClose();
+	const modal = document.querySelector("[data-modal]");
+	if (e.target.closest(".modal-close")) {
+		modal.close();
+		modal.remove();
+		document.body.style.overflow = "";
 	}
 });
 
-productContainerEl.addEventListener("click", (e) => {
-	const buttonId = e.target.dataset.productId;
-	if (!buttonId) {
-		return;
-	}
-	addToCartHandler();
-});
+if (productContainerEl) {
+	productContainerEl.addEventListener("click", (e) => {
+		const buttonId = e.target.dataset.productId;
+		if (!buttonId) {
+			return;
+		}
+		addToCartHandler();
+	});
+}
 
-//* Search by name ===============================================================================================
+//* Search by name ===================================================================================================================================
 
 function renderSearchModal() {
 	const searchKey = searchInputEl.value.trim();
@@ -161,7 +174,7 @@ searchInputEl.addEventListener("blur", () => {
 
 searchInputEl.addEventListener("click", renderSearchModal);
 
-//* Filter by categories =========================================================================================
+//* Filter by categories ==================================================================================================================================
 
 function updateCurrentCategory(category) {
 	productContainerEl.dataset.category = `${category}` || "all";
@@ -169,50 +182,53 @@ function updateCurrentCategory(category) {
 
 const categoriesEl = document.getElementById("categories-container");
 
-const productBycategories = Object.groupBy(
-	products,
-	(product) => product.category,
-);
+if (productContainerEl && categoriesEl) {
+	const productBycategories = Object.groupBy(
+		products,
+		(product) => product.category,
+	);
+	const categoriesName = Object.keys(productBycategories);
+	categoriesName.forEach((category) => {
+		const item = document.createElement("button");
+		item.classList.add("btn", "btn--link", "btn--sm");
+		item.innerText = `${category}`;
+		item.dataset.category = `${category}`;
+		categoriesEl.append(item);
+	});
 
-const categoriesName = Object.keys(productBycategories);
+	if (filterEl) {
+		filterEl.addEventListener("click", (e) => {
+			const buttonId = e.target.innerText.toLowerCase();
+			const pageTitleEl = document.getElementById("product-category-name");
+			const matchCategoryProducts = productBycategories[buttonId];
 
-categoriesName.forEach((category) => {
-	const item = document.createElement("button");
-	item.classList.add("btn", "btn--link", "btn--sm");
-	item.innerText = `${category}`;
-	item.dataset.category = `${category}`;
-	categoriesEl.append(item);
-});
+			if (e.target.id === "show-all-btn") {
+				renderProducts(products, productContainerEl);
+				pageTitleEl.textContent = "Tất cả sản phẩm";
+				productContainerEl.dataset.category = "all";
+				return;
+			}
 
-filterEl.addEventListener("click", (e) => {
-	const buttonId = e.target.innerText.toLowerCase();
-	const pageTitleEl = document.getElementById("product-category-name");
-	const matchCategoryProducts = productBycategories[buttonId];
+			if (!matchCategoryProducts) {
+				return;
+			} else {
+				renderProducts(matchCategoryProducts, productContainerEl);
+				selectEl.value = "all";
+			}
 
-	if (e.target.id === "show-all-btn") {
-		renderProducts(products, productContainerEl);
-		pageTitleEl.textContent = "Tất cả sản phẩm";
-		productContainerEl.dataset.category = "all";
-		return;
+			pageTitleEl.textContent =
+				buttonId.toUpperCase().charAt(0).toUpperCase() + buttonId.slice(1);
+
+			updateCurrentCategory(buttonId);
+
+			if (document.querySelector(".empty-message")) {
+				document.querySelector(".empty-message").remove();
+			}
+		});
 	}
+}
 
-	if (!matchCategoryProducts) {
-		return;
-	} else {
-		renderProducts(matchCategoryProducts, productContainerEl);
-		selectEl.value = "all";
-	}
-
-	pageTitleEl.textContent =
-		buttonId.toUpperCase().charAt(0).toUpperCase() + buttonId.slice(1);
-
-	updateCurrentCategory(buttonId);
-	document.querySelector(".empty-message").remove();
-});
-
-console.log(productContainerEl.dataset.category);
-
-//* Filter by prices ===========================================================================================
+//* Filter by prices ===========================================================================================================================================
 
 function showEmptyMessage(container, message) {
 	const emptyText = document.createElement("p");
@@ -221,89 +237,193 @@ function showEmptyMessage(container, message) {
 	container.before(emptyText);
 }
 
-filterEl.addEventListener("change", (e) => {
-	const oldMessage = document.querySelector(".empty-message");
-	if (oldMessage) {
-		oldMessage.remove();
+if (filterEl) {
+	filterEl.addEventListener("change", (e) => {
+		const oldMessage = document.querySelector(".empty-message");
+		if (oldMessage) {
+			oldMessage.remove();
+		}
+
+		const currentCategory = productContainerEl.dataset.category;
+
+		const selectedValue = e.target.value;
+
+		if (selectedValue === "0-5") {
+			const productArrPrice = productList.filter(
+				(product) =>
+					product.price < 5000000 &&
+					(currentCategory === "all" || product.category === currentCategory),
+			);
+			renderProducts(productArrPrice, productContainerEl);
+			if (productArrPrice.length === 0) {
+				showEmptyMessage(
+					productContainerEl,
+					"Không tìm thấy sản phẩm trong tầm giá",
+				);
+			}
+		} else if (selectedValue === "5-10") {
+			const productArrPrice = productList.filter(
+				(product) =>
+					product.price >= 5000000 &&
+					product.price <= 10000000 &&
+					(currentCategory === "all" || product.category === currentCategory),
+			);
+			renderProducts(productArrPrice, productContainerEl);
+			if (productArrPrice.length === 0) {
+				showEmptyMessage(
+					productContainerEl,
+					"Không tìm thấy sản phẩm trong tầm giá",
+				);
+			}
+		} else if (selectedValue === "10-20") {
+			const productArrPrice = productList.filter(
+				(product) =>
+					product.price >= 10000000 &&
+					product.price <= 20000000 &&
+					(currentCategory === "all" || product.category === currentCategory),
+			);
+			renderProducts(productArrPrice, productContainerEl);
+			if (productArrPrice.length === 0) {
+				showEmptyMessage(
+					productContainerEl,
+					"Không tìm thấy sản phẩm trong tầm giá",
+				);
+			}
+		} else if (selectedValue === "20-40") {
+			const productArrPrice = productList.filter(
+				(product) =>
+					20000000 <= product.price &&
+					product.price <= 40000000 &&
+					(currentCategory === "all" || product.category === currentCategory),
+			);
+			renderProducts(productArrPrice, productContainerEl);
+			if (productArrPrice.length === 0) {
+				showEmptyMessage(
+					productContainerEl,
+					"Không tìm thấy sản phẩm trong tầm giá",
+				);
+			}
+		} else if (selectedValue === "40-100") {
+			const productArrPrice = productList.filter(
+				(product) =>
+					product.price >= 40000000 &&
+					(currentCategory === "all" || product.category === currentCategory),
+			);
+			renderProducts(productArrPrice, productContainerEl);
+			if (productArrPrice.length === 0) {
+				showEmptyMessage(
+					productContainerEl,
+					"Không tìm thấy sản phẩm trong tầm giá",
+				);
+			}
+		} else if (selectedValue === "all") {
+			const productArrPrice = productList.filter(
+				(product) =>
+					currentCategory === "all" || product.category === currentCategory,
+			);
+			renderProducts(productArrPrice, productContainerEl);
+		}
+	});
+}
+
+//* Validate =====================================================================================================================================
+const emailInputEl = document.getElementById("email");
+const nameInputEl = document.getElementById("fullname");
+const passwordInputEl = document.getElementById("password");
+const confirmPassEl = document.getElementById("confirm-password");
+const formEl = document.getElementById("login-form");
+const signUpFormEl = document.getElementById("sign-up-form");
+
+if (formEl) {
+	formEl.addEventListener("submit", (e) => {
+		e.preventDefault();
+		const emailInput = emailInputEl.value;
+		const passowrdInput = passwordInputEl.value.trim();
+		const subtmitBtn = document.querySelector('button[type="submit"]');
+
+		if (emailInput !== user.email && passowrdInput !== user.password) {
+			console.log("sai thong tin");
+			if (!document.querySelector(".noti-error")) {
+				const el = document.createElement("p");
+				el.classList.add("noti-error");
+				el.textContent = "Sai thông tin, vui lòng thử lại";
+				formEl.prepend(el);
+			}
+			return;
+		}
+		console.log("Dang nhap thanh cong");
+		subtmitBtn.disabled = true;
+		subtmitBtn.textContent = "Đang đăng nhập...";
+		updateUserLoggedInState();
+		window.location.replace("/index.html");
+	});
+}
+
+function renderErrorMsg(str) {
+	if (!document.querySelector(".noti-error")) {
+		const errorMsgEl = document.createElement("p");
+		errorMsgEl.classList.add("noti-error");
+		errorMsgEl.textContent = str;
+		signUpFormEl.prepend(errorMsgEl);
 	}
+}
 
-	const currentCategory = productContainerEl.dataset.category;
+if (signUpFormEl) {
+	signUpFormEl.addEventListener("submit", (e) => {
+		e.preventDefault();
+		const nameInput = nameInputEl.value
+		const confirmPassInput = confirmPassEl.value;
+		const emailInput = emailInputEl.value;
+		const passwordInput = passwordInputEl.value;
 
-	const selectedValue = e.target.value;
+		if (emailInput === user.email) {
+			renderErrorMsg("Email này đã được đăng ký");
+		}
 
-	if (selectedValue === "0-5") {
-		const productArrPrice = productList.filter(
-			(product) =>
-				product.price < 5000000 &&
-				(currentCategory === "all" || product.category === currentCategory),
-		);
-		renderProducts(productArrPrice, productContainerEl);
-		if (productArrPrice.length === 0) {
-			showEmptyMessage(
-				productContainerEl,
-				"Không tìm thấy sản phẩm trong tầm giá",
-			);
+		if (confirmPassInput !== passwordInput) {
+			renderErrorMsg("Mật khẩu không khớp");
 		}
-	} else if (selectedValue === "5-10") {
-		const productArrPrice = productList.filter(
-			(product) =>
-				product.price >= 5000000 &&
-				product.price <= 10000000 &&
-				(currentCategory === "all" || product.category === currentCategory),
-		);
-		renderProducts(productArrPrice, productContainerEl);
-		if (productArrPrice.length === 0) {
-			showEmptyMessage(
-				productContainerEl,
-				"Không tìm thấy sản phẩm trong tầm giá",
-			);
-		}
-	} else if (selectedValue === "10-20") {
-		const productArrPrice = productList.filter(
-			(product) =>
-				product.price >= 10000000 &&
-				product.price <= 20000000 &&
-				(currentCategory === "all" || product.category === currentCategory),
-		);
-		renderProducts(productArrPrice, productContainerEl);
-		if (productArrPrice.length === 0) {
-			showEmptyMessage(
-				productContainerEl,
-				"Không tìm thấy sản phẩm trong tầm giá",
-			);
-		}
-	} else if (selectedValue === "20-40") {
-		const productArrPrice = productList.filter(
-			(product) =>
-				20000000 <= product.price &&
-				product.price <= 40000000 &&
-				(currentCategory === "all" || product.category === currentCategory),
-		);
-		renderProducts(productArrPrice, productContainerEl);
-		if (productArrPrice.length === 0) {
-			showEmptyMessage(
-				productContainerEl,
-				"Không tìm thấy sản phẩm trong tầm giá",
-			);
-		}
-	} else if (selectedValue === "40-100") {
-		const productArrPrice = productList.filter(
-			(product) =>
-				product.price >= 40000000 &&
-				(currentCategory === "all" || product.category === currentCategory),
-		);
-		renderProducts(productArrPrice, productContainerEl);
-		if (productArrPrice.length === 0) {
-			showEmptyMessage(
-				productContainerEl,
-				"Không tìm thấy sản phẩm trong tầm giá",
-			);
-		}
-	} else if (selectedValue === "all") {
-		const productArrPrice = productList.filter(
-			(product) =>
-				currentCategory === "all" || product.category === currentCategory,
-		);
-		renderProducts(productArrPrice, productContainerEl);
-	}
-});
+
+		const newUser
+	});
+}
+
+//* User login/logout state ===================================================================================================================================
+
+function updateUserLoggedInState() {
+	user.isLoggedin = true;
+	const updatedState = JSON.stringify(user);
+	localStorage.setItem("user", updatedState);
+}
+
+function updateUserLoggoutState() {
+	user.isLoggedin = false;
+	const updatedState = JSON.stringify(user);
+	localStorage.setItem("user", updatedState);
+	window.location.reload();
+}
+
+function renderLoggedinHeader() {
+	const headerActionEl = document.querySelector(".nav-actions");
+	userBtnEl.innerHTML += `Hello ${user.name}`;
+	userBtnEl.classList.remove("btn", "btn--icon-only");
+	userBtnEl.classList.add("user-is-loggedin");
+
+	userBtnEl.addEventListener("click", (e) => {
+		e.preventDefault();
+	});
+	const signOutBtn = document.createElement("a");
+	signOutBtn.classList.add("nav-item", "is-loggedin");
+	signOutBtn.textContent = "Logout";
+	signOutBtn.href = "#";
+	headerActionEl.prepend(signOutBtn);
+}
+
+if (user.isLoggedin) {
+	renderLoggedinHeader();
+}
+
+const logoutBtn = headerEl.querySelector(".is-loggedin");
+if (logoutBtn) {
+	logoutBtn.addEventListener("click", updateUserLoggoutState);
+}
