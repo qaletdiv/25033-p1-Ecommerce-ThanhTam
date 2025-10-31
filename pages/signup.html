@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Đăng ký</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/css/variables/variables.css">
     <link rel="stylesheet" href="/css/components/components.css">
     <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/pages/index.css">
+    <link rel="stylesheet" href="/css/pages/login.css">
     <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/font/lucide.css">
 </head>
 
@@ -47,9 +47,36 @@
     </header>
     <main>
         <section class="section">
-            <div class="container">
-                <h1 class="section-title">Sản phẩm mới ra mắt</h1>
-                <div id="products-container" class="products-container"></div>
+            <div class="container login-container">
+                <h1 class="fs-h3">Đăng ký tài khoản</h1>
+                <form class="form-container" id="sign-up-form">
+                    <div class="input-container">
+                        <label for="fullname">Họ và tên</label>
+                        <input class="input" type="text" id="fullname" name="fullname" required
+                            placeholder="Nhập họ và tên của bạn">
+                    </div>
+                    <div class="input-container">
+                        <label for="email">Email</label>
+                        <input class="input" type="email" id="email" name="email" required placeholder="Email của bạn">
+                    </div>
+                    <div class="input-container">
+                        <label for="password">Mật khẩu</label>
+                        <input class="input" type="password" id="password" name="password" required
+                            placeholder="Mật khẩu" minlength="8">
+                    </div>
+                    <div class="input-container">
+                        <label for="confirm-password">Xác nhận mật khẩu</label>
+                        <input class="input" type="password" id="confirm-password" name="confirm-password" required
+                            placeholder="Nhập lại mật khẩu" minlength="8">
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn--primary" type="submit">Đăng ký</button>
+                        <p class="fs-label fw-bold" style=" opacity:0.6; margin: 0;">HOẶC</p>
+                        <button class="btn btn--outline" type="button"
+                            onclick="window.location.href='/pages/login.html'">Đã có tài khoản? Đăng nhập</button>
+                    </div>
+                </form>
+
             </div>
         </section>
     </main>
