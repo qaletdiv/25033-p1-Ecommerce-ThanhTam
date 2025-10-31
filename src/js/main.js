@@ -76,7 +76,14 @@ function modalRender() {
 	}
 }
 
-//* Login ===========================================================================================================================================
+//* Cart ===========================================================================================================================================
+
+const cartContainerEl = document.getElementById("cart-container");
+const cartArr = [];
+if (!localStorage.getItem("cart")) {
+	localStorage.setItem("cart", JSON.stringify(cartArr));
+}
+const cartItems = JSON.parse(localStorage.getItem("cart"));
 
 function modalOpen() {
 	const modal = document.querySelector("[data-modal]");
@@ -105,9 +112,11 @@ document.body.addEventListener("click", (e) => {
 if (productContainerEl) {
 	productContainerEl.addEventListener("click", (e) => {
 		const buttonId = e.target.dataset.productId;
+
 		if (!buttonId) {
 			return;
 		}
+
 		addToCartHandler();
 	});
 }
@@ -328,7 +337,7 @@ if (filterEl) {
 
 //* Validate =====================================================================================================================================
 const emailInputEl = document.getElementById("email");
-const nameInputEl = document.getElementById("fullname");
+// const nameInputEl = document.getElementById("fullname");
 const passwordInputEl = document.getElementById("password");
 const confirmPassEl = document.getElementById("confirm-password");
 const formEl = document.getElementById("login-form");
@@ -371,7 +380,7 @@ function renderErrorMsg(str) {
 if (signUpFormEl) {
 	signUpFormEl.addEventListener("submit", (e) => {
 		e.preventDefault();
-		const nameInput = nameInputEl.value
+		// const nameInput = nameInputEl.value;
 		const confirmPassInput = confirmPassEl.value;
 		const emailInput = emailInputEl.value;
 		const passwordInput = passwordInputEl.value;
@@ -383,8 +392,6 @@ if (signUpFormEl) {
 		if (confirmPassInput !== passwordInput) {
 			renderErrorMsg("Mật khẩu không khớp");
 		}
-
-		const newUser
 	});
 }
 

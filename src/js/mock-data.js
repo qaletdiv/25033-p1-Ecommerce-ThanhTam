@@ -10,21 +10,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/iphone-main.webp",
+				url: "/images/iphone-main.webp",
 				alt: "iPhone 15 Pro Max màu Titan tự nhiên",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&h=600&fit=crop&crop=top",
-				alt: "iPhone 15 Pro Max mặt sau",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&h=600&fit=crop&crop=bottom",
-				alt: "iPhone 15 Pro Max hệ thống camera",
-				isMain: false,
 			},
 		],
 
@@ -52,21 +40,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/Nothing.webp",
+				url: "/images/Nothing.webp",
 				alt: "Nothing Phone (2) màu trắng trong suốt",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600&h=600&fit=crop&crop=top",
-				alt: "Nothing Phone (2) mặt sau",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600&h=600&fit=crop&crop=bottom",
-				alt: "Nothing Phone (2) Glyph Interface",
-				isMain: false,
 			},
 		],
 
@@ -94,21 +70,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/Macbook.webp",
+				url: "/images/Macbook.webp",
 				alt: "MacBook Pro 14 inch M3 Space Gray",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&h=600&fit=crop&crop=top",
-				alt: "MacBook Pro 14 inch mở màn hình",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&h=600&fit=crop&crop=bottom",
-				alt: "MacBook Pro 14 inch cổng kết nối",
-				isMain: false,
 			},
 		],
 
@@ -136,21 +100,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/ipad-main.webp",
+				url: "/images/ipad-main.webp",
 				alt: "iPad Pro 11 inch M4 Silver",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&h=600&fit=crop&crop=top",
-				alt: "iPad Pro 11 inch với Apple Pencil",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&h=600&fit=crop&crop=bottom",
-				alt: "iPad Pro 11 inch mặt sau",
-				isMain: false,
 			},
 		],
 
@@ -178,21 +130,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/studio-display-main.webp",
+				url: "/images/studio-display-main.webp",
 				alt: "Apple Studio Display",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=600&fit=crop&crop=top",
-				alt: "Studio Display góc nghiêng",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=600&fit=crop&crop=bottom",
-				alt: "Studio Display chân đế",
-				isMain: false,
 			},
 		],
 
@@ -220,21 +160,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/Google Pixel.webp",
+				url: "/images/Google Pixel.webp",
 				alt: "Google Pixel 8 Pro Bay Blue",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&h=600&fit=crop&crop=top",
-				alt: "Pixel 8 Pro camera bar",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&h=600&fit=crop&crop=bottom",
-				alt: "Pixel 8 Pro màn hình",
-				isMain: false,
 			},
 		],
 
@@ -262,21 +190,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/Mac Studio.webp",
+				url: "/images/Mac Studio.webp",
 				alt: "Mac Studio M2 Max Silver",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600&h=600&fit=crop&crop=top",
-				alt: "Mac Studio cổng kết nối",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600&h=600&fit=crop&crop=bottom",
-				alt: "Mac Studio thiết kế",
-				isMain: false,
 			},
 		],
 
@@ -304,21 +220,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/Airpod.webp",
+				url: "/images/Airpod.webp",
 				alt: "AirPods Max Space Gray",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=600&h=600&fit=crop&crop=top",
-				alt: "AirPods Max earcups",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=600&h=600&fit=crop&crop=bottom",
-				alt: "AirPods Max headband",
-				isMain: false,
 			},
 		],
 
@@ -346,21 +250,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/galaxy tablet ultra.webp",
+				url: "/images/galaxy tablet ultra.webp",
 				alt: "Samsung Galaxy Tab S9 Ultra Graphite",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=600&h=600&fit=crop&crop=top",
-				alt: "Galaxy Tab S9 Ultra S Pen",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=600&h=600&fit=crop&crop=bottom",
-				alt: "Galaxy Tab S9 Ultra màn hình AMOLED",
-				isMain: false,
 			},
 		],
 
@@ -388,21 +280,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/Sony-MX5.webp",
+				url: "/images/Sony-MX5.webp",
 				alt: "Sony WH-1000XM5 Black",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600&h=600&fit=crop&crop=top",
-				alt: "Sony WH-1000XM5 đeo",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600&h=600&fit=crop&crop=bottom",
-				alt: "Sony WH-1000XM5 gập lại",
-				isMain: false,
 			},
 		],
 
@@ -430,21 +310,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/Apple Watch.webp",
+				url: "/images/Apple Watch.webp",
 				alt: "Apple Watch Ultra 2 Titanium with Trail Loop",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=600&h=600&fit=crop",
-				alt: "Apple Watch Ultra 2 mặt bên",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=600&h=600&fit=crop",
-				alt: "Apple Watch Ultra 2 Action Button",
-				isMain: false,
 			},
 		],
 
@@ -473,21 +341,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/samsung 24 ultra.webp",
+				url: "/images/samsung 24 ultra.webp",
 				alt: "Samsung Galaxy S24 Ultra Titanium Gray",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&h=600&fit=crop&crop=top",
-				alt: "Galaxy S24 Ultra S Pen",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&h=600&fit=crop&crop=bottom",
-				alt: "Galaxy S24 Ultra camera",
-				isMain: false,
 			},
 		],
 
@@ -515,21 +371,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/Another phone.webp",
+				url: "/images/Another phone.webp",
 				alt: "Xiaomi 14 Ultra Black",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600&h=600&fit=crop&crop=top",
-				alt: "Xiaomi 14 Ultra Leica camera",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600&h=600&fit=crop&crop=bottom",
-				alt: "Xiaomi 14 Ultra màn hình",
-				isMain: false,
 			},
 		],
 
@@ -557,21 +401,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/Oppo phone.webp",
+				url: "/images/Oppo phone.webp",
 				alt: "OPPO Find X7 Ultra Ocean Blue",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&h=600&fit=crop&crop=top",
-				alt: "OPPO Find X7 Ultra camera Hasselblad",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&h=600&fit=crop&crop=bottom",
-				alt: "OPPO Find X7 Ultra thiết kế",
-				isMain: false,
 			},
 		],
 
@@ -599,21 +431,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/123.webp",
+				url: "/images/123.webp",
 				alt: "OnePlus 12 Flowy Emerald",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&h=600&fit=crop&crop=top",
-				alt: "OnePlus 12 Hasselblad camera",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&h=600&fit=crop&crop=bottom",
-				alt: "OnePlus 12 màn hình cong",
-				isMain: false,
 			},
 		],
 
@@ -642,21 +462,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/Dell Laptop.webp",
+				url: "/images/Dell Laptop.webp",
 				alt: "Dell XPS 15 Platinum Silver",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&h=600&fit=crop&crop=top",
-				alt: "Dell XPS 15 màn hình OLED",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&h=600&fit=crop&crop=bottom",
-				alt: "Dell XPS 15 bàn phím",
-				isMain: false,
 			},
 		],
 
@@ -684,21 +492,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/Asus Laptop.webp",
+				url: "/images/Asus Laptop.webp",
 				alt: "ASUS ROG Zephyrus G14 Moonlight White",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&h=600&fit=crop&crop=top",
-				alt: "ROG Zephyrus G14 AniMe Matrix Display",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&h=600&fit=crop&crop=bottom",
-				alt: "ROG Zephyrus G14 RGB keyboard",
-				isMain: false,
 			},
 		],
 
@@ -726,21 +522,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/Macbook.webp",
+				url: "/images/Macbook.webp",
 				alt: "Lenovo ThinkPad X1 Carbon Black",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&h=600&fit=crop&crop=top",
-				alt: "ThinkPad X1 Carbon TrackPoint",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&h=600&fit=crop&crop=bottom",
-				alt: "ThinkPad X1 Carbon cổng kết nối",
-				isMain: false,
 			},
 		],
 
@@ -769,21 +553,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/PC.webp",
+				url: "/images/PC.webp",
 				alt: "HP OMEN 45L Gaming Desktop",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600&h=600&fit=crop&crop=top",
-				alt: "HP OMEN 45L RGB lighting",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600&h=600&fit=crop&crop=bottom",
-				alt: "HP OMEN 45L bên trong",
-				isMain: false,
 			},
 		],
 
@@ -811,21 +583,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/desktop 2.webp",
+				url: "/images/desktop 2.webp",
 				alt: "Dell OptiPlex 7010 Tower",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600&h=600&fit=crop&crop=top",
-				alt: "Dell OptiPlex 7010 cổng kết nối",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600&h=600&fit=crop&crop=bottom",
-				alt: "Dell OptiPlex 7010 thiết kế",
-				isMain: false,
 			},
 		],
 
@@ -853,21 +613,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/mac mini.webp",
+				url: "/images/mac mini.webp",
 				alt: "Intel NUC 13 Extreme Dragon Canyon",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600&h=600&fit=crop&crop=top",
-				alt: "Intel NUC 13 Extreme bên trong",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600&h=600&fit=crop&crop=bottom",
-				alt: "Intel NUC 13 Extreme kích thước",
-				isMain: false,
 			},
 		],
 
@@ -896,21 +644,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/studio-display-main.webp",
+				url: "/images/studio-display-main.webp",
 				alt: "Samsung Odyssey OLED G9",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=600&fit=crop&crop=top",
-				alt: "Odyssey OLED G9 curve 1800R",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=600&fit=crop&crop=bottom",
-				alt: "Odyssey OLED G9 RGB CoreSync",
-				isMain: false,
 			},
 		],
 
@@ -938,21 +674,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/studio-display-main.webp",
+				url: "/images/studio-display-main.webp",
 				alt: "LG UltraFine 27 inch 5K",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=600&fit=crop&crop=top",
-				alt: "LG UltraFine thiết kế tối giản",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=600&fit=crop&crop=bottom",
-				alt: "LG UltraFine kết nối Thunderbolt",
-				isMain: false,
 			},
 		],
 
@@ -980,21 +704,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/asus proart.webp",
+				url: "/images/asus proart.webp",
 				alt: "ASUS ProArt PA32UCG",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=600&fit=crop&crop=top",
-				alt: "ProArt PA32UCG Mini LED",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=600&fit=crop&crop=bottom",
-				alt: "ProArt PA32UCG màu sắc chính xác",
-				isMain: false,
 			},
 		],
 
@@ -1022,21 +734,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/dell monitor.webp",
+				url: "/images/dell monitor.webp",
 				alt: "Dell UltraSharp U2723DE",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=600&fit=crop&crop=top",
-				alt: "UltraSharp U2723DE viền mỏng",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=600&fit=crop&crop=bottom",
-				alt: "UltraSharp U2723DE USB-C Hub",
-				isMain: false,
 			},
 		],
 
@@ -1065,21 +765,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/logitech mx mouse.webp",
+				url: "/images/logitech mx mouse.webp",
 				alt: "Logitech MX Master 3S Graphite",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=600&h=600&fit=crop&crop=top",
-				alt: "MX Master 3S scroll wheel",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=600&h=600&fit=crop&crop=bottom",
-				alt: "MX Master 3S ergonomic design",
-				isMain: false,
 			},
 		],
 
@@ -1107,21 +795,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/keychrone q1 mouse.webp",
+				url: "/images/keychrone q1 mouse.webp",
 				alt: "Keychron Q1 Pro Carbon Black",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600&h=600&fit=crop&crop=top",
-				alt: "Keychron Q1 Pro RGB backlight",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600&h=600&fit=crop&crop=bottom",
-				alt: "Keychron Q1 Pro hot-swappable",
-				isMain: false,
 			},
 		],
 
@@ -1149,21 +825,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/apple mouse.webp",
+				url: "/images/apple mouse.webp",
 				alt: "Anker 747 PowerCore 26K",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=600&h=600&fit=crop",
-				alt: "Anker 747 cổng sạc",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=600&h=600&fit=crop",
-				alt: "Anker 747 màn hình LED",
-				isMain: false,
 			},
 		],
 
@@ -1191,21 +855,9 @@ export const products = [
 		images: [
 			{
 				id: 1,
-				url: "/assets/images/Razer mouse.webp",
+				url: "/images/Razer mouse.webp",
 				alt: "Razer DeathAdder V3 Pro Black",
 				isMain: true,
-			},
-			{
-				id: 2,
-				url: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=600&h=600&fit=crop&crop=top",
-				alt: "DeathAdder V3 Pro ergonomic",
-				isMain: false,
-			},
-			{
-				id: 3,
-				url: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=600&h=600&fit=crop&crop=bottom",
-				alt: "DeathAdder V3 Pro Focus Pro sensor",
-				isMain: false,
 			},
 		],
 
