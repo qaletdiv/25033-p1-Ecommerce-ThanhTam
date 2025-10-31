@@ -82,13 +82,15 @@ a {
 	font-size: var(--fs-default);
 	color: var(--txt-brand);
 	text-decoration: none;
+	line-height: 1.5;
 }
 
 a:hover {
 	text-decoration: underline;
-	text-underline-offset: 3px;
-	text-decoration-thickness: 1.3px;
+	text-underline-offset: 0.25rem;
+	text-decoration-thickness: 1.2px;
 	text-decoration-skip-ink: auto;
+	color: var(--txt-dark);
 }
 
 /* Typography Utility Classes */
@@ -180,4 +182,23 @@ a:hover {
 
 .section-title {
 	margin-bottom: 2rem;
+}
+
+.lucide {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+
+	&.size-default {
+		font-size: 1.25rem;
+		font-weight: 400;
+	}
+
+	&.size-small {
+		font-size: 1rem;
+	}
+
+	&.size-large {
+		font-size: 1.5rem;
+	}
 }

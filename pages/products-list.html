@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <header class="header">
+     <header class="header">
         <div class="header-container">
             <div class="nav-links">
                 <a href="/" class="nav-logo">AllTech.</a>
@@ -32,14 +32,16 @@
             </div>
             <div class="nav-search-container">
                 <form>
-                    <i class="lucide lucide-search search-icon"></i>
+                    <i class="lucide icon-search search-icon size-default"></i>
                     <input type="search" id="search-input" class="input search-input"
                         placeholder="Nhập tên điện thoại, laptop, phụ kiện cần tìm">
                 </form>
             </div>
             <div class="nav-actions">
-                <button class="btn btn--icon-only" id="userBtn"><i class="lucide lucide-user"></i></button>
-                <button class="btn btn--icon-only" id="cartBtn"><i class="lucide lucide-shopping-cart"></i></button>
+                <a href="/pages/login.html" class="btn btn--icon-only" id="userBtn" aria-label="Login"><i
+                        class="lucide icon-user size-default"></i></a>
+                <div class="btn btn--icon-only" id="cartBtn" aria-label="Open cart"><i
+                        class="lucide icon-shopping-cart size-default"></i></div>
             </div>
         </div>
     </header>
