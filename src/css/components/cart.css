@@ -1,0 +1,124 @@
+.cart-container {
+	display: flex;
+	flex-direction: column;
+	margin: 0px 0px 0px auto;
+	min-height: 100vh;
+	min-width: 600px;
+	border: none;
+	outline: none;
+	padding: 0;
+	padding-top: 2rem;
+	gap: 2em;
+	background: white;
+
+	&::backdrop {
+		background-color: rgba(0 0 0);
+		opacity: 0.8;
+	}
+
+	&:focus {
+		outline: none;
+	}
+}
+
+.cart-items-container {
+	max-height: 600px;
+	overflow: auto;
+	padding: 0 3rem;
+}
+
+.cart-header {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 3rem;
+}
+
+.cart-item {
+	display: flex;
+	padding: 1.25rem 0.5rem;
+	padding-left: 0;
+	border-bottom: 1px dotted var(--bd-light);
+	transition: background-color 0.2s ease;
+
+	&:last-child {
+		border-bottom: none;
+	}
+}
+
+.cart-item-img {
+	width: 4rem;
+	height: 4rem;
+	object-fit: contain;
+	background: var(--bg-default);
+	border-radius: 0.25rem;
+	margin-right: 1.5rem;
+}
+
+.cart-item-info {
+	display: flex;
+	flex-direction: column;
+}
+
+.cart-item-name {
+	font-size: var(--fs-small);
+	font-weight: var(--fw-medium);
+	color: var(--txt-default);
+	margin-bottom: 0.5rem;
+	max-width: 24ch;
+}
+
+.cart-item-price {
+	font-size: var(--fs-default);
+	font-weight: var(--fw-semibold);
+	color: var(--txt-dark);
+	margin-bottom: 0.25rem;
+	flex: 1;
+	text-align: right;
+}
+
+.cart-action {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.quantity-controls {
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+	border: 1px solid var(--bd-light);
+	border-radius: 0.25rem;
+	padding: 0.25rem;
+}
+
+.btn-quantity {
+	font-size: var(--fs-default);
+	font-weight: var(--fw-semibold);
+	color: var(--txt-default);
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0.25rem 0.75rem;
+	border-radius: 0.125rem;
+	transition:
+		color,
+		background-color,
+		0.12s ease;
+
+	&:hover {
+		color: var(--txt-dark);
+		background: var(--bg-light);
+	}
+
+	&:active {
+		transform: scale(0.95);
+	}
+}
+
+.quantity-value {
+	font-size: var(--fs-small);
+	font-weight: var(--fw-medium);
+	color: var(--txt-dark);
+	min-width: 1.5rem;
+	text-align: center;
+}

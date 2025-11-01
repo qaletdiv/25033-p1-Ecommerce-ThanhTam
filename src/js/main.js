@@ -28,8 +28,11 @@ const searchInputEl = document.querySelector("[type=search]");
 const headerEl = document.querySelector("header");
 const filterEl = document.getElementById("filter-container");
 const selectEl = document.getElementById("price-range");
+const cartContainerEl = document.getElementById("cart-container");
+const cartCloseBtnEl = document.body.querySelector("[data-close]");
+const cartEl = document.querySelector("[data-cart]");
 
-//* Render Product & Login Modal ========================================================================================================================================
+//* Render Product & Login Modal , Cart ========================================================================================================================================
 document.addEventListener("DOMContentLoaded", () => {
 	if (document.getElementById("products-container")) {
 		renderProducts(productList, productContainerEl);
@@ -57,7 +60,7 @@ function renderProducts(arr, container) {
 		.join("");
 }
 
-function modalRender() {
+function renderModal() {
 	const existingModal = document.querySelector("[data-modal]");
 	if (!existingModal) {
 		document.body.insertAdjacentHTML(
@@ -67,52 +70,119 @@ function modalRender() {
             <p class="modal-title">Please login to proceed</p>
             <button class="btn btn--icon-only btn--small modal-close" aria-label="Close modal"><i class="lucide icon-x size-default"></i></button>
             <div class="btn-group">
-                <a class="btn btn--primary" href="/pages/login.html">Đăng nhập</a>
-                <a class="btn btn--outline" href="/pages/signup.html">Đăng ký</a>
+                <a class="btn btn--primary" href="/src/pages/login.html">Đăng nhập</a>
+                <a class="btn btn--outline" href="/src/pages/signup.html">Đăng ký</a>
             </div>
         </div>
     </dialog>`,
 		);
+		const modalEl = document.querySelector("[data-modal]");
+		document.body.style.overflow = "hidden";
+		modalEl.showModal();
 	}
 }
 
-//* Login ===========================================================================================================================================
-
-function modalOpen() {
-	const modal = document.querySelector("[data-modal]");
+function renderCart() {
+	cartEl.style.display = "";
 	document.body.style.overflow = "hidden";
-	modal.showModal();
-}
+	cartEl.showModal();
 
-function addToCartHandler() {
-	if (!user.isLoggedin) {
-		modalRender();
-		modalOpen();
+	if (cartItems.length === 0) {
+		cartContainerEl.innerHTML = `<p>Chưa có sản phẩm nào</p>`;
+	} else {
+		cartContainerEl.innerHTML = cartItems
+			.map(
+				(product) => `<div class="cart-item">
+			<img src="${product.images[0].url}" alt="${product.name}" class="cart-item-img">
+			<div class="cart-item-info">
+				<p class="cart-item-name">${product.name}</p>
+				<div class="cart-action">
+					<div class="quantity-controls">
+						<button class="btn-quantity" data-product-id="${product.id}" aria-label="Decrease quantity">-</button>
+						<span class="quantity-value">${product.quantity || 1}</span>
+						<button class="btn-quantity" data-product-id="${product.id}" aria-label="Increase quantity">+</button>
+					</div>
+					<a href="#" class="fs-small" data-remove-id="${product.id}" aria-label="Remove item">Xóa</a>
+				</div>
+			</div>
+			<p class="cart-item-price">${product.price.toLocaleString("vi-VN")}đ</p>
+
+		</div>`,
+			)
+			.join("");
 	}
 }
 
-cartBtnEl.addEventListener("click", addToCartHandler);
+//* Cart ===========================================================================================================================================
 
-document.body.addEventListener("click", (e) => {
-	const modal = document.querySelector("[data-modal]");
-	if (e.target.closest(".modal-close")) {
-		modal.close();
-		modal.remove();
-		document.body.style.overflow = "";
+const cartArr = [];
+
+if (!localStorage.getItem("cart")) {
+	localStorage.setItem("cart", JSON.stringify(cartArr));
+}
+const cartItems = JSON.parse(localStorage.getItem("cart"));
+
+function showLoginModal() {
+	const modalEl = document.querySelector("[data-modal]");
+	if (!modalEl) {
+		renderModal();
+		const modalCloseBtn = document.body.querySelector(".modal-close");
+		const modalEl = document.querySelector("[data-modal]");
+		if (modalCloseBtn && modalEl) {
+			modalCloseBtn.addEventListener("click", () => {
+				modalEl.close();
+				modalEl.remove();
+				document.body.style.overflow = "";
+			});
+		}
+	}
+}
+
+cartBtnEl.addEventListener("click", () => {
+	if (!user.isLoggedin) {
+		showLoginModal();
+	} else {
+		renderCart();
 	}
 });
 
-if (productContainerEl) {
-	productContainerEl.addEventListener("click", (e) => {
-		const buttonId = e.target.dataset.productId;
-		if (!buttonId) {
-			return;
-		}
-		addToCartHandler();
+if (cartCloseBtnEl) {
+	cartCloseBtnEl.addEventListener("click", () => {
+		cartEl.close();
+		cartEl.style.display = "none";
+		document.body.style.overflow = "";
 	});
 }
 
-//* Search by name ===================================================================================================================================
+if (productContainerEl) {
+	productContainerEl.addEventListener("click", (e) => {
+		const productId = e.target.dataset.productId;
+
+		if (!user.isLoggedin) {
+			showLoginModal();
+		}
+
+		if (!productId) {
+			return;
+		}
+
+		//check if product exist in cart, if not add
+		const isIteminCart = cartItems.some(
+			(product) => product.id === Number(productId),
+		);
+
+		const product = productList.find(
+			(product) => product.id === Number(productId),
+		);
+
+		if (!isIteminCart) {
+			cartItems.push(product);
+			localStorage.setItem("cart", JSON.stringify(cartItems));
+		}
+	});
+}
+
+//* Search by name, brand, keyword ===================================================================================================================================
 
 function renderSearchModal() {
 	const searchKey = searchInputEl.value.trim();
@@ -328,7 +398,7 @@ if (filterEl) {
 
 //* Validate =====================================================================================================================================
 const emailInputEl = document.getElementById("email");
-const nameInputEl = document.getElementById("fullname");
+// const nameInputEl = document.getElementById("fullname");
 const passwordInputEl = document.getElementById("password");
 const confirmPassEl = document.getElementById("confirm-password");
 const formEl = document.getElementById("login-form");
@@ -371,7 +441,7 @@ function renderErrorMsg(str) {
 if (signUpFormEl) {
 	signUpFormEl.addEventListener("submit", (e) => {
 		e.preventDefault();
-		const nameInput = nameInputEl.value
+		// const nameInput = nameInputEl.value;
 		const confirmPassInput = confirmPassEl.value;
 		const emailInput = emailInputEl.value;
 		const passwordInput = passwordInputEl.value;
@@ -383,8 +453,6 @@ if (signUpFormEl) {
 		if (confirmPassInput !== passwordInput) {
 			renderErrorMsg("Mật khẩu không khớp");
 		}
-
-		const newUser
 	});
 }
 
