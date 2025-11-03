@@ -24,12 +24,10 @@ const user = JSON.parse(localStorage.getItem("user"));
 const productContainerEl = document.getElementById("products-container");
 const cartBtnEl = document.getElementById("cartBtn");
 const userBtnEl = document.getElementById("userBtn");
-const searchInputEl = document.querySelector("[type=search]");
 const headerEl = document.querySelector("header");
-const filterEl = document.getElementById("filter-container");
-const selectEl = document.getElementById("price-range");
+const cartArr = [];
 const cartContainerEl = document.getElementById("cart-container");
-const cartCloseBtnEl = document.body.querySelector("[data-close]");
+
 const cartEl = document.querySelector("[data-cart]");
 
 //* Render Product & Login Modal , Cart ========================================================================================================================================
@@ -37,26 +35,31 @@ document.addEventListener("DOMContentLoaded", () => {
 	if (document.getElementById("products-container")) {
 		renderProducts(productList, productContainerEl);
 	}
+	const cartEl = document.querySelector("[data-cart]");
+	if (cartEl) {
+		cartEl.style.display = "none";
+	}
 });
 
 function renderProducts(arr, container) {
 	container.innerHTML = "";
 	container.innerHTML = arr
-		.map(
-			(product) => `
+		.map((product) => {
+			const productName = String(product.name || "").replace(/[<>]/g, "");
+			return `
 		<div class="product-card">
 			<a class="product-img"  href="#"><img src="${product.images[0].url}"></a>
 			<div class="product-info">
 				<a href="#" class="product-category">${product.category}</a>
-				<p class="product-name">${product.name}</p>
+				<p class="product-name">${productName}</p>
 				<p class="product-price">${product.price.toLocaleString("vi-VN")}đ</p>
 			</div>
 			<div class="btn-group">
 				<button class="btn btn--primary" data-product-id="${product.id}">Thêm vào giỏ</button>
 				<a href="#">Xem chi tiết <span><i class="lucide icon-chevron-right size-small"></i></span></a>
 			</div>
-		</div>`,
-		)
+		</div>`;
+		})
 		.join("");
 }
 
@@ -83,44 +86,61 @@ function renderModal() {
 }
 
 function renderCart() {
+	if (!cartEl || !cartContainerEl) {
+		return;
+	}
+
 	cartEl.style.display = "";
 	document.body.style.overflow = "hidden";
 	cartEl.showModal();
 
 	if (cartItems.length === 0) {
-		cartContainerEl.innerHTML = `<p>Chưa có sản phẩm nào</p>`;
+		cartContainerEl.textContent = `Chưa có sản phẩm nào`;
 	} else {
 		cartContainerEl.innerHTML = cartItems
-			.map(
-				(product) => `<div class="cart-item">
-			<img src="${product.images[0].url}" alt="${product.name}" class="cart-item-img">
+			.map((product) => {
+				const productName = String(product.name || "").replace(/[<>]/g, "");
+
+				return `<div class="cart-item" data-productadd-id="${product.id}">
+			<img src="${product.images[0].url}" alt="${productName}" class="cart-item-img">
 			<div class="cart-item-info">
-				<p class="cart-item-name">${product.name}</p>
-				<div class="cart-action">
+				<p class="cart-item-name">${productName}</p>
+				<div class="cart-item-action">
 					<div class="quantity-controls">
-						<button class="btn-quantity" data-product-id="${product.id}" aria-label="Decrease quantity">-</button>
+						<button class="btn-quantity" data-product-id="${product.id}" data-action="decrease" aria-label="Decrease quantity">-</button>
 						<span class="quantity-value">${product.quantity || 1}</span>
-						<button class="btn-quantity" data-product-id="${product.id}" aria-label="Increase quantity">+</button>
+						<button class="btn-quantity" data-product-id="${product.id}" data-action="increase" aria-label="Increase quantity">+</button>
 					</div>
-					<a href="#" class="fs-small" data-remove-id="${product.id}" aria-label="Remove item">Xóa</a>
+					<a class="fs-small link" data-product-id="${product.id}" data-remove aria-label="Remove item">Xóa</a>
 				</div>
 			</div>
 			<p class="cart-item-price">${product.price.toLocaleString("vi-VN")}đ</p>
-
-		</div>`,
-			)
+		</div>`;
+			})
 			.join("");
 	}
+	calTotal();
+}
+
+function calTotal() {
+	const totalPriceEl = cartEl.querySelector(".cart-total-price");
+	const totalPrice = cartItems.reduce((total, currentItem) => {
+		return total + currentItem.price * currentItem.quantity;
+	}, 0);
+
+	if (!totalPriceEl) {
+		return;
+	}
+	totalPriceEl.textContent = `${totalPrice.toLocaleString("vi-VN")}đ`;
 }
 
 //* Cart ===========================================================================================================================================
 
-const cartArr = [];
-
 if (!localStorage.getItem("cart")) {
 	localStorage.setItem("cart", JSON.stringify(cartArr));
 }
-const cartItems = JSON.parse(localStorage.getItem("cart"));
+
+let cartItems = JSON.parse(localStorage.getItem("cart"));
 
 function showLoginModal() {
 	const modalEl = document.querySelector("[data-modal]");
@@ -146,43 +166,88 @@ cartBtnEl.addEventListener("click", () => {
 	}
 });
 
-if (cartCloseBtnEl) {
-	cartCloseBtnEl.addEventListener("click", () => {
-		cartEl.close();
-		cartEl.style.display = "none";
-		document.body.style.overflow = "";
-	});
-}
-
 if (productContainerEl) {
 	productContainerEl.addEventListener("click", (e) => {
 		const productId = e.target.dataset.productId;
 
 		if (!user.isLoggedin) {
 			showLoginModal();
+			return;
 		}
 
 		if (!productId) {
 			return;
 		}
 
-		//check if product exist in cart, if not add
-		const isIteminCart = cartItems.some(
-			(product) => product.id === Number(productId),
-		);
-
 		const product = productList.find(
+			//find product that that match productId
 			(product) => product.id === Number(productId),
 		);
 
-		if (!isIteminCart) {
-			cartItems.push(product);
-			localStorage.setItem("cart", JSON.stringify(cartItems));
+		//check if product exist in cart, if not add
+		const existingInCart = cartItems.find(
+			(product) => product.id === Number(productId),
+		);
+
+		if (!existingInCart) {
+			cartItems.unshift({ ...product, quantity: 1 });
+		} else {
+			existingInCart.quantity++;
 		}
+
+		localStorage.setItem("cart", JSON.stringify(cartItems));
+		renderCart();
+
+		const cartItem = cartEl.querySelector(
+			`[data-productadd-id="${productId}"]`,
+		);
+		cartItem.scrollIntoView({ behavior: "smooth", block: "center" });
+		cartItem.classList.add("highlighted-in-cart");
 	});
 }
 
+cartEl.addEventListener("click", (e) => {
+	const cartCloseBtnEl = e.target.closest("[data-close]");
+
+	const removeBtn = e.target.closest("[data-remove]");
+
+	if (cartCloseBtnEl) {
+		cartEl.close();
+		cartEl.style.display = "none";
+		document.body.style.overflow = "";
+		return;
+	}
+
+	const productId = e.target.dataset.productId;
+	const targetProduct = cartItems.find(
+		(product) => product.id === Number(productId),
+	);
+
+	const btnIncrease = e.target.dataset.action === "increase";
+	const btnDecrease = e.target.dataset.action === "decrease";
+
+	if (!productId || !targetProduct) {
+		return;
+	}
+
+	if (btnIncrease) {
+		targetProduct.quantity++;
+	} else if (btnDecrease) {
+		targetProduct.quantity--;
+		if (targetProduct.quantity < 1) {
+			cartItems = cartItems.filter((product) => product !== targetProduct);
+		}
+	} else if (removeBtn) {
+		cartItems = cartItems.filter((product) => product.id !== Number(productId));
+	}
+
+	localStorage.setItem("cart", JSON.stringify(cartItems));
+	renderCart();
+});
+
 //* Search by name, brand, keyword ===================================================================================================================================
+
+const searchInputEl = document.querySelector("[type=search]");
 
 function renderSearchModal() {
 	const searchKey = searchInputEl.value.trim();
@@ -246,11 +311,12 @@ searchInputEl.addEventListener("click", renderSearchModal);
 
 //* Filter by categories ==================================================================================================================================
 
+const categoriesEl = document.getElementById("categories-container");
+const filterEl = document.getElementById("filter-container");
+
 function updateCurrentCategory(category) {
 	productContainerEl.dataset.category = `${category}` || "all";
 }
-
-const categoriesEl = document.getElementById("categories-container");
 
 if (productContainerEl && categoriesEl) {
 	const productBycategories = Object.groupBy(
@@ -268,15 +334,14 @@ if (productContainerEl && categoriesEl) {
 
 	if (filterEl) {
 		filterEl.addEventListener("click", (e) => {
-			const buttonId = e.target.innerText.toLowerCase();
+			const productId = e.target.innerText.toLowerCase();
 			const pageTitleEl = document.getElementById("product-category-name");
-			const matchCategoryProducts = productBycategories[buttonId];
+			const matchCategoryProducts = productBycategories[productId];
 
 			if (e.target.id === "show-all-btn") {
 				renderProducts(products, productContainerEl);
 				pageTitleEl.textContent = "Tất cả sản phẩm";
 				productContainerEl.dataset.category = "all";
-				return;
 			}
 
 			if (!matchCategoryProducts) {
@@ -287,9 +352,9 @@ if (productContainerEl && categoriesEl) {
 			}
 
 			pageTitleEl.textContent =
-				buttonId.toUpperCase().charAt(0).toUpperCase() + buttonId.slice(1);
+				productId.toUpperCase().charAt(0).toUpperCase() + productId.slice(1);
 
-			updateCurrentCategory(buttonId);
+			updateCurrentCategory(productId);
 
 			if (document.querySelector(".empty-message")) {
 				document.querySelector(".empty-message").remove();
@@ -299,6 +364,8 @@ if (productContainerEl && categoriesEl) {
 }
 
 //* Filter by prices ===========================================================================================================================================
+
+const selectEl = document.getElementById("price-range");
 
 function showEmptyMessage(container, message) {
 	const emptyText = document.createElement("p");
