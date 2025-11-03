@@ -1,8 +1,8 @@
 .cart-container {
 	display: flex;
 	flex-direction: column;
-	margin: 0px 0px 0px auto;
-	min-height: 100vh;
+	margin: 20px 20px 0px auto;
+	min-height: 95vh;
 	min-width: 600px;
 	border: none;
 	outline: none;
@@ -10,6 +10,8 @@
 	padding-top: 2rem;
 	gap: 2em;
 	background: white;
+	border-radius: 0.75rem;
+	animation: slideOut 0.4s cubic-bezier(1, 0, 0, 1);
 
 	&::backdrop {
 		background-color: rgba(0 0 0);
@@ -24,13 +26,13 @@
 .cart-items-container {
 	max-height: 650px;
 	overflow: auto;
-	padding: 0 3rem;
+	padding: 0 2rem;
 }
 
 .cart-header {
 	display: flex;
 	justify-content: space-between;
-	padding: 0 3rem;
+	padding: 0 2rem;
 }
 
 .cart-item {
@@ -70,8 +72,10 @@
 .cart-item-price {
 	font-size: var(--fs-default);
 	font-weight: var(--fw-semibold);
+	margin: 0;
+
+	align-items: baseline;
 	color: var(--txt-dark);
-	margin-bottom: 0.25rem;
 	flex: 1;
 	text-align: right;
 }
@@ -145,7 +149,7 @@
 }
 
 .cart-action {
-	padding: 0rem 3rem;
+	padding: 0rem 2rem;
 	padding-bottom: 2rem;
 
 	> .btn {
@@ -158,7 +162,7 @@
 		background-color: transparent;
 		box-shadow: none;
 	}
-	20% {
+	15% {
 		background-color: rgba(0, 123, 255, 0.15);
 		box-shadow: 0 0 0 1px rgba(0, 123, 255, 0.3);
 	}
@@ -169,5 +173,16 @@
 }
 
 .highlighted-in-cart {
-	animation: highlightFlash 0.8s ease-in-out;
+	animation: highlightFlash 0.85s ease-out;
+}
+
+@keyframes slideOut {
+	0% {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
 }

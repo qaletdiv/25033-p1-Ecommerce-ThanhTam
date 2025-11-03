@@ -47,16 +47,16 @@ function renderProducts(arr, container) {
 		.map((product) => {
 			const productName = String(product.name || "").replace(/[<>]/g, "");
 			return `
-		<div class="product-card">
-			<a class="product-img"  href="#"><img src="${product.images[0].url}"></a>
+		<div class="product-card" data-product-id="${product.id}">
+			<a class="product-img" data-product-id="${product.id}"  href="#"><img src="${product.images[0].url}"></a>
 			<div class="product-info">
-				<a href="#" class="product-category">${product.category}</a>
-				<p class="product-name">${productName}</p>
+				<p class="product-category">${product.category}</p>
+				<a data-product-id="${product.id}" class="product-name link">${productName}</a>
 				<p class="product-price">${product.price.toLocaleString("vi-VN")}đ</p>
 			</div>
 			<div class="btn-group">
 				<button class="btn btn--primary" data-product-id="${product.id}">Thêm vào giỏ</button>
-				<a href="#">Xem chi tiết <span><i class="lucide icon-chevron-right size-small"></i></span></a>
+				<a href="#" data-product-id="${product.id}">Xem chi tiết <span><i class="lucide icon-chevron-right size-small"></i></span></a>
 			</div>
 		</div>`;
 		})
@@ -168,12 +168,26 @@ cartBtnEl.addEventListener("click", () => {
 
 if (productContainerEl) {
 	productContainerEl.addEventListener("click", (e) => {
-		const productId = e.target.dataset.productId;
-
 		if (!user.isLoggedin) {
 			showLoginModal();
 			return;
 		}
+
+		const addBtn = e.target.closest("button[data-product-id]");
+		const viewBtn = e.target.closest("a");
+
+		if (viewBtn) {
+			e.preventDefault();
+			const productId = viewBtn.dataset.productId;
+			window.location.href = `/src/pages/product-details.html?id=${productId}`;
+			return;
+		}
+
+		if (!addBtn) {
+			return;
+		}
+
+		const productId = Number(addBtn.dataset.productId);
 
 		if (!productId) {
 			return;
@@ -181,28 +195,37 @@ if (productContainerEl) {
 
 		const product = productList.find(
 			//find product that that match productId
-			(product) => product.id === Number(productId),
+			(product) => product.id === productId,
 		);
 
 		//check if product exist in cart, if not add
 		const existingInCart = cartItems.find(
-			(product) => product.id === Number(productId),
+			(product) => product.id === productId,
 		);
-
 		if (!existingInCart) {
 			cartItems.unshift({ ...product, quantity: 1 });
 		} else {
 			existingInCart.quantity++;
 		}
 
-		localStorage.setItem("cart", JSON.stringify(cartItems));
-		renderCart();
+		addBtn.disabled = true;
+		addBtn.textContent = "Đang thêm...";
 
-		const cartItem = cartEl.querySelector(
-			`[data-productadd-id="${productId}"]`,
-		);
-		cartItem.scrollIntoView({ behavior: "smooth", block: "center" });
-		cartItem.classList.add("highlighted-in-cart");
+		localStorage.setItem("cart", JSON.stringify(cartItems));
+
+		setTimeout(() => {
+			renderCart();
+			setTimeout(() => {
+				const itemInCart = cartEl.querySelector(
+					`[data-productadd-id="${productId}"]`,
+				);
+				itemInCart.scrollIntoView({ behavior: "smooth", block: "center" });
+				itemInCart.classList.add("highlighted-in-cart");
+			}, 50);
+
+			addBtn.disabled = false;
+			addBtn.textContent = "Thêm vào giỏ";
+		}, 800);
 	});
 }
 
@@ -215,6 +238,7 @@ cartEl.addEventListener("click", (e) => {
 		cartEl.close();
 		cartEl.style.display = "none";
 		document.body.style.overflow = "";
+
 		return;
 	}
 
@@ -223,27 +247,38 @@ cartEl.addEventListener("click", (e) => {
 		(product) => product.id === Number(productId),
 	);
 
-	const btnIncrease = e.target.dataset.action === "increase";
-	const btnDecrease = e.target.dataset.action === "decrease";
-
 	if (!productId || !targetProduct) {
 		return;
 	}
 
+	const btnIncrease = e.target.dataset.action === "increase";
+	const btnDecrease = e.target.dataset.action === "decrease";
+
 	if (btnIncrease) {
-		targetProduct.quantity++;
-	} else if (btnDecrease) {
-		targetProduct.quantity--;
-		if (targetProduct.quantity < 1) {
-			cartItems = cartItems.filter((product) => product !== targetProduct);
-		}
-	} else if (removeBtn) {
+		increaseQuantity(targetProduct);
+	}
+	if (btnDecrease) {
+		decreaseQuantity(targetProduct);
+	}
+
+	if (removeBtn) {
 		cartItems = cartItems.filter((product) => product.id !== Number(productId));
 	}
 
 	localStorage.setItem("cart", JSON.stringify(cartItems));
 	renderCart();
 });
+
+export function increaseQuantity(productItem) {
+	productItem.quantity++;
+}
+
+export function decreaseQuantity(productItem) {
+	productItem.quantity--;
+	if (productItem.quantity < 1) {
+		cartItems = cartItems.filter((product) => productItem !== product);
+	}
+}
 
 //* Search by name, brand, keyword ===================================================================================================================================
 
@@ -488,7 +523,6 @@ if (formEl) {
 			}
 			return;
 		}
-		console.log("Dang nhap thanh cong");
 		subtmitBtn.disabled = true;
 		subtmitBtn.textContent = "Đang đăng nhập...";
 		updateUserLoggedInState();
