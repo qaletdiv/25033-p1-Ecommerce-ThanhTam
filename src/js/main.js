@@ -1,5 +1,6 @@
 //* Local Storage ===============================================================================================================================
 
+import { CarTaxiFront } from "lucide";
 import { products } from "./mock-data.js";
 
 const mockUser = {
@@ -24,18 +25,16 @@ const user = JSON.parse(localStorage.getItem("user"));
 const productContainerEl = document.getElementById("products-container");
 const cartBtnEl = document.getElementById("cartBtn");
 const userBtnEl = document.getElementById("userBtn");
-const searchInputEl = document.querySelector("[type=search]");
 const headerEl = document.querySelector("header");
-const filterEl = document.getElementById("filter-container");
-const selectEl = document.getElementById("price-range");
-const cartContainerEl = document.getElementById("cart-container");
-const cartCloseBtnEl = document.body.querySelector("[data-close]");
-const cartEl = document.querySelector("[data-cart]");
 
 //* Render Product & Login Modal , Cart ========================================================================================================================================
 document.addEventListener("DOMContentLoaded", () => {
 	if (document.getElementById("products-container")) {
 		renderProducts(productList, productContainerEl);
+	}
+	const cartEl = document.querySelector("[data-cart]");
+	if (cartEl) {
+		cartEl.style.display = "none"; // Ẩn dialog ngay khi mở trang
 	}
 });
 
@@ -98,11 +97,11 @@ function renderCart() {
 				<p class="cart-item-name">${product.name}</p>
 				<div class="cart-action">
 					<div class="quantity-controls">
-						<button class="btn-quantity" data-product-id="${product.id}" aria-label="Decrease quantity">-</button>
+						<button class="btn-quantity" data-product-id="${product.id}" data-action="decrease" aria-label="Decrease quantity">-</button>
 						<span class="quantity-value">${product.quantity || 1}</span>
-						<button class="btn-quantity" data-product-id="${product.id}" aria-label="Increase quantity">+</button>
+						<button class="btn-quantity" data-product-id="${product.id}" data-action="increase" aria-label="Increase quantity">+</button>
 					</div>
-					<a href="#" class="fs-small" data-remove-id="${product.id}" aria-label="Remove item">Xóa</a>
+					<a href="#" class="fs-small" data-product-id="${product.id}" data-remove aria-label="Remove item">Xóa</a>
 				</div>
 			</div>
 			<p class="cart-item-price">${product.price.toLocaleString("vi-VN")}đ</p>
@@ -116,11 +115,15 @@ function renderCart() {
 //* Cart ===========================================================================================================================================
 
 const cartArr = [];
+const cartContainerEl = document.getElementById("cart-container");
+
+const cartEl = document.querySelector("[data-cart]");
 
 if (!localStorage.getItem("cart")) {
 	localStorage.setItem("cart", JSON.stringify(cartArr));
 }
-const cartItems = JSON.parse(localStorage.getItem("cart"));
+
+let cartItems = JSON.parse(localStorage.getItem("cart"));
 
 function showLoginModal() {
 	const modalEl = document.querySelector("[data-modal]");
@@ -146,20 +149,13 @@ cartBtnEl.addEventListener("click", () => {
 	}
 });
 
-if (cartCloseBtnEl) {
-	cartCloseBtnEl.addEventListener("click", () => {
-		cartEl.close();
-		cartEl.style.display = "none";
-		document.body.style.overflow = "";
-	});
-}
-
 if (productContainerEl) {
 	productContainerEl.addEventListener("click", (e) => {
 		const productId = e.target.dataset.productId;
 
 		if (!user.isLoggedin) {
 			showLoginModal();
+			return;
 		}
 
 		if (!productId) {
@@ -167,22 +163,61 @@ if (productContainerEl) {
 		}
 
 		//check if product exist in cart, if not add
-		const isIteminCart = cartItems.some(
+		const existingInCart = cartItems.find(
 			(product) => product.id === Number(productId),
 		);
 
 		const product = productList.find(
+			//find product that that match productId
 			(product) => product.id === Number(productId),
 		);
 
-		if (!isIteminCart) {
-			cartItems.push(product);
-			localStorage.setItem("cart", JSON.stringify(cartItems));
+		if (!existingInCart) {
+			cartItems.push({ ...product, quantity: 1 });
+		} else {
+			existingInCart.quantity++;
 		}
+
+		localStorage.setItem("cart", JSON.stringify(cartItems));
 	});
 }
 
+cartEl.addEventListener("click", (e) => {
+	const cartCloseBtnEl = e.target.closest("[data-close]");
+	const productId = e.target.dataset.productId;
+	const btnIncrease = e.target.dataset.action === "increase";
+	const btnDecrease = e.target.dataset.action === "decrease";
+	const removeBtn = e.target.closest("[data-remove]");
+
+	const targetProduct = cartItems.find(
+		(product) => product.id === Number(productId),
+	);
+
+	if (cartCloseBtnEl) {
+		cartEl.close();
+		cartEl.style.display = "none";
+		document.body.style.overflow = "";
+		return;
+	}
+
+	if (productId && btnIncrease) {
+		targetProduct.quantity++;
+	} else if (productId && btnDecrease) {
+		targetProduct.quantity--;
+		if (targetProduct.quantity < 1) {
+			cartItems = cartItems.filter((product) => product !== targetProduct);
+		}
+	} else if (productId && removeBtn) {
+		cartItems = cartItems.filter((product) => product.id !== Number(productId));
+	}
+
+	localStorage.setItem("cart", JSON.stringify(cartItems));
+	renderCart();
+});
+
 //* Search by name, brand, keyword ===================================================================================================================================
+
+const searchInputEl = document.querySelector("[type=search]");
 
 function renderSearchModal() {
 	const searchKey = searchInputEl.value.trim();
@@ -246,11 +281,12 @@ searchInputEl.addEventListener("click", renderSearchModal);
 
 //* Filter by categories ==================================================================================================================================
 
+const categoriesEl = document.getElementById("categories-container");
+const filterEl = document.getElementById("filter-container");
+
 function updateCurrentCategory(category) {
 	productContainerEl.dataset.category = `${category}` || "all";
 }
-
-const categoriesEl = document.getElementById("categories-container");
 
 if (productContainerEl && categoriesEl) {
 	const productBycategories = Object.groupBy(
@@ -268,15 +304,14 @@ if (productContainerEl && categoriesEl) {
 
 	if (filterEl) {
 		filterEl.addEventListener("click", (e) => {
-			const buttonId = e.target.innerText.toLowerCase();
+			const productId = e.target.innerText.toLowerCase();
 			const pageTitleEl = document.getElementById("product-category-name");
-			const matchCategoryProducts = productBycategories[buttonId];
+			const matchCategoryProducts = productBycategories[productId];
 
 			if (e.target.id === "show-all-btn") {
 				renderProducts(products, productContainerEl);
 				pageTitleEl.textContent = "Tất cả sản phẩm";
 				productContainerEl.dataset.category = "all";
-				return;
 			}
 
 			if (!matchCategoryProducts) {
@@ -287,9 +322,9 @@ if (productContainerEl && categoriesEl) {
 			}
 
 			pageTitleEl.textContent =
-				buttonId.toUpperCase().charAt(0).toUpperCase() + buttonId.slice(1);
+				productId.toUpperCase().charAt(0).toUpperCase() + productId.slice(1);
 
-			updateCurrentCategory(buttonId);
+			updateCurrentCategory(productId);
 
 			if (document.querySelector(".empty-message")) {
 				document.querySelector(".empty-message").remove();
@@ -299,6 +334,8 @@ if (productContainerEl && categoriesEl) {
 }
 
 //* Filter by prices ===========================================================================================================================================
+
+const selectEl = document.getElementById("price-range");
 
 function showEmptyMessage(container, message) {
 	const emptyText = document.createElement("p");

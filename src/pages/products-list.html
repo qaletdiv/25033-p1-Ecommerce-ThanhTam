@@ -19,7 +19,7 @@
 </head>
 
 <body>
-     <header class="header">
+    <header class="header">
         <div class="header-container">
             <div class="nav-links">
                 <a href="/" class="nav-logo">AllTech.</a>
@@ -67,6 +67,14 @@
                 <div id="products-container" class="products-container" data-category="all"></div>
             </div>
         </section>
+         <dialog class="cart-container" data-cart>
+            <div class="cart-header">
+                <h2>Giỏ hàng</h2>
+                <button class="btn btn--small btn--icon-only" data-close><i
+                        class="lucide icon-x size-default"></i></button>
+            </div>
+            <div class="cart-items-container" id="cart-container"></div>
+        </dialog>
     </main>
     <script type="module" src="/src/js/main.js"></script>
 </body>
