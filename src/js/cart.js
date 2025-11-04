@@ -63,9 +63,7 @@ if (cartEl) {
 			e.target.closest("[data-product-id]").dataset.productId,
 		);
 
-		const targetProduct = cartItems.find((product) => product.id === productId);
-
-		if (!productId || !targetProduct) {
+		if (!productId) {
 			return;
 		}
 
@@ -73,12 +71,12 @@ if (cartEl) {
 		const btnDecrease = e.target.dataset.action === "decrease";
 
 		if (btnIncrease) {
-			increaseQuantity(targetProduct);
+			increaseQuantity(productId);
 			localStorage.setItem("cart", JSON.stringify(cartItems));
 			window.location.reload();
 		}
 		if (btnDecrease) {
-			decreaseQuantity(targetProduct);
+			decreaseQuantity(productId);
 			localStorage.setItem("cart", JSON.stringify(cartItems));
 			window.location.reload();
 		}

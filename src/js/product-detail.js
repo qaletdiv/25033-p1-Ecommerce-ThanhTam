@@ -1,4 +1,4 @@
-import { productList, user } from "./localStorage";
+import { productList, user, cartItems } from "./localStorage";
 
 import {
 	renderCart,
