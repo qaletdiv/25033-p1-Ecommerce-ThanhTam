@@ -1,0 +1,136 @@
+.product-related-section {
+	background: var(--bg-light);
+
+	.product-card {
+		background: white;
+	}
+}
+
+.product-detail-container {
+	display: flex;
+	gap: 5rem;
+	padding: 0;
+	padding-top: 2.5rem;
+}
+
+.product-detail-imgs {
+	aspect-ratio: 1 / 1;
+	flex: 1;
+	width: 100%;
+	height: auto;
+	object-fit: contain;
+	border-radius: 0.5rem;
+	background: var(--bg-light);
+	margin: 0;
+}
+
+.product-detail-info {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.product-detail-name {
+	text-wrap: pretty;
+	font-weight: var(--fw-semibold);
+	color: var(--txt-dark);
+	margin: 0;
+	margin-bottom: 1rem;
+}
+
+.product-detail-price {
+	font-weight: var(--fw-semibold);
+	color: var(--txt-dark);
+	margin: 0;
+	margin-bottom: 1rem;
+}
+
+.product-detail-label {
+	font-size: var(--fs-large);
+	font-weight: var(--fw-semibold);
+	color: var(--txt-dark);
+	margin: 0;
+}
+
+.product-detail-desc {
+	font-size: var(--fs-default);
+	color: var(--txt-default);
+	line-height: 1.6;
+	margin: 0;
+	margin-bottom: 1rem;
+}
+
+.product-detail-specs {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin-bottom: 2.5rem;
+}
+
+.product-detail-specs li {
+	font-size: var(--fs-small);
+	color: var(--txt-default);
+	padding-left: 1.5rem;
+	position: relative;
+}
+
+.product-detail-specs li::before {
+	content: "•";
+	position: absolute;
+	left: 0.5rem;
+	color: var(--txt-default);
+}
+
+.product-detail-actions {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 2rem;
+}
+
+.product-detail-actions .quantity-controls {
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+	border: 1px solid var(--bd-light);
+	border-radius: 0.25rem;
+	padding: 0.25rem;
+}
+
+.product-detail-actions .btn-quantity {
+	font-size: var(--fs-default);
+	font-weight: var(--fw-semibold);
+	color: var(--txt-default);
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0.5rem 1rem;
+	border-radius: 0.125rem;
+}
+
+.product-detail-actions .btn-quantity:hover {
+	color: var(--txt-dark);
+	background: var(--bg-light);
+}
+
+.product-detail-actions .btn-quantity:active {
+	transform: scale(0.95);
+}
+
+.product-detail-actions .quantity-value {
+	font-size: var(--fs-default);
+	font-weight: var(--fw-medium);
+	color: var(--txt-dark);
+	min-width: 2.5rem;
+	text-align: center;
+}
+
+.product-detail-actions .btn--primary {
+	flex: 1;
+	max-width: 300px;
+	padding: 0.75rem 2rem;
+}

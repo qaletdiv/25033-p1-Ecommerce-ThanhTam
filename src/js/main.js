@@ -1,4 +1,4 @@
-//* Local Storage ===============================================================================================================================
+//* Local Storage =========================================================================================================================================================
 
 import { products } from "./mock-data.js";
 
@@ -13,21 +13,26 @@ if (!localStorage.getItem("productList")) {
 	localStorage.setItem("productList", JSON.stringify(products));
 }
 
-const productList = JSON.parse(localStorage.getItem("productList"));
+export const productList = JSON.parse(localStorage.getItem("productList"));
 
 if (!localStorage.getItem("user")) {
 	localStorage.setItem("user", JSON.stringify(mockUser));
 }
-const user = JSON.parse(localStorage.getItem("user"));
+export const user = JSON.parse(localStorage.getItem("user"));
+export const cartArr = [];
+if (!localStorage.getItem("cart")) {
+	localStorage.setItem("cart", JSON.stringify(cartArr));
+}
 
-//* DOM ================================================================================================================================================================
+export let cartItems = JSON.parse(localStorage.getItem("cart"));
+
+//* DOM ======================================================================================================================================================================
+
 const productContainerEl = document.getElementById("products-container");
 const cartBtnEl = document.getElementById("cartBtn");
 const userBtnEl = document.getElementById("userBtn");
 const headerEl = document.querySelector("header");
-const cartArr = [];
 const cartContainerEl = document.getElementById("cart-container");
-
 const cartEl = document.querySelector("[data-cart]");
 
 //* Render Product & Login Modal , Cart ========================================================================================================================================
@@ -39,31 +44,39 @@ document.addEventListener("DOMContentLoaded", () => {
 	if (cartEl) {
 		cartEl.style.display = "none";
 	}
+
+	cartBtnEl.addEventListener("click", () => {
+		if (!user.isLoggedin) {
+			showLoginModal();
+		} else {
+			renderCart();
+		}
+	});
 });
 
-function renderProducts(arr, container) {
+export function renderProducts(arr, container) {
 	container.innerHTML = "";
 	container.innerHTML = arr
 		.map((product) => {
 			const productName = String(product.name || "").replace(/[<>]/g, "");
 			return `
-		<div class="product-card">
-			<a class="product-img"  href="#"><img src="${product.images[0].url}"></a>
+		<div class="product-card" data-product-id="${product.id}">
+			<a class="product-img" data-product-id="${product.id}"  href="#"><img src="${product.images[0].url}"></a>
 			<div class="product-info">
-				<a href="#" class="product-category">${product.category}</a>
-				<p class="product-name">${productName}</p>
+				<p class="product-category">${product.category}</p>
+				<a class="product-name link">${productName}</a>
 				<p class="product-price">${product.price.toLocaleString("vi-VN")}đ</p>
 			</div>
 			<div class="btn-group">
-				<button class="btn btn--primary" data-product-id="${product.id}">Thêm vào giỏ</button>
-				<a href="#">Xem chi tiết <span><i class="lucide icon-chevron-right size-small"></i></span></a>
+				<button class="btn btn--primary" >Thêm vào giỏ</button>
+				<a href="#" }">Xem chi tiết <span><i class="lucide icon-chevron-right size-small"></i></span></a>
 			</div>
 		</div>`;
 		})
 		.join("");
 }
 
-function renderModal() {
+export function renderModal() {
 	const existingModal = document.querySelector("[data-modal]");
 	if (!existingModal) {
 		document.body.insertAdjacentHTML(
@@ -85,7 +98,7 @@ function renderModal() {
 	}
 }
 
-function renderCart() {
+export function renderCart() {
 	if (!cartEl || !cartContainerEl) {
 		return;
 	}
@@ -101,17 +114,17 @@ function renderCart() {
 			.map((product) => {
 				const productName = String(product.name || "").replace(/[<>]/g, "");
 
-				return `<div class="cart-item" data-productadd-id="${product.id}">
+				return `<div class="cart-item" data-product-id="${product.id}">
 			<img src="${product.images[0].url}" alt="${productName}" class="cart-item-img">
 			<div class="cart-item-info">
 				<p class="cart-item-name">${productName}</p>
 				<div class="cart-item-action">
 					<div class="quantity-controls">
-						<button class="btn-quantity" data-product-id="${product.id}" data-action="decrease" aria-label="Decrease quantity">-</button>
+						<button class="btn-quantity" data-action="decrease" aria-label="Decrease quantity">-</button>
 						<span class="quantity-value">${product.quantity || 1}</span>
-						<button class="btn-quantity" data-product-id="${product.id}" data-action="increase" aria-label="Increase quantity">+</button>
+						<button class="btn-quantity" data-action="increase" aria-label="Increase quantity">+</button>
 					</div>
-					<a class="fs-small link" data-product-id="${product.id}" data-remove aria-label="Remove item">Xóa</a>
+					<a class="fs-small link" data-remove aria-label="Remove item">Xóa</a>
 				</div>
 			</div>
 			<p class="cart-item-price">${product.price.toLocaleString("vi-VN")}đ</p>
@@ -136,13 +149,7 @@ function calTotal() {
 
 //* Cart ===========================================================================================================================================
 
-if (!localStorage.getItem("cart")) {
-	localStorage.setItem("cart", JSON.stringify(cartArr));
-}
-
-let cartItems = JSON.parse(localStorage.getItem("cart"));
-
-function showLoginModal() {
+export function showLoginModal() {
 	const modalEl = document.querySelector("[data-modal]");
 	if (!modalEl) {
 		renderModal();
@@ -158,51 +165,70 @@ function showLoginModal() {
 	}
 }
 
-cartBtnEl.addEventListener("click", () => {
-	if (!user.isLoggedin) {
-		showLoginModal();
+export function addtoCart(productId, button) {
+	const product = productList.find((product) => product.id === productId);
+	const existingInCart = cartItems.find((product) => product.id === productId);
+
+	if (!existingInCart) {
+		cartItems.unshift({ ...product, quantity: 1 });
 	} else {
-		renderCart();
+		existingInCart.quantity++;
 	}
-});
+
+	button.disabled = true;
+	button.textContent = "Đang thêm...";
+
+	localStorage.setItem("cart", JSON.stringify(cartItems));
+
+	setTimeout(() => {
+		renderCart();
+		setTimeout(() => {
+			const itemInCart = cartEl.querySelector(
+				`[data-product-id="${productId}"]`,
+			);
+			itemInCart.scrollIntoView({ behavior: "smooth", block: "center" });
+			itemInCart.classList.add("highlighted-in-cart");
+		}, 50);
+
+		button.disabled = false;
+		button.textContent = "Thêm vào giỏ";
+	}, 500);
+}
+
+export function getProductId(e) {
+	return Number(e.target.closest("[data-product-id]").dataset.productId);
+}
+
+export function goToDetail(productId) {
+	window.location.href = `/src/pages/product-details.html?id=${productId}`;
+	return;
+}
 
 if (productContainerEl) {
 	productContainerEl.addEventListener("click", (e) => {
-		const productId = e.target.dataset.productId;
+		const addBtn = e.target.closest("button");
 
-		if (!user.isLoggedin) {
-			showLoginModal();
-			return;
+		if (addBtn) {
+			if (!user.isLoggedin) {
+				showLoginModal();
+				return;
+			}
+
+			const productId = getProductId(e);
+
+			if (!productId) {
+				return;
+			} else {
+				addtoCart(productId, addBtn);
+			}
 		}
 
-		if (!productId) {
-			return;
+		const viewBtn = e.target.closest("a");
+
+		if (viewBtn) {
+			const productId = getProductId(e);
+			goToDetail(productId);
 		}
-
-		const product = productList.find(
-			//find product that that match productId
-			(product) => product.id === Number(productId),
-		);
-
-		//check if product exist in cart, if not add
-		const existingInCart = cartItems.find(
-			(product) => product.id === Number(productId),
-		);
-
-		if (!existingInCart) {
-			cartItems.unshift({ ...product, quantity: 1 });
-		} else {
-			existingInCart.quantity++;
-		}
-
-		localStorage.setItem("cart", JSON.stringify(cartItems));
-		renderCart();
-
-		const cartItem = cartEl.querySelector(
-			`[data-productadd-id="${productId}"]`,
-		);
-		cartItem.scrollIntoView({ behavior: "smooth", block: "center" });
-		cartItem.classList.add("highlighted-in-cart");
 	});
 }
 
@@ -215,35 +241,48 @@ cartEl.addEventListener("click", (e) => {
 		cartEl.close();
 		cartEl.style.display = "none";
 		document.body.style.overflow = "";
+
 		return;
 	}
 
-	const productId = e.target.dataset.productId;
-	const targetProduct = cartItems.find(
-		(product) => product.id === Number(productId),
+	const productId = Number(
+		e.target.closest("[data-product-id]").dataset.productId,
 	);
 
-	const btnIncrease = e.target.dataset.action === "increase";
-	const btnDecrease = e.target.dataset.action === "decrease";
+	const targetProduct = cartItems.find((product) => product.id === productId);
 
 	if (!productId || !targetProduct) {
 		return;
 	}
 
+	const btnIncrease = e.target.dataset.action === "increase";
+	const btnDecrease = e.target.dataset.action === "decrease";
+
 	if (btnIncrease) {
-		targetProduct.quantity++;
-	} else if (btnDecrease) {
-		targetProduct.quantity--;
-		if (targetProduct.quantity < 1) {
-			cartItems = cartItems.filter((product) => product !== targetProduct);
-		}
-	} else if (removeBtn) {
+		increaseQuantity(targetProduct);
+	}
+	if (btnDecrease) {
+		decreaseQuantity(targetProduct);
+	}
+
+	if (removeBtn) {
 		cartItems = cartItems.filter((product) => product.id !== Number(productId));
 	}
 
 	localStorage.setItem("cart", JSON.stringify(cartItems));
 	renderCart();
 });
+
+function increaseQuantity(productItem) {
+	productItem.quantity++;
+}
+
+function decreaseQuantity(productItem) {
+	productItem.quantity--;
+	if (productItem.quantity < 1) {
+		cartItems = cartItems.filter((product) => productItem !== product);
+	}
+}
 
 //* Search by name, brand, keyword ===================================================================================================================================
 
@@ -488,7 +527,6 @@ if (formEl) {
 			}
 			return;
 		}
-		console.log("Dang nhap thanh cong");
 		subtmitBtn.disabled = true;
 		subtmitBtn.textContent = "Đang đăng nhập...";
 		updateUserLoggedInState();
