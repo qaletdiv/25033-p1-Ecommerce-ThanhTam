@@ -1,14 +1,14 @@
 .products-container {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	column-gap: 1.25rem;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	justify-content: center;
+	gap: 1.25rem;
 	row-gap: 2rem;
 }
 
 .product-card {
 	display: flex;
 	flex-direction: column;
-	max-width: 325px;
 	gap: 2rem;
 	padding: 2rem 1rem 1.5rem 1rem;
 	background: var(--bg-light);

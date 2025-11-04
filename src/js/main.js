@@ -77,7 +77,7 @@ export function renderProducts(arr, container) {
 			</div>
 			<div class="btn-group">
 				<button class="btn btn--primary" >Thêm vào giỏ</button>
-				<a href="#" }">Xem chi tiết <span><i class="lucide icon-chevron-right size-small"></i></span></a>
+				<a href="#">Xem chi tiết <span><i class="lucide icon-chevron-right size-small"></i></span></a>
 			</div>
 		</div>`;
 		})
@@ -532,43 +532,45 @@ function renderErrorMsg(arr, formContainer) {
 	}
 }
 
-formEl.addEventListener("submit", (e) => {
-	if (loginFormEl) {
-		e.preventDefault();
-		const errorMsg = [];
-		const emailInput = emailInputEl.value;
-		const passowrdInput = passwordInputEl.value.trim();
-		const subtmitBtn = document.querySelector('button[type="submit"]');
+if (formEl) {
+	formEl.addEventListener("submit", (e) => {
+		if (loginFormEl) {
+			e.preventDefault();
+			const errorMsg = [];
+			const emailInput = emailInputEl.value;
+			const passowrdInput = passwordInputEl.value.trim();
+			const subtmitBtn = document.querySelector('button[type="submit"]');
 
-		if (emailInput !== user.email || passowrdInput !== user.password) {
-			errorMsg.push("Sai thông tin, vui lòng thử lại");
+			if (emailInput !== user.email || passowrdInput !== user.password) {
+				errorMsg.push("Sai thông tin, vui lòng thử lại");
+				renderErrorMsg(errorMsg, formEl);
+				return;
+			}
+			subtmitBtn.disabled = true;
+			subtmitBtn.textContent = "Đang đăng nhập...";
+			updateUserLoggedInState();
+			window.location.replace("/index.html");
+		}
+
+		if (signUpFormEl) {
+			e.preventDefault();
+			const errorMsg = [];
+			const confirmPassInput = confirmPassEl.value;
+			const emailInput = emailInputEl.value;
+			const passwordInput = passwordInputEl.value;
+
+			if (emailInput === user.email) {
+				errorMsg.push("Địa chỉ email này đã được đăng ký");
+			}
+
+			if (confirmPassInput !== passwordInput) {
+				errorMsg.push("Mật khẩu không khớp");
+			}
+
 			renderErrorMsg(errorMsg, formEl);
-			return;
 		}
-		subtmitBtn.disabled = true;
-		subtmitBtn.textContent = "Đang đăng nhập...";
-		updateUserLoggedInState();
-		window.location.replace("/index.html");
-	}
-
-	if (signUpFormEl) {
-		e.preventDefault();
-		const errorMsg = [];
-		const confirmPassInput = confirmPassEl.value;
-		const emailInput = emailInputEl.value;
-		const passwordInput = passwordInputEl.value;
-
-		if (emailInput === user.email) {
-			errorMsg.push("Địa chỉ email này đã được đăng ký");
-		}
-
-		if (confirmPassInput !== passwordInput) {
-			errorMsg.push("Mật khẩu không khớp");
-		}
-
-		renderErrorMsg(errorMsg, formEl);
-	}
-});
+	});
+}
 
 //* User login/logout state ===================================================================================================================================
 

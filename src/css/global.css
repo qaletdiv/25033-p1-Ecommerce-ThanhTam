@@ -71,7 +71,6 @@ button {
 
 :focus-visible {
 	outline: 2px auto;
-	outline-offset: 2px;
 }
 
 :focus:not(:focus-visible) {
@@ -172,7 +171,7 @@ a:hover {
 
 .container {
 	margin: 0 auto;
-	padding: 0 40px;
+	padding: 0 1.25rem;
 	max-width: 1440px;
 }
 

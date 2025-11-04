@@ -58,7 +58,7 @@
 
 .nav-search-container {
 	position: relative;
-	min-width: 32rem;
+	width: clamp(16rem, 50vw, 32rem);
 	max-width: 100%;
 }
 
@@ -84,6 +84,7 @@
 .search-input:focus {
 	color: var(--txt-default);
 	outline: none;
+	border: 1px;
 	border-color: var(--bd-brand);
 }
 
