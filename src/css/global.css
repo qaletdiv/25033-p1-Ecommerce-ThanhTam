@@ -102,17 +102,17 @@ a:hover {
 
 .fs-h2 {
 	font-size: var(--fs-h2);
-	line-height: 1.2;
+	line-height: 1.3;
 }
 
 .fs-h3 {
 	font-size: var(--fs-h3);
-	line-height: 1.2;
+	line-height: 1.3;
 }
 
 .fs-h4 {
 	font-size: var(--fs-h4);
-	line-height: 1.4;
+	line-height: 1.3;
 }
 
 .fs-h5 {
@@ -181,6 +181,7 @@ a:hover {
 }
 
 .section-title {
+	font-weight: var(--fw-semibold);
 	margin-bottom: 2rem;
 }
 
