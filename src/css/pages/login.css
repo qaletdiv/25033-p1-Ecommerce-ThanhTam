@@ -36,11 +36,12 @@
 }
 
 .noti-error {
-	padding: 0.5rem 1rem;
+	padding: 0.5rem 2rem;
+	margin: 0;
+	text-align: left;
 	background-color: var(--bg-error);
 	border-radius: 0.5rem;
 	color: var(--txt-error);
 	font-size: var(--fs-small);
 	font-weight: var(--fw-medium);
-	margin: 0;
 }
