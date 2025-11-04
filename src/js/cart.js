@@ -1,7 +1,7 @@
+import { cartItems, user, productList } from "./localStorage";
+
 import {
-	cartItems,
 	calCartTotal,
-	user,
 	increaseQuantity,
 	decreaseQuantity,
 	removeFromCart,

@@ -1,30 +1,6 @@
 //* Local Storage =========================================================================================================================================================
 
-import { products } from "./mock-data.js";
-
-const mockUser = {
-	name: "Tam",
-	email: "thanhtamktvn600@gmail.com",
-	password: "123456789",
-	isLoggedin: false,
-};
-
-if (!localStorage.getItem("productList")) {
-	localStorage.setItem("productList", JSON.stringify(products));
-}
-
-export const productList = JSON.parse(localStorage.getItem("productList"));
-
-if (!localStorage.getItem("user")) {
-	localStorage.setItem("user", JSON.stringify(mockUser));
-}
-export const user = JSON.parse(localStorage.getItem("user"));
-export const cartArr = [];
-if (!localStorage.getItem("cart")) {
-	localStorage.setItem("cart", JSON.stringify(cartArr));
-}
-
-export let cartItems = JSON.parse(localStorage.getItem("cart"));
+import { productList, user, cartItems } from "./localStorage";
 
 //* DOM ======================================================================================================================================================================
 
@@ -257,9 +233,7 @@ cartEl.addEventListener("click", (e) => {
 		e.target.closest("[data-product-id]").dataset.productId,
 	);
 
-	const targetProduct = cartItems.find((product) => product.id === productId);
-
-	if (!productId || !targetProduct) {
+	if (!productId) {
 		return;
 	}
 
@@ -267,14 +241,13 @@ cartEl.addEventListener("click", (e) => {
 	const btnDecrease = e.target.dataset.action === "decrease";
 
 	if (btnIncrease) {
-		increaseQuantity(targetProduct);
+		increaseQuantity(productId);
 	}
 	if (btnDecrease) {
-		decreaseQuantity(targetProduct);
+		decreaseQuantity(productId);
 	}
 
 	if (removeBtn) {
-		// cartItems = cartItems.filter((product) => product.id !== Number(productId));
 		removeFromCart(productId);
 	}
 
@@ -282,19 +255,29 @@ cartEl.addEventListener("click", (e) => {
 	renderCart();
 });
 
-export function increaseQuantity(productItem) {
-	productItem.quantity++;
+export function increaseQuantity(productId) {
+	const product = cartItems.find((product) => product.id === productId);
+	product.quantity++;
 }
 
-export function decreaseQuantity(productItem) {
-	productItem.quantity--;
-	if (productItem.quantity < 1) {
-		cartItems = cartItems.filter((product) => productItem.id !== product.id);
+export function decreaseQuantity(productId) {
+	const product = cartItems.find((product) => product.id === productId);
+	product.quantity--;
+	if (product.quantity < 1) {
+		const index = cartItems.findIndex((product) => product.id === productId);
+
+		if (index !== -1) {
+			cartItems.splice(index, 1);
+		}
 	}
 }
 
-export function removeFromCart(productItem) {
-	cartItems = cartItems.filter((product) => product.id !== Number(productItem));
+export function removeFromCart(productId) {
+	const index = cartItems.findIndex((product) => product.id === productId);
+
+	if (index !== -1) {
+		cartItems.splice(index, 1);
+	}
 }
 
 //* Search by name, brand, keyword ===================================================================================================================================
@@ -372,7 +355,7 @@ function updateCurrentCategory(category) {
 
 if (productContainerEl && categoriesEl) {
 	const productBycategories = Object.groupBy(
-		products,
+		productList,
 		(product) => product.category,
 	);
 	const categoriesName = Object.keys(productBycategories);

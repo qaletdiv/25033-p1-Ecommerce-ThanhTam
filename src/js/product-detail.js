@@ -1,13 +1,11 @@
+import { productList, user } from "./localStorage";
+
 import {
-	productList,
-	cartItems,
 	renderCart,
 	renderModal,
 	showLoginModal,
 	renderProducts,
 	addtoCart,
-	user,
-	cartArr,
 	goToDetail,
 	getProductId,
 } from "./main";
