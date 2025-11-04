@@ -37,6 +37,7 @@
 .product-name {
 	margin-bottom: 0.5rem;
 	text-wrap: balance;
+	font-weight: var(--fw-default);
 }
 
 .product-category {
