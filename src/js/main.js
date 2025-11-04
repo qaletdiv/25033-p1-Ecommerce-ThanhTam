@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	if (document.getElementById("products-container")) {
 		renderProducts(productList, productContainerEl);
 	}
-	const cartEl = document.querySelector("[data-cart]");
+
 	if (cartEl) {
 		cartEl.style.display = "none";
 	}
@@ -52,6 +52,14 @@ document.addEventListener("DOMContentLoaded", () => {
 			renderCart();
 		}
 	});
+
+	if (user.isLoggedin) {
+		renderLoggedinHeader();
+		const logoutBtn = headerEl.querySelector(".is-loggedin");
+		if (logoutBtn) {
+			logoutBtn.addEventListener("click", updateUserLoggoutState);
+		}
+	}
 });
 
 export function renderProducts(arr, container) {
@@ -504,62 +512,63 @@ if (filterEl) {
 
 //* Validate =====================================================================================================================================
 const emailInputEl = document.getElementById("email");
-// const nameInputEl = document.getElementById("fullname");
 const passwordInputEl = document.getElementById("password");
 const confirmPassEl = document.getElementById("confirm-password");
-const formEl = document.getElementById("login-form");
+const formEl = document.querySelector(".form-container");
+const loginFormEl = document.getElementById("login-form");
 const signUpFormEl = document.getElementById("sign-up-form");
 
-if (formEl) {
-	formEl.addEventListener("submit", (e) => {
+function renderErrorMsg(arr, formContainer) {
+	if (!document.querySelector(".noti-error")) {
+		const errorContainer = document.createElement("ul");
+		errorContainer.classList.add("noti-error");
+		arr.forEach((msg) => {
+			const errorMsgEl = document.createElement("li");
+			errorMsgEl.textContent = msg;
+			errorContainer.append(errorMsgEl);
+		});
+
+		formContainer.prepend(errorContainer);
+	}
+}
+
+formEl.addEventListener("submit", (e) => {
+	if (loginFormEl) {
 		e.preventDefault();
+		const errorMsg = [];
 		const emailInput = emailInputEl.value;
 		const passowrdInput = passwordInputEl.value.trim();
 		const subtmitBtn = document.querySelector('button[type="submit"]');
 
-		if (emailInput !== user.email && passowrdInput !== user.password) {
-			console.log("sai thong tin");
-			if (!document.querySelector(".noti-error")) {
-				const el = document.createElement("p");
-				el.classList.add("noti-error");
-				el.textContent = "Sai thông tin, vui lòng thử lại";
-				formEl.prepend(el);
-			}
+		if (emailInput !== user.email || passowrdInput !== user.password) {
+			errorMsg.push("Sai thông tin, vui lòng thử lại");
+			renderErrorMsg(errorMsg, formEl);
 			return;
 		}
 		subtmitBtn.disabled = true;
 		subtmitBtn.textContent = "Đang đăng nhập...";
 		updateUserLoggedInState();
 		window.location.replace("/index.html");
-	});
-}
-
-function renderErrorMsg(str) {
-	if (!document.querySelector(".noti-error")) {
-		const errorMsgEl = document.createElement("p");
-		errorMsgEl.classList.add("noti-error");
-		errorMsgEl.textContent = str;
-		signUpFormEl.prepend(errorMsgEl);
 	}
-}
 
-if (signUpFormEl) {
-	signUpFormEl.addEventListener("submit", (e) => {
+	if (signUpFormEl) {
 		e.preventDefault();
-		// const nameInput = nameInputEl.value;
+		const errorMsg = [];
 		const confirmPassInput = confirmPassEl.value;
 		const emailInput = emailInputEl.value;
 		const passwordInput = passwordInputEl.value;
 
 		if (emailInput === user.email) {
-			renderErrorMsg("Email này đã được đăng ký");
+			errorMsg.push("Địa chỉ email này đã được đăng ký");
 		}
 
 		if (confirmPassInput !== passwordInput) {
-			renderErrorMsg("Mật khẩu không khớp");
+			errorMsg.push("Mật khẩu không khớp");
 		}
-	});
-}
+
+		renderErrorMsg(errorMsg, formEl);
+	}
+});
 
 //* User login/logout state ===================================================================================================================================
 
@@ -590,13 +599,4 @@ function renderLoggedinHeader() {
 	signOutBtn.textContent = "Logout";
 	signOutBtn.href = "#";
 	headerActionEl.prepend(signOutBtn);
-}
-
-if (user.isLoggedin) {
-	renderLoggedinHeader();
-}
-
-const logoutBtn = headerEl.querySelector(".is-loggedin");
-if (logoutBtn) {
-	logoutBtn.addEventListener("click", updateUserLoggoutState);
 }
