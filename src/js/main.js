@@ -140,12 +140,12 @@ export function renderCart() {
 			})
 			.join("");
 	}
-	calTotal();
+	calCartTotal(".cart-total-price", cartEl, cartItems);
 }
 
-function calTotal() {
-	const totalPriceEl = cartEl.querySelector(".cart-total-price");
-	const totalPrice = cartItems.reduce((total, currentItem) => {
+export function calCartTotal(classSelector, container, arr) {
+	const totalPriceEl = container.querySelector(classSelector);
+	const totalPrice = arr.reduce((total, currentItem) => {
 		return total + currentItem.price * currentItem.quantity;
 	}, 0);
 
@@ -190,17 +190,17 @@ export function addtoCart(productId, button) {
 
 	setTimeout(() => {
 		renderCart();
-		setTimeout(() => {
+		requestAnimationFrame(() => {
 			const itemInCart = cartEl.querySelector(
 				`[data-product-id="${productId}"]`,
 			);
 			itemInCart.scrollIntoView({ behavior: "smooth", block: "center" });
 			itemInCart.classList.add("highlighted-in-cart");
-		}, 50);
+		});
 
 		button.disabled = false;
 		button.textContent = "Thêm vào giỏ";
-	}, 500);
+	}, 400);
 }
 
 export function getProductId(e) {
@@ -274,22 +274,27 @@ cartEl.addEventListener("click", (e) => {
 	}
 
 	if (removeBtn) {
-		cartItems = cartItems.filter((product) => product.id !== Number(productId));
+		// cartItems = cartItems.filter((product) => product.id !== Number(productId));
+		removeFromCart(productId);
 	}
 
 	localStorage.setItem("cart", JSON.stringify(cartItems));
 	renderCart();
 });
 
-function increaseQuantity(productItem) {
+export function increaseQuantity(productItem) {
 	productItem.quantity++;
 }
 
-function decreaseQuantity(productItem) {
+export function decreaseQuantity(productItem) {
 	productItem.quantity--;
 	if (productItem.quantity < 1) {
-		cartItems = cartItems.filter((product) => productItem !== product);
+		cartItems = cartItems.filter((product) => productItem.id !== product.id);
 	}
+}
+
+export function removeFromCart(productItem) {
+	cartItems = cartItems.filter((product) => product.id !== Number(productItem));
 }
 
 //* Search by name, brand, keyword ===================================================================================================================================
