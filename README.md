@@ -32,12 +32,14 @@
 - Chuyển hướng về trang chủ
 
 ### A.6. Màn hình Trang giỏ hàng
-- Chỉ có Cart Modal (popup), chưa có trang giỏ hàng độc lập
+- Trang giỏ hàng độc lập (cart.html) với giao diện chi tiết
+- Cart Modal (popup) với nút chuyển đến trang giỏ hàng
 - Hiển thị danh sách sản phẩm trong giỏ với hình ảnh, tên, giá, số lượng
 - Chỉnh sửa giỏ hàng: tăng/giảm số lượng, xóa sản phẩm
 - Tự động tính tổng tiền
 - Yêu cầu đăng nhập để thêm sản phẩm
 - Highlight sản phẩm vừa được thêm vào cart với animation
+
 
 ### Chưa hoàn thành:
 - A.7. Màn hình Trang thanh toán
