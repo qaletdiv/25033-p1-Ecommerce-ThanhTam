@@ -1,4 +1,4 @@
-import { cartItems, user, productList } from "./localStorage";
+import { cartItems } from "./localStorage";
 
 import {
 	calCartTotal,

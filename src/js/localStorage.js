@@ -1,5 +1,42 @@
 import { products } from "./mock-data";
 
+let nextId = 1;
+
+const userList = [
+	{
+		id: nextId++,
+		name: "Tam",
+		email: "thanhtamktvn600@gmail.com",
+		password: "123456789",
+		isLoggedin: false,
+		cart: [],
+		orderHistory: [],
+	},
+];
+
+export function createNewUser(name, email, password) {
+	const userExist = userList.some((user) => user.email === email);
+
+	if (!userExist) {
+		const newUser = {
+			id: nextId++,
+			name: name,
+			email: email,
+			password: password,
+			isLoggedin: false,
+			cart: [],
+			orderHistory: [],
+		};
+
+		userList.push(newUser);
+		return newUser;
+	}
+
+	localStorage.setItem("users", JSON.stringify(userList));
+}
+
+createNewUser("quang", "quang@gmail.com", 123456789);
+
 export function getProductfromLocal() {
 	const defaultProducts = products;
 	if (!localStorage.getItem("productList")) {
@@ -11,18 +48,10 @@ export function getProductfromLocal() {
 }
 
 export function getUsersfromLocal() {
-	const mockUser = {
-		id: 1,
-		name: "Tam",
-		email: "thanhtamktvn600@gmail.com",
-		password: "123456789",
-		isLoggedin: false,
-	};
-
-	if (!localStorage.getItem("user")) {
-		localStorage.setItem("user", JSON.stringify(mockUser));
+	if (!localStorage.getItem("users")) {
+		localStorage.setItem("users", JSON.stringify(userList));
 	} else {
-		return JSON.parse(localStorage.getItem("user"));
+		return JSON.parse(localStorage.getItem("users"));
 	}
 }
 
