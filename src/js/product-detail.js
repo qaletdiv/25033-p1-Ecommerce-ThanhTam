@@ -90,6 +90,23 @@ if (productRelatedContainer) {
 	productRelatedContainer.addEventListener("click", (e) => {
 		const viewBtn = e.target.closest("a");
 
+		const addBtn = e.target.closest("button");
+
+		if (addBtn) {
+			if (!user.isLoggedin) {
+				showLoginModal();
+				return;
+			}
+
+			const productId = getProductId(e);
+
+			if (!productId) {
+				return;
+			} else {
+				addtoCart(productId, addBtn);
+			}
+		}
+
 		if (viewBtn) {
 			const productId = getProductId(e);
 			window.location.href = `/src/pages/product-details.html?id=${productId}`;

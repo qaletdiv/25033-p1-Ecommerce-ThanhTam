@@ -63,6 +63,16 @@
                             <option value="40-100">Trên 40tr</option>
                         </select>
                     </div>
+                    <div class="sort-container">
+                        <select class="dropdown" id="price-range">
+                            <option value="new">Mới nhất</option>
+                            <option value="featured">Nổi bật</option>
+                            <option value="how-high">Giá tăng dần</option>
+                            <option value="high-low"> Giá giảm dần</option>
+                            <option value="A-Z">A-Z</option>
+                            <option value="Z-A">Z-A</option>
+                        </select>
+                    </div>
                 </div>
                 <div id="products-container" class="products-container" data-category="all"></div>
             </div>
@@ -79,7 +89,8 @@
                 <p class="cart-total-price"></p>
             </div>
             <div class="cart-action btn-group">
-                <button class="btn btn--outline" onclick="window.location.href='/src/pages/cart.html'">Xem giỏ hàng</button>
+                <button class="btn btn--outline" onclick="window.location.href='/src/pages/cart.html'">Xem giỏ
+                    hàng</button>
                 <button class="btn btn--primary">Thanh toán</button>
             </div>
         </dialog>

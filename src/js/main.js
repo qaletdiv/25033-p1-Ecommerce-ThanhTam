@@ -1,6 +1,12 @@
 //* Local Storage =========================================================================================================================================================
 
-import { productList, user, cartItems } from "./localStorage";
+import {
+	productList,
+	user,
+	cartItems,
+	getProductfromLocal,
+	getUsersfromLocal,
+} from "./localStorage.js";
 
 //* DOM ======================================================================================================================================================================
 
@@ -13,6 +19,9 @@ const cartEl = document.querySelector("[data-cart]");
 
 //* Render Product & Login Modal , Cart ========================================================================================================================================
 document.addEventListener("DOMContentLoaded", () => {
+	getProductfromLocal();
+	getUsersfromLocal();
+
 	if (document.getElementById("products-container")) {
 		renderProducts(productList, productContainerEl);
 	}
@@ -286,7 +295,7 @@ const searchInputEl = document.querySelector("[type=search]");
 
 function renderSearchModal() {
 	const searchKey = searchInputEl.value.trim();
-	const matchingProducts = products.filter(
+	const matchingProducts = productList.filter(
 		(product) =>
 			product.name.trim().toLowerCase().includes(searchKey.toLowerCase()) ||
 			product.brand.trim().toLowerCase().includes(searchKey.toLowerCase()) ||
@@ -374,7 +383,7 @@ if (productContainerEl && categoriesEl) {
 			const matchCategoryProducts = productBycategories[productId];
 
 			if (e.target.id === "show-all-btn") {
-				renderProducts(products, productContainerEl);
+				renderProducts(productList, productContainerEl);
 				pageTitleEl.textContent = "Tất cả sản phẩm";
 				productContainerEl.dataset.category = "all";
 			}

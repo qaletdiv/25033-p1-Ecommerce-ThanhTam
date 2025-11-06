@@ -1,13 +1,18 @@
-function getProductfromLocal() {
+import { products } from "./mock-data";
+
+export function getProductfromLocal() {
+	const defaultProducts = products;
 	if (!localStorage.getItem("productList")) {
-		localStorage.setItem("productList", JSON.stringify(products));
+		localStorage.setItem("productList", JSON.stringify(defaultProducts));
+		return defaultProducts;
 	} else {
 		return JSON.parse(localStorage.getItem("productList"));
 	}
 }
 
-function getUsersfromLocal() {
+export function getUsersfromLocal() {
 	const mockUser = {
+		id: 1,
 		name: "Tam",
 		email: "thanhtamktvn600@gmail.com",
 		password: "123456789",
