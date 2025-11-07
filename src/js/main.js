@@ -1,11 +1,12 @@
 //* Local Storage =========================================================================================================================================================
 
 import {
-	cartItems,
-	currentUser,
+	getCartItemsFromLocal,
+	getUsersfromLocal,
+	getProductfromLocal,
 	getCurrentUser,
-	productList,
-	userList,
+	setCurrentUser,
+	createNewUser,
 } from "./localStorage.js";
 
 //* DOM ======================================================================================================================================================================
@@ -17,9 +18,19 @@ const headerEl = document.querySelector("header");
 const cartContainerEl = document.getElementById("cart-container");
 const cartEl = document.querySelector("[data-cart]");
 
-console.log(currentUser);
+let cartItems, userList, productList, currentUser;
+
+function initLocalStorageData() {
+	cartItems = getCartItemsFromLocal();
+	userList = getUsersfromLocal();
+	productList = getProductfromLocal();
+	currentUser = getCurrentUser();
+}
+
+initLocalStorageData();
 
 //* Render Product & Login Modal , Cart ========================================================================================================================================
+
 document.addEventListener("DOMContentLoaded", () => {
 	if (document.getElementById("products-container")) {
 		renderProducts(productList, productContainerEl);
@@ -41,7 +52,12 @@ document.addEventListener("DOMContentLoaded", () => {
 		renderLoggedinHeader();
 		const logoutBtn = headerEl.querySelector(".is-loggedin");
 		if (logoutBtn) {
-			logoutBtn.addEventListener("click", updateUserLoggoutState);
+			logoutBtn.addEventListener("click", (e) => {
+				e.preventDefault();
+				updateUserLoggoutState(currentUser);
+				localStorage.removeItem("currentUser");
+				window.location.reload();
+			});
 		}
 	}
 });
@@ -201,7 +217,7 @@ if (productContainerEl) {
 		const addBtn = e.target.closest("button");
 
 		if (addBtn) {
-			if (!user.isLoggedin) {
+			if (!currentUser || !currentUser.isLoggedin) {
 				showLoginModal();
 				return;
 			}
@@ -509,6 +525,7 @@ if (filterEl) {
 //* Validate =====================================================================================================================================
 const emailInputEl = document.getElementById("email");
 const passwordInputEl = document.getElementById("password");
+const nameInputEl = document.getElementById("fullname");
 const confirmPassEl = document.getElementById("confirm-password");
 const formEl = document.querySelector(".form-container");
 const loginFormEl = document.getElementById("login-form");
@@ -525,6 +542,22 @@ function renderErrorMsg(arr, formContainer) {
 		});
 
 		formContainer.prepend(errorContainer);
+	} else {
+		document.querySelector(".noti-error").remove();
+	}
+}
+
+function renderSuccessMsg(arr, formContainer) {
+	if (!document.querySelector(".noti-success")) {
+		const successContainer = document.createElement("ul");
+		successContainer.classList.add("noti-success");
+		arr.forEach((msg) => {
+			const successMsgEl = document.createElement("li");
+			successMsgEl.textContent = msg;
+			successContainer.append(successMsgEl);
+		});
+
+		formContainer.prepend(successContainer);
 	}
 }
 
@@ -533,51 +566,84 @@ if (formEl) {
 		if (loginFormEl) {
 			e.preventDefault();
 			const errorMsg = [];
-			const emailInput = emailInputEl.value;
+			const emailInput = emailInputEl.value.trim();
 			const passowrdInput = passwordInputEl.value.trim();
 			const subtmitBtn = document.querySelector('button[type="submit"]');
 
-			const accountMatch = userList.some(
+			const foundUser = userList.find(
 				(user) => user.email === emailInput && user.password === passowrdInput,
 			);
 
-			if (!accountMatch) {
+			if (!foundUser) {
 				errorMsg.push("Sai thông tin, vui lòng thử lại");
 				renderErrorMsg(errorMsg, formEl);
 				return;
 			} else {
-				const foundUser = userList.find(
-					(user) =>
-						user.email === emailInput && user.password === passowrdInput,
-				);
-
 				subtmitBtn.disabled = true;
 				subtmitBtn.textContent = "Đang đăng nhập...";
-
 				updateUserLoggedInState(foundUser);
-				getCurrentUser(foundUser);
-				const updatedState = JSON.stringify(currentUser);
-				localStorage.setItem("currentUser", updatedState);
+				currentUser = setCurrentUser(foundUser);
 				window.location.replace("/index.html");
 			}
-		}
-
-		if (signUpFormEl) {
+		} else if (signUpFormEl) {
 			e.preventDefault();
 			const errorMsg = [];
-			const confirmPassInput = confirmPassEl.value;
-			const emailInput = emailInputEl.value;
-			const passwordInput = passwordInputEl.value;
+			const confirmPassInput = confirmPassEl.value.trim();
+			const emailInput = emailInputEl.value.trim();
+			const passwordInput = passwordInputEl.value.trim();
+			const nameInput = nameInputEl.value.trim();
+			const subtmitBtn = document.querySelector('button[type="submit"]');
 
-			if (emailInput === user.email) {
-				errorMsg.push("Địa chỉ email này đã được đăng ký");
+			if (nameInput === "") {
+				errorMsg.push("Tên không được để trống");
 			}
 
-			if (confirmPassInput !== passwordInput) {
+			if (emailInput === "") {
+				errorMsg.push("Email không được để trống");
+			}
+
+			if (passwordInput === "") {
+				errorMsg.push("Mật khẩu không dược để trống");
+			}
+
+			if (confirmPassInput === "") {
+				errorMsg.push("Vui lòng xác nhận mật khẩu");
+			}
+
+			if (
+				passwordInput !== "" &&
+				confirmPassInput !== "" &&
+				confirmPassInput !== passwordInput
+			) {
 				errorMsg.push("Mật khẩu không khớp");
 			}
 
-			renderErrorMsg(errorMsg, formEl);
+			if (emailInput !== "") {
+				const isEmailMatch = userList.some((user) => user.email === emailInput);
+				if (isEmailMatch) {
+					errorMsg.push("Địa chỉ email này đã được đăng ký");
+				}
+			}
+
+			if (errorMsg.length > 0) {
+				renderErrorMsg(errorMsg, formEl);
+				return;
+			}
+
+			createNewUser(nameInput, emailInput, passwordInput);
+
+			const successMsg = [
+				"Đăng ký thành công! Bạn sẽ được điều hướng đến trang đăng nhập",
+			];
+			renderSuccessMsg(successMsg, formEl);
+
+			subtmitBtn.disabled = true;
+			subtmitBtn.textContent = "Đang chuyển hướng...";
+
+			setTimeout(() => {
+				window.location.replace("/login.html");
+			}, 2000);
+			return;
 		}
 	});
 }
@@ -591,15 +657,18 @@ function updateUserLoggedInState(user) {
 }
 
 function updateUserLoggoutState(user) {
-	user.isLoggedin = false;
+	const currentUser = userList.find((u) => u.email === user.email);
+
+	if (currentUser) {
+		currentUser.isLoggedin = false;
+	}
 	const updatedState = JSON.stringify(userList);
 	localStorage.setItem("users", updatedState);
-	window.location.reload();
 }
 
 function renderLoggedinHeader() {
 	const headerActionEl = document.querySelector(".nav-actions");
-	userBtnEl.innerHTML += `Hello ${currentUser.name}`;
+	userBtnEl.innerHTML += `Hello ${currentUser.name.charAt(0).toUpperCase() + currentUser.name.slice(1)}`;
 	userBtnEl.classList.remove("btn", "btn--icon-only");
 	userBtnEl.classList.add("user-is-loggedin");
 
