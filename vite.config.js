@@ -1,19 +1,30 @@
-import { defineConfig } from 'vite'
-import { resolve } from 'path'
+import { resolve } from "node:path";
+import { defineConfig } from "vite";
 
 export default defineConfig({
-  server: {
-    host: 'localhost',
-    port: 5173,
-  },
-  build: {
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-        login: resolve(__dirname, 'src/pages/login.html'),
-        signup: resolve(__dirname, 'src/pages/signup.html'),
-        products: resolve(__dirname, 'src/pages/products-list.html'),
-      }
-    }
-  }
-})
+	server: {
+		host: "localhost",
+		port: 5173,
+	},
+	build: {
+		cssCodeSplit: true,
+		minify: "esbuild",
+		sourcemap: false,
+		rollupOptions: {
+			input: {
+				main: resolve(__dirname, "index.html"),
+				login: resolve(__dirname, "login.html"),
+				signup: resolve(__dirname, "signup.html"),
+				products: resolve(__dirname, "products-list.html"),
+				cart: resolve(__dirname, "cart.html"),
+				productDetails: resolve(__dirname, "product-details.html"),
+			},
+			output: {
+				manualChunks: {
+					shared: ["./src/js/localStorage.js"],
+					data: ["./src/js/mock-data.js"],
+				},
+			},
+		},
+	},
+});

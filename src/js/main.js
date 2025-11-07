@@ -1,11 +1,11 @@
 //* Local Storage =========================================================================================================================================================
 
 import {
-	productList,
-	user,
 	cartItems,
-	getProductfromLocal,
-	getUsersfromLocal,
+	currentUser,
+	getCurrentUser,
+	productList,
+	userList,
 } from "./localStorage.js";
 
 //* DOM ======================================================================================================================================================================
@@ -17,11 +17,10 @@ const headerEl = document.querySelector("header");
 const cartContainerEl = document.getElementById("cart-container");
 const cartEl = document.querySelector("[data-cart]");
 
+console.log(currentUser);
+
 //* Render Product & Login Modal , Cart ========================================================================================================================================
 document.addEventListener("DOMContentLoaded", () => {
-	getProductfromLocal();
-	getUsersfromLocal();
-
 	if (document.getElementById("products-container")) {
 		renderProducts(productList, productContainerEl);
 	}
@@ -31,14 +30,14 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	cartBtnEl.addEventListener("click", () => {
-		if (!user.isLoggedin) {
+		if (!currentUser.isLoggedin) {
 			showLoginModal();
 		} else {
 			renderCart();
 		}
 	});
 
-	if (user.isLoggedin) {
+	if (currentUser.isLoggedin) {
 		renderLoggedinHeader();
 		const logoutBtn = headerEl.querySelector(".is-loggedin");
 		if (logoutBtn) {
@@ -79,8 +78,8 @@ export function renderModal() {
             <p class="modal-title">Please login to proceed</p>
             <button class="btn btn--icon-only btn--small modal-close" aria-label="Close modal"><i class="lucide icon-x size-default"></i></button>
             <div class="btn-group">
-                <a class="btn btn--primary" href="/src/pages/login.html">Đăng nhập</a>
-                <a class="btn btn--outline" href="/src/pages/signup.html">Đăng ký</a>
+                <a class="btn btn--primary" href="/login.html">Đăng nhập</a>
+                <a class="btn btn--outline" href="/signup.html">Đăng ký</a>
             </div>
         </div>
     </dialog>`,
@@ -193,7 +192,7 @@ export function getProductId(e) {
 }
 
 export function goToDetail(productId) {
-	window.location.href = `/src/pages/product-details.html?id=${productId}`;
+	window.location.href = `/product-details.html?id=${productId}`;
 	return;
 }
 
@@ -538,15 +537,29 @@ if (formEl) {
 			const passowrdInput = passwordInputEl.value.trim();
 			const subtmitBtn = document.querySelector('button[type="submit"]');
 
-			if (emailInput !== user.email || passowrdInput !== user.password) {
+			const accountMatch = userList.some(
+				(user) => user.email === emailInput && user.password === passowrdInput,
+			);
+
+			if (!accountMatch) {
 				errorMsg.push("Sai thông tin, vui lòng thử lại");
 				renderErrorMsg(errorMsg, formEl);
 				return;
+			} else {
+				const foundUser = userList.find(
+					(user) =>
+						user.email === emailInput && user.password === passowrdInput,
+				);
+
+				subtmitBtn.disabled = true;
+				subtmitBtn.textContent = "Đang đăng nhập...";
+
+				updateUserLoggedInState(foundUser);
+				getCurrentUser(foundUser);
+				const updatedState = JSON.stringify(currentUser);
+				localStorage.setItem("currentUser", updatedState);
+				window.location.replace("/index.html");
 			}
-			subtmitBtn.disabled = true;
-			subtmitBtn.textContent = "Đang đăng nhập...";
-			updateUserLoggedInState();
-			window.location.replace("/index.html");
 		}
 
 		if (signUpFormEl) {
@@ -571,22 +584,22 @@ if (formEl) {
 
 //* User login/logout state ===================================================================================================================================
 
-function updateUserLoggedInState() {
+function updateUserLoggedInState(user) {
 	user.isLoggedin = true;
-	const updatedState = JSON.stringify(user);
-	localStorage.setItem("user", updatedState);
+	const updatedState = JSON.stringify(userList);
+	localStorage.setItem("users", updatedState);
 }
 
-function updateUserLoggoutState() {
+function updateUserLoggoutState(user) {
 	user.isLoggedin = false;
-	const updatedState = JSON.stringify(user);
-	localStorage.setItem("user", updatedState);
+	const updatedState = JSON.stringify(userList);
+	localStorage.setItem("users", updatedState);
 	window.location.reload();
 }
 
 function renderLoggedinHeader() {
 	const headerActionEl = document.querySelector(".nav-actions");
-	userBtnEl.innerHTML += `Hello ${user.name}`;
+	userBtnEl.innerHTML += `Hello ${currentUser.name}`;
 	userBtnEl.classList.remove("btn", "btn--icon-only");
 	userBtnEl.classList.add("user-is-loggedin");
 

@@ -2,7 +2,7 @@ import { products } from "./mock-data";
 
 let nextId = 1;
 
-const userList = [
+const userArr = [
 	{
 		id: nextId++,
 		name: "Tam",
@@ -15,7 +15,7 @@ const userList = [
 ];
 
 export function createNewUser(name, email, password) {
-	const userExist = userList.some((user) => user.email === email);
+	const userExist = userArr.some((user) => user.email === email);
 
 	if (!userExist) {
 		const newUser = {
@@ -28,7 +28,7 @@ export function createNewUser(name, email, password) {
 			orderHistory: [],
 		};
 
-		userList.push(newUser);
+		userArr.push(newUser);
 		return newUser;
 	}
 
@@ -48,8 +48,10 @@ export function getProductfromLocal() {
 }
 
 export function getUsersfromLocal() {
+	const defaultUser = userArr;
 	if (!localStorage.getItem("users")) {
-		localStorage.setItem("users", JSON.stringify(userList));
+		localStorage.setItem("users", JSON.stringify(userArr));
+		return defaultUser;
 	} else {
 		return JSON.parse(localStorage.getItem("users"));
 	}
@@ -65,6 +67,17 @@ function getCartItemsFromLocal() {
 	}
 }
 
+export function getCurrentUser(user) {
+	const defaultCurrentUser = user ?? {};
+	if (!localStorage.getItem("currentUser")) {
+		localStorage.setItem("currentUser", JSON.stringify(defaultCurrentUser));
+		return defaultCurrentUser;
+	} else {
+		return JSON.parse(localStorage.getItem("currentUser"));
+	}
+}
+
 export const productList = getProductfromLocal();
-export const user = getUsersfromLocal();
-export let cartItems = getCartItemsFromLocal();
+export const userList = getUsersfromLocal();
+export const cartItems = getCartItemsFromLocal();
+export const currentUser = getCurrentUser();

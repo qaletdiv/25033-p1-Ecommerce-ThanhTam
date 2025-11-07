@@ -1,4 +1,4 @@
-import { productList, user } from "./localStorage";
+import { productList, userList } from "./localStorage";
 
 import {
 	showLoginModal,
@@ -106,7 +106,7 @@ if (productRelatedContainer) {
 
 		if (viewBtn) {
 			const productId = getProductId(e);
-			window.location.href = `/src/pages/product-details.html?id=${productId}`;
+			window.location.href = `/product-details.html?id=${productId}`;
 			return;
 		}
 	});

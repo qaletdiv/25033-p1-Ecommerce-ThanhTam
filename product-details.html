@@ -10,11 +10,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/src/css/reset.css">
-    <link rel="stylesheet" href="/src/css/variables/variables.css">
-    <link rel="stylesheet" href="/src/css/components/components.css">
-    <link rel="stylesheet" href="/src/css/global.css">
-    <link rel="stylesheet" href="/src/css/pages/login.css">
+    <link rel="stylesheet" href="/src/css/main.css">
+    <link rel="stylesheet" href="/src/css/pages/product-detail.css">
     <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/font/lucide.css">
 </head>
 
@@ -25,7 +22,7 @@
                 <a href="/" class="nav-logo">AllTech.</a>
                 <nav class="nav-menu">
                     <ul>
-                        <li><a class="nav-item" href="/src/pages/products-list.html">Sản phẩm</a></li>
+                        <li><a class="nav-item" href="/products-list.html">Sản phẩm</a></li>
                         <li><a class="nav-item" href="#">Liên hệ</a></li>
                     </ul>
                 </nav>
@@ -38,36 +35,23 @@
                 </form>
             </div>
             <div class="nav-actions">
-                <a href="/src/pages/login.html" class="btn btn--icon-only" id="userBtn" aria-label="Login"><i
+                <a href="/login.html" class="btn btn--icon-only" id="userBtn" aria-label="Login"><i
                         class="lucide icon-user size-default"></i></a>
-                <div class="btn btn--icon-only" id="cartBtn" aria-label="Open cart"><i
-                        class="lucide icon-shopping-cart size-default"></i></div>
+                <button class="btn btn--icon-only" id="cartBtn" aria-label="Open cart"><i
+                        class="lucide icon-shopping-cart size-default"></i></button>
             </div>
         </div>
     </header>
     <main>
         <section class="section">
-            <div class="container login-container">
-                <h1 class="fs-h3">Đăng nhập</h1>
-                <form class="form-container" id="login-form">
-                    <div class="input-container">
-                        <label for="email">Email</label>
-                        <input class="input" type="email" id="email" name="email" required placeholder="Email của bạn">
-                    </div>
-                    <div class="input-container">
-                        <label for="password">Mật khẩu</label>
-                        <input class="input" type="password" id="password" name="password" required
-                            placeholder="Mật khẩu" minlength="8">
-                        <p class="fs-small">Mật khẩu phải từ 8 ký tự trở lên </p>
-                    </div>
-                    <div class="btn-group">
-                        <button class="btn btn--primary" type="submit">Đăng nhập</button>
-                        <p class="fs-label fw-bold" style=" opacity:0.6; margin: 0;">HOẶC</p>
-                        <button class="btn btn--outline" type="button"
-                            onclick="window.location.href='/src/pages/signup.html'">Chưa có tài khoản? Đăng kí ngay</button>
-                    </div>
-                </form>
-
+            <div class="container">
+                <div id="product-detail-container"></div>
+            </div>
+        </section>
+        <section class="section product-related-section">
+            <div class="container">
+                <h3 class="section-title">Sản phẩm liên quan</h3>
+                <div id="product-related-container" class="products-container"></div>
             </div>
         </section>
         <dialog class="cart-container" data-cart>
@@ -82,12 +66,14 @@
                 <p class="cart-total-price"></p>
             </div>
             <div class="cart-action btn-group">
-                <button class="btn btn--outline" onclick="window.location.href='/src/pages/cart.html'">Xem giỏ hàng</button>
+                <button class="btn btn--outline" onclick="window.location.href='/cart.html'">Xem giỏ hàng</button>
                 <button class="btn btn--primary">Thanh toán</button>
             </div>
         </dialog>
     </main>
+    <script type="module" src="/src/js/product-detail.js"></script>
     <script type="module" src="/src/js/main.js"></script>
+
 </body>
 
 </html>
