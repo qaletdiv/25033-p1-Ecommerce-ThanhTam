@@ -1,5 +1,41 @@
 import { products } from "./mock-data";
 
+const userInServers = [
+	{
+		id: Date.now().toString(),
+		name: "Tam",
+		email: "thanhtamktvn600@gmail.com",
+		password: "123456789",
+		isLoggedin: false,
+		cart: [],
+		orderHistory: [],
+	},
+];
+
+export function createNewUser(name, email, password) {
+	const currentUsers = getUsersfromLocal();
+	const userExist = currentUsers.some((user) => user.email === email);
+
+	if (!userExist) {
+		const newUser = {
+			id: Date.now().toString(),
+			name: name,
+			email: email,
+			password: password,
+			isLoggedin: false,
+			cart: [],
+			orderHistory: [],
+		};
+
+		currentUsers.push(newUser);
+
+		localStorage.setItem("users", JSON.stringify(currentUsers));
+		return newUser;
+	} else {
+		return;
+	}
+}
+
 export function getProductfromLocal() {
 	const defaultProducts = products;
 	if (!localStorage.getItem("productList")) {
@@ -11,31 +47,37 @@ export function getProductfromLocal() {
 }
 
 export function getUsersfromLocal() {
-	const mockUser = {
-		id: 1,
-		name: "Tam",
-		email: "thanhtamktvn600@gmail.com",
-		password: "123456789",
-		isLoggedin: false,
-	};
-
-	if (!localStorage.getItem("user")) {
-		localStorage.setItem("user", JSON.stringify(mockUser));
+	const defaultUsers = userInServers;
+	if (!localStorage.getItem("users")) {
+		localStorage.setItem("users", JSON.stringify(userInServers));
+		return defaultUsers;
 	} else {
-		return JSON.parse(localStorage.getItem("user"));
+		return JSON.parse(localStorage.getItem("users"));
 	}
 }
 
-function getCartItemsFromLocal() {
+export function getCartItemsFromLocal() {
 	const cartArr = [];
 
 	if (!localStorage.getItem("cart")) {
 		localStorage.setItem("cart", JSON.stringify(cartArr));
+		return cartArr;
 	} else {
 		return JSON.parse(localStorage.getItem("cart"));
 	}
 }
 
-export const productList = getProductfromLocal();
-export const user = getUsersfromLocal();
-export let cartItems = getCartItemsFromLocal();
+export function getCurrentUser() {
+	if (!localStorage.getItem("currentUser")) {
+		const anonymousUser = { isLoggedin: false, cart: [] };
+		return anonymousUser;
+	}
+
+	return JSON.parse(localStorage.getItem("currentUser"));
+}
+
+export function setCurrentUser(user) {
+	localStorage.setItem("currentUser", JSON.stringify(user));
+	return user;
+}
+

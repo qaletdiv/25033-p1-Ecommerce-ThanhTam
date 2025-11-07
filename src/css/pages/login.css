@@ -45,3 +45,14 @@
 	font-size: var(--fs-small);
 	font-weight: var(--fw-medium);
 }
+
+.noti-success {
+	padding: 0.5rem 2rem;
+	margin: 0;
+	text-align: left;
+	background-color: #d4edda;
+	border-radius: 0.25rem;
+	color: #155724;
+	font-size: var(--fs-small);
+	font-weight: var(--fw-medium);
+}

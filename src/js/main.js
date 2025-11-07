@@ -1,11 +1,12 @@
 //* Local Storage =========================================================================================================================================================
 
 import {
-	productList,
-	user,
-	cartItems,
-	getProductfromLocal,
+	getCartItemsFromLocal,
 	getUsersfromLocal,
+	getProductfromLocal,
+	getCurrentUser,
+	setCurrentUser,
+	createNewUser,
 } from "./localStorage.js";
 
 //* DOM ======================================================================================================================================================================
@@ -17,11 +18,20 @@ const headerEl = document.querySelector("header");
 const cartContainerEl = document.getElementById("cart-container");
 const cartEl = document.querySelector("[data-cart]");
 
-//* Render Product & Login Modal , Cart ========================================================================================================================================
-document.addEventListener("DOMContentLoaded", () => {
-	getProductfromLocal();
-	getUsersfromLocal();
+export let cartItems, userList, productList, currentUser;
 
+function initLocalStorageData() {
+	cartItems = getCartItemsFromLocal();
+	userList = getUsersfromLocal();
+	productList = getProductfromLocal();
+	currentUser = getCurrentUser();
+}
+
+initLocalStorageData();
+
+//* Render Product & Login Modal , Cart ========================================================================================================================================
+
+document.addEventListener("DOMContentLoaded", () => {
 	if (document.getElementById("products-container")) {
 		renderProducts(productList, productContainerEl);
 	}
@@ -31,18 +41,23 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	cartBtnEl.addEventListener("click", () => {
-		if (!user.isLoggedin) {
+		if (!currentUser.isLoggedin) {
 			showLoginModal();
 		} else {
 			renderCart();
 		}
 	});
 
-	if (user.isLoggedin) {
+	if (currentUser.isLoggedin) {
 		renderLoggedinHeader();
 		const logoutBtn = headerEl.querySelector(".is-loggedin");
 		if (logoutBtn) {
-			logoutBtn.addEventListener("click", updateUserLoggoutState);
+			logoutBtn.addEventListener("click", (e) => {
+				e.preventDefault();
+				updateUserLoggoutState(currentUser);
+				localStorage.removeItem("currentUser");
+				window.location.reload();
+			});
 		}
 	}
 });
@@ -79,8 +94,8 @@ export function renderModal() {
             <p class="modal-title">Please login to proceed</p>
             <button class="btn btn--icon-only btn--small modal-close" aria-label="Close modal"><i class="lucide icon-x size-default"></i></button>
             <div class="btn-group">
-                <a class="btn btn--primary" href="/src/pages/login.html">Đăng nhập</a>
-                <a class="btn btn--outline" href="/src/pages/signup.html">Đăng ký</a>
+                <a class="btn btn--primary" href="/login.html">Đăng nhập</a>
+                <a class="btn btn--outline" href="/signup.html">Đăng ký</a>
             </div>
         </div>
     </dialog>`,
@@ -158,14 +173,14 @@ export function showLoginModal() {
 	}
 }
 
-export function addtoCart(productId, button) {
+export function addtoCart(productId, button, quantityNum) {
 	const product = productList.find((product) => product.id === productId);
 	const existingInCart = cartItems.find((product) => product.id === productId);
 
 	if (!existingInCart) {
-		cartItems.unshift({ ...product, quantity: 1 });
+		cartItems.unshift({ ...product, quantity: quantityNum ? quantityNum : 1 });
 	} else {
-		existingInCart.quantity++;
+		existingInCart.quantity += quantityNum;
 	}
 
 	button.disabled = true;
@@ -193,7 +208,7 @@ export function getProductId(e) {
 }
 
 export function goToDetail(productId) {
-	window.location.href = `/src/pages/product-details.html?id=${productId}`;
+	window.location.href = `/product-details.html?id=${productId}`;
 	return;
 }
 
@@ -202,7 +217,7 @@ if (productContainerEl) {
 		const addBtn = e.target.closest("button");
 
 		if (addBtn) {
-			if (!user.isLoggedin) {
+			if (!currentUser || !currentUser.isLoggedin) {
 				showLoginModal();
 				return;
 			}
@@ -212,7 +227,7 @@ if (productContainerEl) {
 			if (!productId) {
 				return;
 			} else {
-				addtoCart(productId, addBtn);
+				addtoCart(productId, addBtn, 1);
 			}
 		}
 
@@ -510,6 +525,7 @@ if (filterEl) {
 //* Validate =====================================================================================================================================
 const emailInputEl = document.getElementById("email");
 const passwordInputEl = document.getElementById("password");
+const nameInputEl = document.getElementById("fullname");
 const confirmPassEl = document.getElementById("confirm-password");
 const formEl = document.querySelector(".form-container");
 const loginFormEl = document.getElementById("login-form");
@@ -526,6 +542,22 @@ function renderErrorMsg(arr, formContainer) {
 		});
 
 		formContainer.prepend(errorContainer);
+	} else {
+		document.querySelector(".noti-error").remove();
+	}
+}
+
+function renderSuccessMsg(arr, formContainer) {
+	if (!document.querySelector(".noti-success")) {
+		const successContainer = document.createElement("ul");
+		successContainer.classList.add("noti-success");
+		arr.forEach((msg) => {
+			const successMsgEl = document.createElement("li");
+			successMsgEl.textContent = msg;
+			successContainer.append(successMsgEl);
+		});
+
+		formContainer.prepend(successContainer);
 	}
 }
 
@@ -534,59 +566,109 @@ if (formEl) {
 		if (loginFormEl) {
 			e.preventDefault();
 			const errorMsg = [];
-			const emailInput = emailInputEl.value;
+			const emailInput = emailInputEl.value.trim();
 			const passowrdInput = passwordInputEl.value.trim();
 			const subtmitBtn = document.querySelector('button[type="submit"]');
 
-			if (emailInput !== user.email || passowrdInput !== user.password) {
+			const foundUser = userList.find(
+				(user) => user.email === emailInput && user.password === passowrdInput,
+			);
+
+			if (!foundUser) {
 				errorMsg.push("Sai thông tin, vui lòng thử lại");
 				renderErrorMsg(errorMsg, formEl);
 				return;
+			} else {
+				subtmitBtn.disabled = true;
+				subtmitBtn.textContent = "Đang đăng nhập...";
+				updateUserLoggedInState(foundUser);
+				currentUser = setCurrentUser(foundUser);
+				window.location.replace("/index.html");
 			}
-			subtmitBtn.disabled = true;
-			subtmitBtn.textContent = "Đang đăng nhập...";
-			updateUserLoggedInState();
-			window.location.replace("/index.html");
-		}
-
-		if (signUpFormEl) {
+		} else if (signUpFormEl) {
 			e.preventDefault();
 			const errorMsg = [];
-			const confirmPassInput = confirmPassEl.value;
-			const emailInput = emailInputEl.value;
-			const passwordInput = passwordInputEl.value;
+			const confirmPassInput = confirmPassEl.value.trim();
+			const emailInput = emailInputEl.value.trim();
+			const passwordInput = passwordInputEl.value.trim();
+			const nameInput = nameInputEl.value.trim();
+			const subtmitBtn = document.querySelector('button[type="submit"]');
 
-			if (emailInput === user.email) {
-				errorMsg.push("Địa chỉ email này đã được đăng ký");
+			if (nameInput === "") {
+				errorMsg.push("Tên không được để trống");
 			}
 
-			if (confirmPassInput !== passwordInput) {
+			if (emailInput === "") {
+				errorMsg.push("Email không được để trống");
+			}
+
+			if (passwordInput === "") {
+				errorMsg.push("Mật khẩu không dược để trống");
+			}
+
+			if (confirmPassInput === "") {
+				errorMsg.push("Vui lòng xác nhận mật khẩu");
+			}
+
+			if (
+				passwordInput !== "" &&
+				confirmPassInput !== "" &&
+				confirmPassInput !== passwordInput
+			) {
 				errorMsg.push("Mật khẩu không khớp");
 			}
 
-			renderErrorMsg(errorMsg, formEl);
+			if (emailInput !== "") {
+				const isEmailMatch = userList.some((user) => user.email === emailInput);
+				if (isEmailMatch) {
+					errorMsg.push("Địa chỉ email này đã được đăng ký");
+				}
+			}
+
+			if (errorMsg.length > 0) {
+				renderErrorMsg(errorMsg, formEl);
+				return;
+			}
+
+			createNewUser(nameInput, emailInput, passwordInput);
+
+			const successMsg = [
+				"Đăng ký thành công! Bạn sẽ được điều hướng đến trang đăng nhập",
+			];
+			renderSuccessMsg(successMsg, formEl);
+
+			subtmitBtn.disabled = true;
+			subtmitBtn.textContent = "Đang chuyển hướng...";
+
+			setTimeout(() => {
+				window.location.replace("/login.html");
+			}, 2000);
+			return;
 		}
 	});
 }
 
 //* User login/logout state ===================================================================================================================================
 
-function updateUserLoggedInState() {
+function updateUserLoggedInState(user) {
 	user.isLoggedin = true;
-	const updatedState = JSON.stringify(user);
-	localStorage.setItem("user", updatedState);
+	const updatedState = JSON.stringify(userList);
+	localStorage.setItem("users", updatedState);
 }
 
-function updateUserLoggoutState() {
-	user.isLoggedin = false;
-	const updatedState = JSON.stringify(user);
-	localStorage.setItem("user", updatedState);
-	window.location.reload();
+function updateUserLoggoutState(user) {
+	const currentUser = userList.find((u) => u.email === user.email);
+
+	if (currentUser) {
+		currentUser.isLoggedin = false;
+	}
+	const updatedState = JSON.stringify(userList);
+	localStorage.setItem("users", updatedState);
 }
 
 function renderLoggedinHeader() {
 	const headerActionEl = document.querySelector(".nav-actions");
-	userBtnEl.innerHTML += `Hello ${user.name}`;
+	userBtnEl.innerHTML += `Hello ${currentUser.name.charAt(0).toUpperCase() + currentUser.name.slice(1)}`;
 	userBtnEl.classList.remove("btn", "btn--icon-only");
 	userBtnEl.classList.add("user-is-loggedin");
 
