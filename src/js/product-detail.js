@@ -63,7 +63,9 @@ productDetailContainer.addEventListener("click", (e) => {
 
 	if (btnIncrease) {
 		quantityValue.innerText++;
-	} else if (btnDecrease) {
+	}
+
+	if (btnDecrease) {
 		quantityValue.innerText--;
 		if (quantityValue.innerText < 1) {
 			quantityValue.innerText = 1;
@@ -104,7 +106,7 @@ if (productRelatedContainer) {
 
 	productRelatedContainer.addEventListener("click", (e) => {
 		const viewBtn = e.target.closest("a");
-		
+
 		const addBtn = e.target.closest("button");
 
 		if (addBtn) {
