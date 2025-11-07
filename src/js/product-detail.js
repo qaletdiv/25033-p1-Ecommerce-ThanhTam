@@ -1,10 +1,11 @@
-import { productList, userList } from "./localStorage";
-
 import {
 	showLoginModal,
 	renderProducts,
 	addtoCart,
 	getProductId,
+	productList,
+	currentUser,
+	cartItems,
 } from "./main";
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -32,12 +33,12 @@ if (targetProduct) {
          <p class="product-detail-price fs-h4">${targetProduct.price.toLocaleString("vi-VN")}đ</p>
            <div class="product-detail-actions">
             <div class="quantity-controls">
-                <button class="btn-quantity" data-action="decrease" aria-label="Decrease quantity">-</button>
+                <button class="btn-quantity" data-decrease aria-label="Decrease quantity">-</button>
                 <span class="quantity-value">${targetProduct.quantity || 1}</span>
-                <button class="btn-quantity" data-action="increase" aria-label="Increase quantity">+</button>
+                <button class="btn-quantity" data-increase aria-label="Increase quantity">+</button>
             </div>
      
-            <button class="btn btn--primary btn--lg btn-buy-now">Mua ngay</button>
+            <button class="btn btn--primary btn--lg btn-buy-now">Thêm vào giỏ</button>
         
          </div>
          <p class="product-detail-label">Mô tả</p>
@@ -55,18 +56,35 @@ if (targetProduct) {
 
 productDetailContainer.addEventListener("click", (e) => {
 	const addBtn = e.target.closest(".btn-buy-now");
+	const btnIncrease = e.target.closest("[data-increase]");
+	const btnDecrease = e.target.closest("[data-decrease]");
+	let quantityValue = productDetailContainer.querySelector(".quantity-value");
+	let quantityNumber = Number(quantityValue.innerText);
+
+	if (btnIncrease) {
+		quantityValue.innerText++;
+	} else if (btnDecrease) {
+		quantityValue.innerText--;
+		if (quantityValue.innerText < 1) {
+			quantityValue.innerText = 1;
+		}
+	}
+
 	if (addBtn) {
-		if (!user.isLoggedin) {
+		if (!currentUser || !currentUser.isLoggedin) {
 			showLoginModal();
 			return;
 		}
 		const productId = getProductId(e);
 
+		const foundProduct = cartItems.find((product) => product.id === productId);
+		console.log(foundProduct);
+
 		if (!productId) {
 			return;
-		} else {
-			addtoCart(productId, addBtn);
 		}
+
+		addtoCart(productId, addBtn, quantityNumber);
 	}
 });
 
@@ -86,11 +104,11 @@ if (productRelatedContainer) {
 
 	productRelatedContainer.addEventListener("click", (e) => {
 		const viewBtn = e.target.closest("a");
-
+		
 		const addBtn = e.target.closest("button");
 
 		if (addBtn) {
-			if (!user.isLoggedin) {
+			if (!currentUser || !currentUser.isLoggedin) {
 				showLoginModal();
 				return;
 			}

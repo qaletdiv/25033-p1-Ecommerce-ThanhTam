@@ -1,16 +1,12 @@
-import { cartItems } from "./localStorage";
-
 import {
 	calCartTotal,
 	increaseQuantity,
 	decreaseQuantity,
 	removeFromCart,
+	cartItems,
 } from "./main";
 
 const cartContainerEl = document.getElementById("cart-page-container");
-const header = document.querySelector(".header");
-const cartBtn = header.querySelector("#cartBtn");
-console.log(cartBtn);
 
 if (cartItems.length === 0) {
 	cartContainerEl.textContent = "Giỏ hàng của bạn đang trống";
@@ -88,4 +84,3 @@ if (cartEl) {
 		}
 	});
 }
-

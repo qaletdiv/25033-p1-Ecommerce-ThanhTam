@@ -18,7 +18,7 @@ const headerEl = document.querySelector("header");
 const cartContainerEl = document.getElementById("cart-container");
 const cartEl = document.querySelector("[data-cart]");
 
-let cartItems, userList, productList, currentUser;
+export let cartItems, userList, productList, currentUser;
 
 function initLocalStorageData() {
 	cartItems = getCartItemsFromLocal();
@@ -173,14 +173,14 @@ export function showLoginModal() {
 	}
 }
 
-export function addtoCart(productId, button) {
+export function addtoCart(productId, button, quantityNum) {
 	const product = productList.find((product) => product.id === productId);
 	const existingInCart = cartItems.find((product) => product.id === productId);
 
 	if (!existingInCart) {
-		cartItems.unshift({ ...product, quantity: 1 });
+		cartItems.unshift({ ...product, quantity: quantityNum ? quantityNum : 1 });
 	} else {
-		existingInCart.quantity++;
+		existingInCart.quantity += quantityNum;
 	}
 
 	button.disabled = true;
@@ -227,7 +227,7 @@ if (productContainerEl) {
 			if (!productId) {
 				return;
 			} else {
-				addtoCart(productId, addBtn);
+				addtoCart(productId, addBtn, 1);
 			}
 		}
 
