@@ -27,21 +27,32 @@
 		}
 
 		.featured-banner-info {
+			display: flex;
+			flex-direction: column;
 			position: absolute;
 			bottom: 15%;
 			left: 5%;
 			z-index: 2;
-			gap: 2rem;
-			max-width: 60ch;
-		}
-
-		.featured-banner-title {
+			gap: 1.25rem;
 			color: white;
-			text-transform: uppercase;
-			font-size: 4rem;
-			font-weight: var(--fw-extrabold);
-			line-height: 1.1;
-			margin-bottom: 2rem;
+			max-width: 60ch;
+
+			.featured-banner-title {
+				color: white;
+				font-size: 4rem;
+				font-weight: var(--fw-bold);
+				line-height: 1.2;
+			}
+
+			p {
+				opacity: 0.75;
+				font-size: var(--fs-large);
+				font-weight: 350;
+			}
+
+			.btn {
+				align-self: flex-start;
+			}
 		}
 	}
 }
@@ -59,4 +70,9 @@
 		object-fit: cover;
 		border-radius: 0.75rem;
 	}
+}
+
+.section-header {
+	display: flex;
+	justify-content: space-between;
 }

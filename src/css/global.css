@@ -47,6 +47,7 @@ h1 {
 h2 {
 	font-size: var(--fs-h2);
 	line-height: 1.2;
+	letter-spacing: 0;
 }
 h3 {
 	font-size: var(--fs-h3);
@@ -184,7 +185,7 @@ a:hover {
 }
 
 .section-title {
-	font-weight: var(--fw-semibold);
+	font-weight: var(--fw-bold);
 	margin-bottom: 2rem;
 }
 

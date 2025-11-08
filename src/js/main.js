@@ -8,11 +8,12 @@ import {
 	getUsersfromLocal,
 	setCurrentUser,
 } from "./localStorage.js";
-import { products } from "./mock-data.js";
 
 //* DOM ======================================================================================================================================================================
 
 const productContainerEl = document.getElementById("products-container");
+const productFeaturedEl = document.getElementById("products-featured-container");
+const productContainerEls = document.querySelector(".products-container");
 const cartBtnEl = document.getElementById("cartBtn");
 const userBtnEl = document.getElementById("userBtn");
 const headerEl = document.querySelector("header");
@@ -33,6 +34,11 @@ initLocalStorageData();
 //* Render Product & Login Modal , Cart ========================================================================================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
+	if (document.getElementById("products-featured-container")) {
+		const featuredProductList = productList.filter((product) => product.featured === true);
+		renderProducts(featuredProductList, productFeaturedEl);
+	}
+
 	if (document.getElementById("products-container")) {
 		renderProducts(productList, productContainerEl);
 	}
@@ -64,6 +70,28 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 export function renderProducts(arr, container) {
+	container.innerHTML = "";
+	container.innerHTML = arr
+		.map((product) => {
+			const productName = String(product.name || "").replace(/[<>]/g, "");
+			return `
+		<div class="product-card" data-product-id="${product.id}">
+			<a class="product-img" data-product-id="${product.id}"  href="#"><img src="${product.images[0].url}"></a>
+			<div class="product-info">
+				<p class="product-category">${product.category}</p>
+				<a class="product-name link">${productName}</a>
+				<p class="product-price">${product.price.toLocaleString("vi-VN")}đ</p>
+			</div>
+			<div class="btn-group">
+				<button class="btn btn--primary" >Thêm vào giỏ</button>
+				<a href="#">Xem chi tiết <span><i class="lucide icon-chevron-right size-small"></i></span></a>
+			</div>
+		</div>`;
+		})
+		.join("");
+}
+
+export function renderProducts2(arr, container) {
 	container.innerHTML = "";
 	container.innerHTML = arr
 		.map((product) => {
@@ -229,8 +257,8 @@ export function createSlug(text) {
 		.trim();
 }
 
-if (productContainerEl) {
-	productContainerEl.addEventListener("click", (e) => {
+if (productContainerEls) {
+	productContainerEls.addEventListener("click", (e) => {
 		const addBtn = e.target.closest("button");
 
 		if (addBtn) {
