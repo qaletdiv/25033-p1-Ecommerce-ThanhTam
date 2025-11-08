@@ -46,16 +46,6 @@ export function getProductfromLocal() {
 	}
 }
 
-export function getUsersfromLocal() {
-	const defaultUsers = userInServers;
-	if (!localStorage.getItem("users")) {
-		localStorage.setItem("users", JSON.stringify(userInServers));
-		return defaultUsers;
-	} else {
-		return JSON.parse(localStorage.getItem("users"));
-	}
-}
-
 export function getCartItemsFromLocal() {
 	const cartArr = [];
 
@@ -81,3 +71,17 @@ export function setCurrentUser(user) {
 	return user;
 }
 
+export function getUsersfromLocal() {
+	const defaultUsers = userInServers;
+	if (!localStorage.getItem("users")) {
+		localStorage.setItem("users", JSON.stringify(userInServers));
+		return defaultUsers;
+	} else {
+		return JSON.parse(localStorage.getItem("users"));
+	}
+}
+
+export function updateUsersfromLocal(users) {
+	localStorage.setItem("users", JSON.stringify(users));
+	return users;
+}

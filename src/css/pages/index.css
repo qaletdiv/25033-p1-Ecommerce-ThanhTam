@@ -1,1 +1,62 @@
 @import url("../components/product-card.css");
+
+.section-featured {
+	padding-top: 80px;
+	padding-bottom: 0;
+
+	.featured-banner {
+		position: relative;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.95) 100%);
+			z-index: 1;
+		}
+
+		> img {
+			width: 100%;
+			height: 85vh;
+			overflow: hidden;
+			object-position: center top;
+			object-fit: cover;
+		}
+
+		.featured-banner-info {
+			position: absolute;
+			bottom: 15%;
+			left: 5%;
+			z-index: 2;
+			gap: 2rem;
+			max-width: 60ch;
+		}
+
+		.featured-banner-title {
+			color: white;
+			text-transform: uppercase;
+			font-size: 4rem;
+			font-weight: var(--fw-extrabold);
+			line-height: 1.1;
+			margin-bottom: 2rem;
+		}
+	}
+}
+
+.banner-container {
+	display: flex;
+	width: 100%;
+	gap: 0.75rem;
+	padding: 0.75rem;
+	flex-direction: row;
+
+	.banner {
+		overflow: hidden;
+		height: auto;
+		object-fit: cover;
+		border-radius: 0.75rem;
+	}
+}

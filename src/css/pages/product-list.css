@@ -11,3 +11,8 @@
 	text-align: center;
 	margin-top: 2rem;
 }
+
+.categories-container .btn {
+	color: var(--txt-default);
+	font-weight: var(fw-semibold);
+}

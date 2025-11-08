@@ -1,13 +1,14 @@
 //* Local Storage =========================================================================================================================================================
 
 import {
-	getCartItemsFromLocal,
-	getUsersfromLocal,
-	getProductfromLocal,
-	getCurrentUser,
-	setCurrentUser,
 	createNewUser,
+	getCartItemsFromLocal,
+	getCurrentUser,
+	getProductfromLocal,
+	getUsersfromLocal,
+	setCurrentUser,
 } from "./localStorage.js";
+import { products } from "./mock-data.js";
 
 //* DOM ======================================================================================================================================================================
 
@@ -98,7 +99,7 @@ export function renderModal() {
                 <a class="btn btn--outline" href="/signup.html">Đăng ký</a>
             </div>
         </div>
-    </dialog>`,
+    </dialog>`
 		);
 		const modalEl = document.querySelector("[data-modal]");
 		document.body.style.overflow = "hidden";
@@ -107,7 +108,7 @@ export function renderModal() {
 }
 
 export function renderCart() {
-	if (!cartEl || !cartContainerEl) {
+	if (!(cartEl && cartContainerEl)) {
 		return;
 	}
 
@@ -191,9 +192,7 @@ export function addtoCart(productId, button, quantityNum) {
 	setTimeout(() => {
 		renderCart();
 		requestAnimationFrame(() => {
-			const itemInCart = cartEl.querySelector(
-				`[data-product-id="${productId}"]`,
-			);
+			const itemInCart = cartEl.querySelector(`[data-product-id="${productId}"]`);
 			itemInCart.scrollIntoView({ behavior: "smooth", block: "center" });
 			itemInCart.classList.add("highlighted-in-cart");
 		});
@@ -204,12 +203,30 @@ export function addtoCart(productId, button, quantityNum) {
 }
 
 export function getProductId(e) {
-	return Number(e.target.closest("[data-product-id]").dataset.productId);
+	const productEl = e.target?.closest("[data-product-id]");
+
+	if (!productEl) {
+		return;
+	}
+
+	return Number(productEl.dataset.productId);
 }
 
-export function goToDetail(productId) {
-	window.location.href = `/product-details.html?id=${productId}`;
+export function goToDetail(productId, productName) {
+	window.location.href = `/product-details.html?id=${productId}&name=${productName}`;
 	return;
+}
+
+export function createSlug(text) {
+	return text
+		.toLowerCase()
+		.normalize("NFD")
+		.replace(/[\u0300-\u036f]/g, "")
+		.replace(/đ/g, "d")
+		.replace(/[^a-z0-9\s-]/g, "")
+		.replace(/\s+/g, "-")
+		.replace(/-+/g, "-")
+		.trim();
 }
 
 if (productContainerEl) {
@@ -217,7 +234,7 @@ if (productContainerEl) {
 		const addBtn = e.target.closest("button");
 
 		if (addBtn) {
-			if (!currentUser || !currentUser.isLoggedin) {
+			if (!currentUser?.isLoggedin) {
 				showLoginModal();
 				return;
 			}
@@ -235,7 +252,9 @@ if (productContainerEl) {
 
 		if (viewBtn) {
 			const productId = getProductId(e);
-			goToDetail(productId);
+			const product = productList.find((product) => product.id === productId);
+			const productName = createSlug(product.name);
+			goToDetail(productId, productName);
 		}
 	});
 }
@@ -253,9 +272,7 @@ cartEl.addEventListener("click", (e) => {
 		return;
 	}
 
-	const productId = Number(
-		e.target.closest("[data-product-id]").dataset.productId,
-	);
+	const productId = Number(e.target.closest("[data-product-id]").dataset.productId);
 
 	if (!productId) {
 		return;
@@ -315,15 +332,13 @@ function renderSearchModal() {
 			product.name.trim().toLowerCase().includes(searchKey.toLowerCase()) ||
 			product.brand.trim().toLowerCase().includes(searchKey.toLowerCase()) ||
 			product.keywords.some((keyword) =>
-				keyword.trim().toLowerCase().includes(searchKey.toLowerCase()),
-			),
+				keyword.trim().toLowerCase().includes(searchKey.toLowerCase())
+			)
 	);
 
 	const searchResultEl = document.createElement("div");
 	searchResultEl.classList.add("search-result-container");
-	const existingSearchResult = document.querySelector(
-		".search-result-container",
-	);
+	const existingSearchResult = document.querySelector(".search-result-container");
 
 	if (searchKey === "") {
 		existingSearchResult.remove();
@@ -347,7 +362,7 @@ function renderSearchModal() {
 				<p class="search-result-name">${product.name}</p>
 				<p class="search-result-price">${product.price.toLocaleString("vi-VN")}đ</p>
 			</div>
-		</a>`,
+		</a>`
 			)
 			.join("");
 		headerEl.append(searchResultEl);
@@ -357,9 +372,7 @@ function renderSearchModal() {
 searchInputEl.addEventListener("keyup", renderSearchModal);
 
 searchInputEl.addEventListener("blur", () => {
-	const existingSearchResult = document.querySelector(
-		".search-result-container",
-	);
+	const existingSearchResult = document.querySelector(".search-result-container");
 	if (!existingSearchResult) {
 		return;
 	}
@@ -378,10 +391,7 @@ function updateCurrentCategory(category) {
 }
 
 if (productContainerEl && categoriesEl) {
-	const productBycategories = Object.groupBy(
-		productList,
-		(product) => product.category,
-	);
+	const productBycategories = Object.groupBy(productList, (product) => product.category);
 	const categoriesName = Object.keys(productBycategories);
 	categoriesName.forEach((category) => {
 		const item = document.createElement("button");
@@ -448,74 +458,58 @@ if (filterEl) {
 			const productArrPrice = productList.filter(
 				(product) =>
 					product.price < 5000000 &&
-					(currentCategory === "all" || product.category === currentCategory),
+					(currentCategory === "all" || product.category === currentCategory)
 			);
 			renderProducts(productArrPrice, productContainerEl);
 			if (productArrPrice.length === 0) {
-				showEmptyMessage(
-					productContainerEl,
-					"Không tìm thấy sản phẩm trong tầm giá",
-				);
+				showEmptyMessage(productContainerEl, "Không tìm thấy sản phẩm trong tầm giá");
 			}
 		} else if (selectedValue === "5-10") {
 			const productArrPrice = productList.filter(
 				(product) =>
 					product.price >= 5000000 &&
 					product.price <= 10000000 &&
-					(currentCategory === "all" || product.category === currentCategory),
+					(currentCategory === "all" || product.category === currentCategory)
 			);
 			renderProducts(productArrPrice, productContainerEl);
 			if (productArrPrice.length === 0) {
-				showEmptyMessage(
-					productContainerEl,
-					"Không tìm thấy sản phẩm trong tầm giá",
-				);
+				showEmptyMessage(productContainerEl, "Không tìm thấy sản phẩm trong tầm giá");
 			}
 		} else if (selectedValue === "10-20") {
 			const productArrPrice = productList.filter(
 				(product) =>
 					product.price >= 10000000 &&
 					product.price <= 20000000 &&
-					(currentCategory === "all" || product.category === currentCategory),
+					(currentCategory === "all" || product.category === currentCategory)
 			);
 			renderProducts(productArrPrice, productContainerEl);
 			if (productArrPrice.length === 0) {
-				showEmptyMessage(
-					productContainerEl,
-					"Không tìm thấy sản phẩm trong tầm giá",
-				);
+				showEmptyMessage(productContainerEl, "Không tìm thấy sản phẩm trong tầm giá");
 			}
 		} else if (selectedValue === "20-40") {
 			const productArrPrice = productList.filter(
 				(product) =>
 					20000000 <= product.price &&
 					product.price <= 40000000 &&
-					(currentCategory === "all" || product.category === currentCategory),
+					(currentCategory === "all" || product.category === currentCategory)
 			);
 			renderProducts(productArrPrice, productContainerEl);
 			if (productArrPrice.length === 0) {
-				showEmptyMessage(
-					productContainerEl,
-					"Không tìm thấy sản phẩm trong tầm giá",
-				);
+				showEmptyMessage(productContainerEl, "Không tìm thấy sản phẩm trong tầm giá");
 			}
 		} else if (selectedValue === "40-100") {
 			const productArrPrice = productList.filter(
 				(product) =>
 					product.price >= 40000000 &&
-					(currentCategory === "all" || product.category === currentCategory),
+					(currentCategory === "all" || product.category === currentCategory)
 			);
 			renderProducts(productArrPrice, productContainerEl);
 			if (productArrPrice.length === 0) {
-				showEmptyMessage(
-					productContainerEl,
-					"Không tìm thấy sản phẩm trong tầm giá",
-				);
+				showEmptyMessage(productContainerEl, "Không tìm thấy sản phẩm trong tầm giá");
 			}
 		} else if (selectedValue === "all") {
 			const productArrPrice = productList.filter(
-				(product) =>
-					currentCategory === "all" || product.category === currentCategory,
+				(product) => currentCategory === "all" || product.category === currentCategory
 			);
 			renderProducts(productArrPrice, productContainerEl);
 		}
@@ -571,7 +565,7 @@ if (formEl) {
 			const subtmitBtn = document.querySelector('button[type="submit"]');
 
 			const foundUser = userList.find(
-				(user) => user.email === emailInput && user.password === passowrdInput,
+				(user) => user.email === emailInput && user.password === passowrdInput
 			);
 
 			if (!foundUser) {
@@ -610,11 +604,7 @@ if (formEl) {
 				errorMsg.push("Vui lòng xác nhận mật khẩu");
 			}
 
-			if (
-				passwordInput !== "" &&
-				confirmPassInput !== "" &&
-				confirmPassInput !== passwordInput
-			) {
+			if (passwordInput !== "" && confirmPassInput !== "" && confirmPassInput !== passwordInput) {
 				errorMsg.push("Mật khẩu không khớp");
 			}
 
@@ -632,9 +622,7 @@ if (formEl) {
 
 			createNewUser(nameInput, emailInput, passwordInput);
 
-			const successMsg = [
-				"Đăng ký thành công! Bạn sẽ được điều hướng đến trang đăng nhập",
-			];
+			const successMsg = ["Đăng ký thành công! Bạn sẽ được điều hướng đến trang đăng nhập"];
 			renderSuccessMsg(successMsg, formEl);
 
 			subtmitBtn.disabled = true;

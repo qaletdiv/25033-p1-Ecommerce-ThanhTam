@@ -55,6 +55,11 @@
 	color: var(--txt-default);
 }
 
+.btn--white:hover {
+	background-color: var(--brand-800);
+	color: white;
+}
+
 .btn--link {
 	background-color: transparent;
 	color: var(--txt-brand);
@@ -87,8 +92,8 @@
 
 .btn--lg {
 	height: 64px;
-	padding: 0 1.5rem;
-	font-size: 1rem;
+	padding: 0 2rem;
+	font-size: var(--fs-small);
 }
 
 .btn--sm {

@@ -18,7 +18,6 @@
 
 .nav-links {
 	display: flex;
-	justify-content: flex-start;
 	align-items: center;
 	gap: 2rem;
 }
@@ -44,7 +43,6 @@
 .nav-item {
 	display: block;
 	font-size: var(--fs-small);
-	font-weight: var(--fw-medium);
 	padding: 0.5rem;
 }
 
@@ -162,12 +160,10 @@
 .user-is-loggedin {
 	display: inline-flex;
 	align-items: center;
-	justify-content: center;
 	padding: 0 1rem;
 	gap: 0.25rem;
 	height: 44px;
 	font-size: var(--fs-small);
-	font-weight: var(--fw-medium);
 	color: var(--txt-brand);
 	border-radius: 9999px;
 	cursor: pointer;

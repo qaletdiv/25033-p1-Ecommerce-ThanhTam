@@ -1,27 +1,20 @@
 import {
-	showLoginModal,
-	renderProducts,
 	addtoCart,
+	currentUser,
 	getProductId,
 	productList,
-	currentUser,
-	cartItems,
+	renderProducts,
+	showLoginModal,
 } from "./main";
 
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get("id");
 
-const targetProduct = productList.find(
-	(product) => product.id === Number(productId),
-);
+const targetProduct = productList.find((product) => product.id === Number(productId));
 
-const productDetailContainer = document.getElementById(
-	"product-detail-container",
-);
+const productDetailContainer = document.getElementById("product-detail-container");
 
-const productRelatedContainer = document.getElementById(
-	"product-related-container",
-);
+const productRelatedContainer = document.getElementById("product-related-container");
 
 if (targetProduct) {
 	productDetailContainer.innerHTML = `
@@ -43,7 +36,7 @@ if (targetProduct) {
          </div>
          <p class="product-detail-label">Mô tả</p>
          <p class="product-detail-desc">${targetProduct.description}</p>
-         <p class="product-detail-label">Thông số kỹ thuật</p>
+         <p class="product-detail-label">Thông số kỹ thuật</p>		
          <ul class="product-detail-specs">
             ${targetProduct.specifications.map((item) => `<li>${item}</li>`).join("")}
          </ul>
@@ -58,8 +51,8 @@ productDetailContainer.addEventListener("click", (e) => {
 	const addBtn = e.target.closest(".btn-buy-now");
 	const btnIncrease = e.target.closest("[data-increase]");
 	const btnDecrease = e.target.closest("[data-decrease]");
-	let quantityValue = productDetailContainer.querySelector(".quantity-value");
-	let quantityNumber = Number(quantityValue.innerText);
+	const quantityValue = productDetailContainer.querySelector(".quantity-value");
+	const quantityNumber = Number(quantityValue.innerText);
 
 	if (btnIncrease) {
 		quantityValue.innerText++;
@@ -73,14 +66,11 @@ productDetailContainer.addEventListener("click", (e) => {
 	}
 
 	if (addBtn) {
-		if (!currentUser || !currentUser.isLoggedin) {
+		if (!currentUser?.isLoggedin) {
 			showLoginModal();
 			return;
 		}
 		const productId = getProductId(e);
-
-		const foundProduct = cartItems.find((product) => product.id === productId);
-		console.log(foundProduct);
 
 		if (!productId) {
 			return;
@@ -94,10 +84,7 @@ const currentCategory = targetProduct.category;
 
 if (productRelatedContainer) {
 	const relatedProduct = productList
-		.filter(
-			(product) =>
-				product.category === currentCategory && product.id !== targetProduct.id,
-		)
+		.filter((product) => product.category === currentCategory && product.id !== targetProduct.id)
 		.slice(0, 4);
 
 	if (relatedProduct) {
@@ -110,7 +97,7 @@ if (productRelatedContainer) {
 		const addBtn = e.target.closest("button");
 
 		if (addBtn) {
-			if (!currentUser || !currentUser.isLoggedin) {
+			if (!currentUser?.isLoggedin) {
 				showLoginModal();
 				return;
 			}
