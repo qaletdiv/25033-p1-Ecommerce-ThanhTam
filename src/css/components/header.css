@@ -2,7 +2,7 @@
 	width: 100%;
 	position: fixed;
 	background-color: var(--bg-default);
-	border-bottom: solid 1px var(--bd-light);
+	/* border-bottom: solid 1px var(--bd-light); */
 	z-index: 9999;
 }
 

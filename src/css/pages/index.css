@@ -1,7 +1,7 @@
 @import url("../components/product-card.css");
 
 .section-featured {
-	padding-top: 80px;
+	padding-top: var(--header-height);
 	padding-bottom: 0;
 
 	.featured-banner {
@@ -39,9 +39,12 @@
 
 			.featured-banner-title {
 				color: white;
-				font-size: 4rem;
-				font-weight: var(--fw-bold);
+				font-size: calc(var(--fs-h1) * 1.8);
+				font-family: var(--display-font);
+				text-transform: uppercase;
 				line-height: 1.2;
+				letter-spacing: 0em;
+				font-weight: 400;
 			}
 
 			p {
@@ -65,14 +68,10 @@
 	flex-direction: row;
 
 	.banner {
+		width: 50%;
 		overflow: hidden;
 		height: auto;
 		object-fit: cover;
 		border-radius: 0.75rem;
 	}
-}
-
-.section-header {
-	display: flex;
-	justify-content: space-between;
 }

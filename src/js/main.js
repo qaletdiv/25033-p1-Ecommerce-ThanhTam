@@ -259,6 +259,7 @@ export function createSlug(text) {
 
 if (productContainerEls) {
 	productContainerEls.addEventListener("click", (e) => {
+		e.preventDefault();
 		const addBtn = e.target.closest("button");
 
 		if (addBtn) {

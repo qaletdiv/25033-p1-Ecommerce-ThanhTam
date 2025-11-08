@@ -4,7 +4,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin-bottom: 1rem;
+	margin-bottom: 1.5rem;
+	margin-top: 1.5rem;
 }
 
 .empty-message {
@@ -15,4 +16,24 @@
 .categories-container .btn {
 	color: var(--txt-default);
 	font-weight: var(fw-semibold);
+}
+
+.section {
+	padding-top: var(--section-space-md);
+}
+
+.section-header {
+	padding-bottom: 2rem;
+	border-bottom: solid 1px var(--bd-light);
+	margin: 0 auto;
+}
+
+.section-title {
+	max-width: 1440px;
+	display: block;
+	width: 100%;
+	text-align: left;
+	margin: 0 auto;
+	padding: 0 1.5rem;
+	padding-top: var(--section-space-md);
 }

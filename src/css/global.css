@@ -181,11 +181,23 @@ a:hover {
 }
 
 .section {
-	padding: var(--section-space-md) 0;
+	padding-top: var(--section-space-lg);
+	padding-bottom: var(--section-space-md);
+}
+
+.section-header {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1rem;
 }
 
 .section-title {
-	font-weight: var(--fw-bold);
+	font-family: var(--display-font);
+	font-size: calc(var(--fs-h1) * 1.5);
+	letter-spacing: 0;
+	line-height: 1.1;
+	font-weight: 400;
+	text-transform: uppercase;
 	margin-bottom: 2rem;
 }
 

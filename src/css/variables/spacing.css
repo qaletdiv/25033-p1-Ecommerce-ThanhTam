@@ -8,6 +8,9 @@
 	--space-2xl: 2rem;
 	--space-3xl: 3rem;
 
+	/* Header spacing */
+	--header-height: 80px;
+
 	/* Section spacing */
 	--section-space-default: 10rem;
 	--section-space-lg: 10rem;
