@@ -1,139 +1,81 @@
-# Tổng Quan Dự Án E-Commerce
+# E-Commerce Website
 
-## Tech Stack
-- **Vanilla JavaScript** (ES6+), **Vite 7.x**, **PostCSS**, **Biome**
-- Dữ liệu: localStorage (không có backend)
-- Mock data: 28 sản phẩm, 1 user test
+Đồ án cuối khóa - Ứng dụng web thương mại điện tử
 
----
+## 🛠 Tech Stack
 
-## Trạng Thái Hoàn Thành
+- **Frontend:** Vanilla JavaScript (ES6+)
+- **Build Tool:** Vite 7.x
+- **Styling:** PostCSS với CSS Modules
+- **Linter:** Biome 2.3.1
+- **Data Storage:** localStorage (mock backend)
 
-### ✅ Đã Hoàn Thành (80%)
+## ✅ Tính Năng Đã Hoàn Thành
 
-| Trang | Tính Năng | Status |
-|-------|-----------|--------|
-| **Trang chủ** | Sản phẩm nổi bật, navbar, tìm kiếm, giỏ hàng, cart modal | ✅ |
-| **Danh sách sản phẩm** | Grid layout, lọc category, lọc giá (5 mức) | ✅ |
-| **Chi tiết sản phẩm** | Thông tin đầy đủ, chọn số lượng, sản phẩm liên quan (4 items) | ✅ |
-| **Đăng ký** | Form validation, kiểm tra email trùng, password khớp | ✅ |
-| **Đăng nhập** | Xác thực từ localStorage, cập nhật navbar | ✅ |
-| **Giỏ hàng** | Trang độc lập + modal, tăng/giảm số lượng, xóa, tính tổng tiền | ✅ |
-| **Thanh toán** | Form nhập thông tin, Vietnam provinces, payment methods | ✅ |
-| **Xác nhận đơn hàng** | Hiển thị chi tiết order, customer info, items, total | ✅ |
+### A.1. Màn hình trang chủ ✅
+- Hiển thị sản phẩm nổi bật từ dữ liệu mock
+- Thanh điều hướng (Navigation Bar) với trạng thái đăng nhập/chưa đăng nhập
+- Thanh tìm kiếm sản phẩm theo tên
+- Yêu cầu đăng nhập khi thêm vào giỏ hàng
+- Icon giỏ hàng với cart modal
 
-### ⚠️ Có Issues Cần Fix
+### A.2. Màn hình danh sách sản phẩm ✅
+- Hiển thị toàn bộ sản phẩm dưới dạng lưới (grid)
+- Bộ lọc sản phẩm theo danh mục (smartphone, laptop, tablet, desktop, monitor, accessory)
+- Bộ lọc sản phẩm theo khoảng giá (5 mức: 0-5M, 5-10M, 10-20M, 20-40M, 40M+)
+- ⚠️ **Chưa có:** Sắp xếp sản phẩm, Phân trang
 
-**Critical (P0):** 6 items
-- 4 CSS syntax errors (undefined variables, missing prefixes)
-- Payment form validation cần improve
-- Top-level await race condition
+### A.3. Màn hình chi tiết sản phẩm ✅
+- Hiển thị thông tin chi tiết đầy đủ (tên, giá, hình ảnh, mô tả, thông số kỹ thuật)
+- Chọn số lượng trước khi thêm vào giỏ
+- Yêu cầu đăng nhập khi thêm vào giỏ hàng
+- Hiển thị sản phẩm liên quan (4 sản phẩm cùng danh mục)
 
-**Important (P1):** 10 items
-- Hard-coded colors không dùng CSS variables
-- Duplicate CSS class definitions
-- Không có responsive design (no media queries)
-- Experimental CSS features không có fallback
-- Excessive window.reload() làm giật trang
+### A.4. Màn hình đăng ký ✅
+- Form đăng ký với các trường: Họ và tên, Email, Mật khẩu, Nhập lại mật khẩu
+- Kiểm tra email không trùng lặp
+- Kiểm tra mật khẩu khớp nhau
+- Hiển thị thông báo và điều hướng đến trang đăng nhập sau khi thành công
 
-### ❌ Chưa Hoàn Thành (20%)
+### A.5. Màn hình đăng nhập ✅
+- Form đăng nhập với Email và Mật khẩu
+- Xác thực người dùng từ localStorage
+- Cập nhật thanh điều hướng sau khi đăng nhập thành công
+- Chuyển hướng về trang chủ hoặc trang trước đó
 
-**Trang còn thiếu:**
-- Trang tài khoản của tôi (profile + lịch sử đơn hàng)
+### A.6. Màn hình giỏ hàng ✅
+- Yêu cầu đăng nhập để truy cập
+- Hiển thị danh sách sản phẩm (hình ảnh, tên, đơn giá, số lượng, thành tiền)
+- Chỉnh sửa giỏ hàng: tăng/giảm số lượng, xóa sản phẩm
+- Tự động tính toán và hiển thị tổng tiền
 
-**Tính năng còn thiếu:**
-- Sắp xếp sản phẩm (sort by price/name)
-- Phân trang (pagination)
-- Responsive design cho mobile/tablet
+### A.7. Màn hình thanh toán ✅
+- Yêu cầu đăng nhập và có sản phẩm trong giỏ
+- Form thông tin giao hàng: Họ tên, SĐT, Địa chỉ, Tỉnh/Thành phố
+- Chọn phương thức thanh toán (COD, Banking, E-Wallet)
+- Tóm tắt đơn hàng với tổng tiền
+- Xác nhận đơn hàng: ghi nhận vào tài khoản, làm trống giỏ hàng, chuyển đến trang xác nhận
 
----
+### A.8. Màn hình xác nhận đơn hàng ✅
+- Thông báo đơn hàng đã đặt thành công
+- Tóm tắt chi tiết đơn hàng vừa đặt (mã đơn, ngày đặt, sản phẩm, tổng tiền)
+- Hiển thị thông tin khách hàng và địa chỉ giao hàng
+- Nút "Tiếp tục mua sắm" và "In đơn hàng"
 
-## Architecture & File Structure
-
-```
-ecom/
-├── index.html                  # Homepage
-├── login.html                  # Login page
-├── signup.html                 # Signup page
-├── products-list.html          # Products listing
-├── product-details.html        # Product detail page
-├── cart.html                   # Cart & checkout page
-├── order-summary.html          # Order confirmation
-├── src/
-│   ├── css/
-│   │   ├── main.css           # Entry point
-│   │   ├── reset.css          # CSS reset
-│   │   ├── global.css         # Global styles
-│   │   ├── variables/         # CSS custom properties
-│   │   │   ├── colors.css
-│   │   │   ├── typography.css
-│   │   │   └── spacing.css
-│   │   ├── components/        # Reusable components
-│   │   │   ├── header.css
-│   │   │   ├── footer.css
-│   │   │   ├── button.css
-│   │   │   ├── form.css
-│   │   │   ├── modal.css
-│   │   │   ├── cart-modal.css
-│   │   │   └── product-card.css
-│   │   └── pages/             # Page-specific styles
-│   │       ├── index.css
-│   │       ├── product-list.css
-│   │       ├── product-detail.css
-│   │       ├── cart.css
-│   │       ├── login.css
-│   │       └── order-summary.css
-│   └── js/
-│       ├── main.js            # Main app logic, event handlers
-│       ├── cart.js            # Cart & payment logic
-│       ├── product-detail.js  # Product detail page
-│       ├── order-sum.js       # Order summary page
-│       ├── localStorage.js    # LocalStorage utilities
-│       └── mock-data.js       # Mock products & users
-├── vite.config.js             # Vite configuration
-├── package.json               # Dependencies & scripts
-└── biome.json                 # Biome linter config
-```
-
-## Technical Highlights
-
-### CSS Architecture
-- **Design tokens:** Comprehensive variable system (colors, typography, spacing)
-- **BEM-like naming:** Component-based class naming
-- **Modular imports:** Separate files for components and pages
-- **Fluid typography:** Using CSS `clamp()` for responsive text
-- ⚠️ **Issue:** No media queries yet (responsive design needed)
-
-### JavaScript Patterns
-- **ES6 modules:** Clean import/export structure
-- **Separation of concerns:** localStorage, data, and UI logic separated
-- **Event delegation:** Efficient event handling
-- ⚠️ **Issue:** Some code duplication, excessive page reloads
-
-### Data Flow
-```
-localStorage
-    ↓
-[userList, cart, currentUser]
-    ↓
-JavaScript modules (main.js, cart.js, etc.)
-    ↓
-DOM rendering
-```
-
-## Known Issues & Technical Debt
-
-See [todo.md](todo.md) for complete list (30 items)
-
-**Top Priority:**
-1. CSS syntax errors (4 items)
-2. No responsive design
-3. UX issues (page reloads, validation)
-4. Missing features (My Account, Sorting, Pagination)
+### A.9. Màn hình tài khoản của tôi ❌
+- ⚠️ **Chưa hoàn thành:** Trang thông tin cá nhân và lịch sử đơn hàng
 
 ---
 
-## Notes
-- Dữ liệu user/cart/orders lưu trong localStorage
-- Password lưu plain text (chỉ cho học tập)
-- Tất cả validation là client-side
+## 📊 Dữ Liệu
+
+- **28 sản phẩm mock** (6 categories: smartphone, laptop, tablet, desktop, monitor, accessory)
+- **1 user test mặc định:** `test@example.com` / `test1234`
+- Lưu trữ: localStorage (userList, cart, currentUser, productList, orderHistory)
+
+## 📝 Ghi Chú
+
+- Dự án học tập, không có backend thực
+- Password lưu plain text (không dùng trong production)
+- Validation là client-side
+- Dữ liệu xóa khi clear localStorage
