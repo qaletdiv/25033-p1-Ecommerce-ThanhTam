@@ -7,6 +7,7 @@
 	border-top: solid 1px var(--bd-light);
 	padding-top: var(--section-space-lg);
 	padding-bottom: var(--section-space-lg);
+
 	.section-title {
 		font-size: 3rem;
 	}

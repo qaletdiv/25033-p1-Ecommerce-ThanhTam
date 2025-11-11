@@ -45,8 +45,9 @@
     <main>
         <section class="section cart-section">
             <div class="container">
+                <h1 class="section-title">Thanh toán</h1>
                 <div class="cart-page-container">
-                    <div class="payment-form-section">
+                    <div class="payment-form-section" id="payment-form">
                         <div class="payment-card">
                             <h2 class="card-title">Thông tin giao hàng</h2>
                             <form class="payment-form" id="payment-form">
@@ -55,11 +56,7 @@
                                     <input class="input" type="text" id="fullname" name="fullname" required
                                         placeholder="Nhập họ và tên">
                                 </div>
-                                <div class="input-container">
-                                    <label for="email">Email</label>
-                                    <input class="input" type="email" id="email" name="email"
-                                        placeholder="Nhập email của bạn">
-                                </div>
+
                                 <div class="input-container">
                                     <label for="phone">Số điện thoại</label>
                                     <input class="input" type="tel" id="phone" name="phone" required
@@ -70,17 +67,17 @@
                                     <input class="input" type="text" id="address" name="address" required
                                         placeholder="Nhập địa chỉ giao hàng">
                                 </div>
-                                <div class="input-container">
-                                    <label for="city">Thành phố</label>
-                                    <input class="input" type="text" id="city" name="city" required
-                                        placeholder="Thành phố">
+                                <div class="input-container select-wrapper">
+                                    <label for="province">Tỉnh/Thành phố</label>
+                                    <select class="input" name="province" id="province" required>
+                                        <option value="">Chọn tỉnh/thành phố</option>
+                                    </select>
                                 </div>
                                 <div class="input-container">
                                     <label for="note">Ghi chú</label>
-                                    <textarea class="input textarea" id="note" name="note" rows="4"
+                                    <textarea class="input textarea" id="note" name="note" rows="3"
                                         placeholder="Ghi chú thêm cho đơn hàng (tùy chọn)"></textarea>
                                 </div>
-
 
                                 <h2 class="card-title">Hình thức thanh toán</h2>
                                 <div class="selection-group">
@@ -118,7 +115,7 @@
                                         </li>
                                     </ul>
                                 </div>
-
+                                <button type="submit" class="btn btn--primary btn--lg" id="payBtn">Đặt hàng</button>
                             </form>
                         </div>
                     </div>
@@ -143,9 +140,7 @@
                                 </div>
                             </div>
 
-                            <div class="cart-action">
-                                <button class="btn btn--primary btn--lg" id="payBtn">Đặt hàng</button>
-                            </div>
+
                         </div>
                     </div>
                 </div>

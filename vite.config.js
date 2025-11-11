@@ -19,6 +19,7 @@ export default defineConfig({
 				cart: resolve(__dirname, "cart.html"),
 				productDetails: resolve(__dirname, "product-details.html"),
 				payment: resolve(__dirname, "payment.html"),
+				orderConfirmation: resolve(__dirname, "order-summary.html"),
 			},
 			output: {
 				manualChunks: {

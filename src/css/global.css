@@ -74,12 +74,8 @@ button {
 	cursor: pointer;
 }
 
-:focus-visible {
-	outline: 2px auto;
-}
-
-:focus:not(:focus-visible) {
-	outline: none;
+input:focus-visible {
+	outline: solid 2px var(--txt-dark);
 }
 
 a {

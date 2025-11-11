@@ -79,13 +79,6 @@
 	color: var(--txt-light);
 }
 
-.search-input:focus {
-	color: var(--txt-default);
-	outline: none;
-	border: 1px;
-	border-color: var(--bd-brand);
-}
-
 .search-result-container {
 	position: absolute;
 	top: calc(100% + 8px);

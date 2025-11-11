@@ -36,13 +36,13 @@
 }
 
 .noti-error {
-	padding: 0.5rem 2rem;
+	padding: 1rem 2rem;
 	margin: 0;
 	text-align: left;
 	background-color: var(--bg-error);
-	border-radius: 0.25rem;
+	border-radius: 0.5rem;
 	color: var(--txt-error);
-	font-size: var(--fs-small);
+	font-size: var(--fs-default);
 	font-weight: var(--fw-medium);
 }
 
@@ -55,4 +55,8 @@
 	color: #155724;
 	font-size: var(--fs-small);
 	font-weight: var(--fw-medium);
+}
+
+.nav-search-container {
+	visibility: hidden;
 }

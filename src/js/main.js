@@ -22,6 +22,8 @@ const cartEl = document.querySelector("[data-cart]");
 
 export let cartItems, userList, productList, currentUser;
 
+//* DOM Init ========================================================================================================================================
+
 function initLocalStorageData() {
 	cartItems = getCartItemsFromLocal();
 	userList = getUsersfromLocal();
@@ -30,8 +32,6 @@ function initLocalStorageData() {
 }
 
 initLocalStorageData();
-
-//* Render Product & Login Modal , Cart ========================================================================================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
 	if (document.getElementById("products-featured-container")) {
@@ -69,29 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 });
 
-export function renderProducts(arr, container) {
-	container.innerHTML = "";
-	container.innerHTML = arr
-		.map((product) => {
-			const productName = String(product.name || "").replace(/[<>]/g, "");
-			return `
-		<div class="product-card" data-product-id="${product.id}">
-			<a class="product-img" data-product-id="${product.id}"  href="#"><img src="${product.images[0].url}"></a>
-			<div class="product-info">
-				<p class="product-category">${product.category}</p>
-				<a class="product-name link">${productName}</a>
-				<p class="product-price">${product.price.toLocaleString("vi-VN")}đ</p>
-			</div>
-			<div class="btn-group">
-				<button class="btn btn--primary" >Thêm vào giỏ</button>
-				<a href="#">Xem chi tiết <span><i class="lucide icon-chevron-right size-small"></i></span></a>
-			</div>
-		</div>`;
-		})
-		.join("");
-}
+//* Render Product & Login Modal , Cart ========================================================================================================================================
 
-export function renderProducts2(arr, container) {
+export function renderProducts(arr, container) {
 	container.innerHTML = "";
 	container.innerHTML = arr
 		.map((product) => {
@@ -186,6 +166,16 @@ export function calCartTotal(classSelector, container, arr) {
 
 //* Cart ===========================================================================================================================================
 
+export function getProductId(e) {
+	const productEl = e.target?.closest("[data-product-id]");
+
+	if (!productEl) {
+		return;
+	}
+
+	return Number(productEl.dataset.productId);
+}
+
 export function showLoginModal() {
 	const modalEl = document.querySelector("[data-modal]");
 	if (!modalEl) {
@@ -230,20 +220,13 @@ export function addtoCart(productId, button, quantityNum) {
 	}, 400);
 }
 
-export function getProductId(e) {
-	const productEl = e.target?.closest("[data-product-id]");
-
-	if (!productEl) {
-		return;
-	}
-
-	return Number(productEl.dataset.productId);
-}
+//* Generate product detail template dựa trên productId và productName
 
 export function goToDetail(productId, productName) {
 	window.location.href = `/product-details.html?id=${productId}&name=${productName}`;
 	return;
 }
+
 
 export function createSlug(text) {
 	return text
@@ -260,17 +243,17 @@ export function createSlug(text) {
 if (productContainerEls) {
 	productContainerEls.addEventListener("click", (e) => {
 		e.preventDefault();
+
 		const addBtn = e.target.closest("button");
+		const productId = getProductId(e);
+
+		if (!productId) {
+			return;
+		}
 
 		if (addBtn) {
 			if (!currentUser?.isLoggedin) {
 				showLoginModal();
-				return;
-			}
-
-			const productId = getProductId(e);
-
-			if (!productId) {
 				return;
 			} else {
 				addtoCart(productId, addBtn, 1);

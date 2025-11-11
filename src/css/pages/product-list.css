@@ -1,23 +1,5 @@
 @import url("../components/product-card.css");
 
-.filter-container {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin-bottom: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-.empty-message {
-	text-align: center;
-	margin-top: 2rem;
-}
-
-.categories-container .btn {
-	color: var(--txt-default);
-	font-weight: var(fw-semibold);
-}
-
 .section {
 	padding-top: var(--section-space-md);
 }
@@ -36,4 +18,22 @@
 	margin: 0 auto;
 	padding: 0 1.5rem;
 	padding-top: var(--section-space-md);
+}
+
+.filter-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+.categories-container .btn {
+	color: var(--txt-default);
+	font-weight: var(--fw-semibold);
+}
+
+.empty-message {
+	text-align: center;
+	margin-top: 2rem;
 }
