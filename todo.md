@@ -1,293 +1,352 @@
 # 📋 TODO List - E-Commerce Project
 
-**Ngày tạo:** 2025-11-11 | **Cập nhật:** 2025-11-12 | **Tổng:** 25 tasks
+**Ngày tạo:** 2025-11-11 | **Cập nhật:** 2025-11-12 | **Tổng:** 26 tasks
 
 ---
 
-## 🚨 P0 - CRITICAL (4 tasks)
+## 🔴 SYNTAX/BUGS - Critical Errors (9 tasks)
 
-### 1. CSS Variables - Undefined --fs-lg
+### #1 · CSS Variable Undefined: --fs-lg
 **File:** `src/css/pages/order-summary.css:139`
-**Tag:** `fix`
+**Priority:** P0
+**Branch:** `fix/css-undefined-variables`
 
-Sử dụng `var(--fs-lg)` nhưng variable này không được định nghĩa. Phải dùng `--fs-large`.
+Sử dụng `var(--fs-lg)` nhưng variable này không tồn tại trong design system.
 
 ---
 
-### 2. CSS Variables - Undefined --txt-primary
+### #2 · CSS Variable Undefined: --txt-primary
 **File:** `src/css/components/header.css:141`
-**Tag:** `fix`
+**Priority:** P0
+**Branch:** `fix/css-undefined-variables`
 
-Variable `--txt-primary` không tồn tại. Nên dùng `--txt-brand` hoặc `--txt-dark`.
+Variable `--txt-primary` không được định nghĩa trong variables.
 
 ---
 
-### 3. CSS Syntax - Missing Variable Prefix
+### #3 · CSS Syntax Error: Missing Variable Prefix
 **File:** `src/css/pages/product-list.css:33`
-**Tag:** `fix`
+**Priority:** P0
+**Branch:** `fix/css-var-prefix`
 
-`var(fw-semibold)` thiếu `--` prefix → phải là `var(--fw-semibold)`.
+`var(fw-semibold)` thiếu `--` prefix trong variable name.
 
 ---
 
-### 4. CSS Syntax - Invalid Transition
+### #4 · CSS Syntax Error: Invalid Transition
 **File:** `src/css/components/cart-modal.css:108-111`
-**Tag:** `fix`
+**Priority:** P0
+**Branch:** `fix/cart-modal-transition`
 
-Transition syntax sai. Phải sửa thành: `transition: color 0.12s ease, background-color 0.12s ease;`
-
----
-
-## ⚠️ P1 - IMPORTANT (10 tasks)
-
-### 5. Payment Form Validation
-**File:** `src/js/cart.js:144-146`
-**Tag:** `feat`
-
-**Còn thiếu:**
-- Phone number format validation (10-11 số, chỉ số)
-- Email format validation
-- Proper error messages (đang dùng alert thay vì UI feedback)
-- Client-side HTML5 validation attributes (required, pattern)
+Transition syntax không hợp lệ.
 
 ---
 
-### 6. Top-Level Await Race Condition
-**File:** `src/js/cart.js:16`
-**Tag:** `refactor`
-
-`const provinces = await getAllProvince();` ở top-level block module parsing và có thể gây race condition với event listeners.
-
----
-
-### 7. Hard-coded Colors Instead of CSS Variables
-**Files:** Multiple CSS files
-**Tag:** `refactor`
-
-- `white` thay vì `var(--bg-white)` trong login.css, modal.css, cart-modal.css
-- `#d4edda` và `#155724` trong login.css (success message colors)
-- `#111` trong form.css thay vì `--neutral-900`
-
----
-
-### 8. Duplicate Class Definitions
-**Files:** `cart.css`, `cart-modal.css`, `login.css`
-**Tag:** `refactor`
-
-- `.cart-item` defined khác nhau trong cart.css và cart-modal.css
-- `.input-container` defined ở 3 nơi: form.css, login.css, cart.css
-
----
-
-### 9. No Responsive Design
-**Files:** All CSS files
-**Tag:** `feat`
-
-Không có media queries cho mobile/tablet:
-- Header search: fixed 32rem width
-- Modal: fixed 400x400px
-- Product detail: 2-column grid không responsive
-- Form layouts không adapt cho mobile
-
----
-
-### 10. Experimental CSS Features Without Fallback
-**File:** `src/css/components/footer.css`
-**Tag:** `fix`
-
-Dùng container queries và text-box-trim/edge (experimental) không có fallback:
-- `container-type: inline-size;`
-- `text-box-trim: trim-both;`
-- `20cqi` unit
-
----
-
-### 11. Excessive window.reload()
-**File:** `src/js/cart.js:83, 88, 94`
-**Tag:** `refactor`
-
-Mỗi lần tăng/giảm/xóa sản phẩm đều gọi `window.location.reload()` → mất scroll position, trang nhấp nháy, UX kém.
-
----
-
-### 12. Missing Error Handling
-**File:** `src/js/order-sum.js`, `src/js/cart.js`
-**Tag:** `fix`
-
-- order-sum.js: không handle khi orderId không tồn tại hoặc orderOwner null
-- Các API calls không có try/catch
-
----
-
-### 13. Empty Cart on Payment Page
-**File:** `src/js/cart.js:21-23`
-**Tag:** `fix`
-
-Giỏ hàng rỗng nhưng form thanh toán vẫn hiển thị và có thể submit. Nên hide payment form khi cart rỗng.
-
----
-
-### 14. Duplicate renderProducts Function
+### #5 · Search Results Not Clickable
 **File:** `src/js/main.js`
-**Tag:** `refactor`
+**Priority:** P1
+**Branch:** `fix/search-modal-click-handler`
 
-Cần check xem `renderProducts()` và `renderProducts2()` có duplicate code không.
-
----
-
-## 📋 P2 - MISSING REQUIREMENTS (3 tasks)
-
-### 15. My Account Page
-**Tag:** `feat`
-
-**Thiếu:**
-- `my-account.html` page
-- `src/js/my-account.js` script
-- `src/css/pages/my-account.css` styles
-- Header link khi logged in
-- Entry trong vite.config.js
+Search modal hiển thị products nhưng click vào không có phản ứng.
 
 ---
 
-### 16. Product Sorting
-**Tag:** `feat`
-
-**Thiếu:**
-- UI controls để sort (dropdown/buttons)
-- Sort logic: Price (tăng/giảm), Name (A-Z/Z-A)
-
----
-
-### 17. Pagination
-**Tag:** `feat`
-
-**Thiếu:**
-- Pagination controls (prev/next, page numbers)
-- Logic chia products thành pages (12/page)
-
----
-
-## 🔨 P3 - CODE QUALITY (8 tasks)
-
-### 18. Search Results Not Clickable
+### #6 · Error Message Cleanup Bug
 **File:** `src/js/main.js`
-**Tag:** `fix`
+**Priority:** P1
+**Branch:** `fix/form-error-auto-clear`
 
-Search modal render product links nhưng click không có tác dụng.
-
----
-
-### 19. Price Range Magic Numbers
-**File:** `src/js/main.js`
-**Tag:** `refactor`
-
-Price ranges hardcoded nhiều lần.
+`renderErrorMsg()` function không tự động xóa error messages khi form trở nên valid.
 
 ---
 
-### 20. Error Message Cleanup
-**File:** `src/js/main.js`
-**Tag:** `fix`
-
-`renderErrorMsg()` không xóa error khi form valid.
-
----
-
-### 21. No Logout Confirmation
-**File:** `src/js/main.js`
-**Tag:** `feat`
-
-Logout không có confirm dialog.
-
----
-
-### 22. Related Products Missing Slug
+### #7 · Related Products Missing Slug in URL
 **File:** `src/js/product-detail.js`
-**Tag:** `fix`
+**Priority:** P1
+**Branch:** `fix/related-product-url-slug`
 
-Related product URLs thiếu name slug.
-
----
-
-### 23. Import from main.js in order-sum.js
-**File:** `src/js/order-sum.js:1`
-**Tag:** `refactor`
-
-`import { userList } from "./main"` - importing từ main.js có thể gây side effects và circular dependencies.
+URLs của related products thiếu product name slug.
 
 ---
 
-### 24. totalPrice Saved as String
-**File:** `src/js/cart.js:162-164`
-**Tag:** `fix`
-
-`totalPrice` được lưu dạng string với `.toLocaleString('vi-VN')` → không thể sort hoặc calculate sau này.
-
----
-
-### 25. Cart Subtotal Not Calculated
+### #8 · Cart Subtotal Element Not Populated
 **File:** `cart.html`
-**Tag:** `fix`
+**Priority:** P1
+**Branch:** `fix/cart-subtotal-calculation`
 
-Cần verify xem có element `.cart-subtotal` không được populate.
+Element `.cart-subtotal` có thể không được tính toán và hiển thị đúng.
+
+---
+
+### #9 · Experimental CSS Features Without Fallback
+**File:** `src/css/components/footer.css`
+**Priority:** P1
+**Branch:** `fix/footer-browser-compat`
+
+Sử dụng container queries (`container-type`, `20cqi` unit) và `text-box-trim` (experimental) không có fallback cho browsers không support.
+
+---
+
+## ⚠️ LOGIC - Business Logic Issues (5 tasks)
+
+### #10 · Empty Cart Payment Form Still Accessible
+**File:** `src/js/cart.js:21-23`
+**Priority:** P0
+**Branch:** `fix/empty-cart-validation`
+
+Khi giỏ hàng rỗng, form thanh toán vẫn hiển thị và có thể submit.
+
+---
+
+### #11 · Missing Error Handling for Order Retrieval
+**File:** `src/js/order-sum.js`, `src/js/cart.js`
+**Priority:** P0
+**Branch:** `fix/order-error-handling`
+
+- `order-sum.js`: Không handle trường hợp orderId không tồn tại hoặc orderOwner = null
+- Thiếu try/catch cho các async operations
+
+---
+
+### #12 · Payment Form Validation Insufficient
+**File:** `src/js/cart.js:144-146`
+**Priority:** P0
+**Branch:** `fix/payment-form-validation`
+
+Form validation còn thiếu:
+- Phone number format validation (10-11 digits, numbers only)
+- Email format validation
+- Error messages sử dụng `alert()` thay vì UI feedback
+- Thiếu HTML5 validation attributes (required, pattern)
+
+---
+
+### #13 · TotalPrice Stored as String
+**File:** `src/js/cart.js:162-164`
+**Priority:** P1
+**Branch:** `refactor/order-price-storage`
+
+`totalPrice` được lưu dạng formatted string (`.toLocaleString('vi-VN')`), không thể sort hoặc calculate về sau.
+
+---
+
+### #14 · Top-Level Await Race Condition
+**File:** `src/js/cart.js:16`
+**Priority:** P1
+**Branch:** `refactor/provinces-lazy-init`
+
+`const provinces = await getAllProvince();` ở module top-level có thể block module parsing và gây race condition với event listeners.
+
+---
+
+## 🚀 PERFORMANCE - Load & Runtime Performance (1 task)
+
+### #15 · Image Layout Shift (CLS)
+**Files:** Multiple JS files rendering images
+**Priority:** P0
+**Branch:** `fix/image-dimensions-cls`
+
+Images không có `width`/`height` attributes → browser không reserve space → layout shift khi ảnh load:
+- Product cards: `src/js/main.js:81`
+- Product detail: `src/js/product-detail.js:22`
+- Cart items: `src/js/cart.js:29`, `src/js/main.js:135`
+- Order summary: `src/js/order-sum.js:105`
+- Search results: `src/js/main.js:372`
+
+---
+
+## 🎨 UI/UX - User Experience Issues (3 tasks)
+
+### #16 · Excessive Page Reloads on Cart Actions
+**File:** `src/js/cart.js:83, 88, 94`
+**Priority:** P0
+**Branch:** `refactor/cart-dynamic-update`
+
+Mỗi lần tăng/giảm/xóa sản phẩm đều gọi `window.location.reload()`:
+- Mất scroll position
+- Page flicker/blink
+- Trải nghiệm kém
+
+---
+
+### #17 · No Responsive Design
+**Files:** All CSS files
+**Priority:** P0
+**Branch:** `feat/mobile-responsive-layout`
+
+Toàn bộ site không responsive:
+- Header search bar: fixed `32rem` width
+- Modals: fixed `400x400px`
+- Product detail: 2-column grid không collapse
+- Forms không adapt cho mobile screens
+
+---
+
+### #18 · No Logout Confirmation
+**File:** `src/js/main.js`
+**Priority:** P2
+**Branch:** `feat/logout-confirmation-dialog`
+
+Logout action không có confirmation dialog, người dùng có thể vô tình logout.
+
+---
+
+## 🔍 SEO - Search Engine Optimization (0 tasks)
+
+_Chưa phát hiện issues về SEO_
+
+---
+
+## 🧹 CODE QUALITY - Maintainability (6 tasks)
+
+### #19 · Hard-coded Colors Instead of CSS Variables
+**Files:** Multiple CSS files
+**Priority:** P1
+**Branch:** `refactor/color-tokens`
+
+Hard-coded color values thay vì sử dụng design system:
+- `white` literal trong `login.css`, `modal.css`, `cart-modal.css`
+- `#d4edda`, `#155724` trong `login.css` (success colors)
+- `#111` trong `form.css`
+
+---
+
+### #20 · Duplicate CSS Class Definitions
+**Files:** `cart.css`, `cart-modal.css`, `login.css`, `form.css`
+**Priority:** P1
+**Branch:** `refactor/dedupe-css-classes`
+
+Classes được define ở nhiều nơi với styles khác nhau:
+- `.cart-item`: định nghĩa khác nhau trong `cart.css` và `cart-modal.css`
+- `.input-container`: định nghĩa tại 3 files khác nhau
+
+---
+
+### #21 · Price Range Magic Numbers
+**File:** `src/js/main.js`
+**Priority:** P2
+**Branch:** `refactor/price-range-constants`
+
+Price ranges được hardcode nhiều lần trong code thay vì constants.
+
+---
+
+### #22 · Duplicate renderProducts Functions
+**File:** `src/js/main.js`
+**Priority:** P2
+**Branch:** `refactor/merge-render-functions`
+
+Tồn tại cả `renderProducts()` và `renderProducts2()`, cần check xem có duplicate code không.
+
+---
+
+### #23 · Import Side Effects from main.js
+**File:** `src/js/order-sum.js:1`
+**Priority:** P2
+**Branch:** `refactor/extract-shared-data`
+
+`import { userList } from "./main"` - import từ main.js có thể gây side effects và circular dependencies.
+
+---
+
+### #24 · Logout Action Lacks Confirmation
+**File:** `src/js/main.js`
+**Priority:** P3
+**Branch:** `feat/logout-confirmation-dialog`
+
+Logout button không có confirm dialog, dễ bấm nhầm.
+
+**Note:** Duplicate với #18, có thể merge branches.
+
+---
+
+## ✨ FEATURES - Missing Functionality (3 tasks)
+
+### #25 · My Account Page Missing
+**Priority:** P1
+**Branch:** `feat/my-account-page`
+
+Toàn bộ My Account feature chưa được implement:
+- HTML page: `my-account.html`
+- JavaScript: `src/js/my-account.js`
+- Styles: `src/css/pages/my-account.css`
+- Header navigation link khi user logged in
+- Vite config entry point
+
+---
+
+### #26 · Product Sorting Not Implemented
+**Priority:** P1
+**Branch:** `feat/product-sorting`
+
+Trang products không có khả năng sort:
+- UI controls (dropdown/buttons) thiếu
+- Sort logic: Price (low→high, high→low), Name (A-Z, Z-A)
+
+---
+
+### #27 · Pagination Missing
+**Priority:** P1
+**Branch:** `feat/product-pagination`
+
+Products list không có pagination:
+- Navigation controls (prev/next, page numbers)
+- Logic chia products thành pages
+- URL state management (?page=2)
+
+---
+
+## ♿ ACCESSIBILITY - A11y Issues (0 tasks)
+
+_Chưa audit accessibility_
 
 ---
 
 ## 📊 Summary
 
-| Priority | Count | Description |
-|----------|-------|-------------|
-| 🚨 P0    | 4     | Critical CSS/syntax errors |
-| ⚠️ P1    | 10    | Important UX/stability issues |
-| 📋 P2    | 3     | Missing required features |
-| 🔨 P3    | 8     | Code quality improvements |
-| **Total** | **25** | Active tasks |
-
-### Critical Path (Must Fix Before Launch)
-1. Fix 4 CSS syntax errors (P0: #1-4)
-2. Improve payment validation (#5)
-3. Handle top-level await (#6)
-4. Fix window.reload() UX issue (#11)
-5. Add responsive design (#9)
+| Category | Count | Priority Breakdown |
+|----------|-------|--------------------|
+| 🔴 SYNTAX/BUGS | 9 | P0: 4, P1: 5 |
+| ⚠️ LOGIC | 5 | P0: 3, P1: 2 |
+| 🚀 PERFORMANCE | 1 | P0: 1 |
+| 🎨 UI/UX | 3 | P0: 2, P2: 1 |
+| 🔍 SEO | 0 | - |
+| 🧹 CODE QUALITY | 6 | P1: 2, P2: 3, P3: 1 |
+| ✨ FEATURES | 3 | P1: 3 |
+| ♿ ACCESSIBILITY | 0 | - |
+| **TOTAL** | **27** | P0: 10, P1: 12, P2: 4, P3: 1 |
 
 ---
 
-## ✅ Testing Checklist
+## 🎯 Priority Legend
 
-```bash
-# 1. Fix all P0 issues
-# 2. Run linting
-npx @biomejs/biome check --write .
-
-# 3. Test builds
-npm run dev
-npm run build
-npm run preview
-
-# 4. Test user flows
-# - Browse products → Filter → Add to cart
-# - Login → Checkout → Payment → Order confirmation
-# - Empty cart handling
-# - Mobile responsive (after #9 fixed)
-
-# 5. Browser testing
-# - Chrome/Edge (container queries in footer)
-# - Firefox
-# - Mobile Safari
-```
+- **P0 (Critical)** - Blockers, phải fix trước khi deploy production
+- **P1 (High)** - Important issues, ảnh hưởng UX/stability
+- **P2 (Medium)** - Code quality, technical debt
+- **P3 (Low)** - Nice-to-have improvements
 
 ---
 
-**Commit Convention:**
-- `feat:` new features
-- `fix:` bug fixes
-- `refactor:` code restructuring
-- `chore:` maintenance tasks
-- `style:` formatting changes
+## 🔥 Critical Path (Deploy Checklist)
 
-**Notes:**
-- Payment flow hoàn chỉnh (redirect + order summary working)
-- Vite config đầy đủ, build sẽ không fail
-- CSS có 4 critical bugs cần fix ngay
-- Chưa có responsive design
-- 3 features core còn thiếu: My Account, Sorting, Pagination
+**MUST FIX before production:**
+
+1. **SYNTAX/BUGS P0** (#1-4) - CSS syntax errors
+2. **LOGIC P0** (#10-12) - Empty cart, error handling, validation
+3. **PERFORMANCE P0** (#15) - Image layout shift (CLS)
+4. **UI/UX P0** (#16-17) - Page reloads, responsive design
+
+**HIGH PRIORITY after launch:**
+
+5. **FEATURES P1** (#25-27) - My Account, Sorting, Pagination
+6. **CODE QUALITY P1** (#19-20) - CSS variables, duplicate classes
+
+---
+
+## 📝 Notes
+
+- **Build:** Vite config hoàn chỉnh, không có build errors
+- **Payment Flow:** Hoạt động đúng (checkout → order summary)
+- **Browser Support:** Cần test container queries trên Firefox/Safari
+- **Mobile:** Chưa có responsive design (blocking issue)
+- **Testing:** Chưa có automated tests
