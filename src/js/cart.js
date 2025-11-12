@@ -11,8 +11,8 @@ import {
 	userList,
 } from "./main";
 
-import { getAllProvince } from "vietnam-provinces-js/provinces";
-
+// Lazy load provinces data to reduce initial bundle size
+const { getAllProvince } = await import("vietnam-provinces-js/provinces");
 const provinces = await getAllProvince();
 const cartContainerEl = document.getElementById("cart-page-container");
 

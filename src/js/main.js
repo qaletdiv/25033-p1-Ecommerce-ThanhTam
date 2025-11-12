@@ -78,7 +78,7 @@ export function renderProducts(arr, container) {
 			const productName = String(product.name || "").replace(/[<>]/g, "");
 			return `
 		<div class="product-card" data-product-id="${product.id}">
-			<a class="product-img" data-product-id="${product.id}"  href="#"><img src="${product.images[0].url}"></a>
+			<a class="product-img" data-product-id="${product.id}"  href="#"><img src="${product.images[0].url}" loading="lazy"></a>
 			<div class="product-info">
 				<p class="product-category">${product.category}</p>
 				<a class="product-name link">${productName}</a>
@@ -132,7 +132,7 @@ export function renderCart() {
 				const productName = String(product.name || "").replace(/[<>]/g, "");
 
 				return `<div class="cart-item" data-product-id="${product.id}">
-			<img src="${product.images[0].url}" alt="${productName}" class="cart-item-img">
+			<img src="${product.images[0].url}" alt="${productName}" class="cart-item-img" loading="lazy">
 			<div class="cart-item-info">
 				<p class="cart-item-name">${productName}</p>
 				<div class="cart-item-action">
@@ -226,7 +226,6 @@ export function goToDetail(productId, productName) {
 	window.location.href = `/product-details.html?id=${productId}&name=${productName}`;
 	return;
 }
-
 
 export function createSlug(text) {
 	return text
@@ -350,15 +349,16 @@ function renderSearchModal() {
 
 	const searchResultEl = document.createElement("div");
 	searchResultEl.classList.add("search-result-container");
-	const existingSearchResult = document.querySelector(".search-result-container");
 
-	if (searchKey === "") {
-		existingSearchResult.remove();
-		return;
+	const existingSearchModal = document.querySelector(".search-result-container");
+
+	if (existingSearchModal) {
+		existingSearchModal.remove();
 	}
 
-	if (existingSearchResult) {
-		existingSearchResult.remove();
+	if (searchKey === "") {
+		existingSearchModal.remove();
+		return;
 	}
 
 	if (matchingProducts.length === 0) {
@@ -368,7 +368,7 @@ function renderSearchModal() {
 		searchResultEl.innerHTML = matchingProducts
 			.map(
 				(product) => `
-		<a href="#" class="search-result-item">
+		<a href="#" class="search-result-item" data-product-id="${product.id}">
 			<img src="${product.images[0].url}" alt="${product.name}" class="search-result-img">
 			<div class="search-result-info">
 				<p class="search-result-name">${product.name}</p>
@@ -378,17 +378,33 @@ function renderSearchModal() {
 			)
 			.join("");
 		headerEl.append(searchResultEl);
+
+		const searchResultContainer = document.querySelector(".search-result-container");
+		if (searchResultContainer) {
+			const searchResultItems = searchResultContainer.querySelectorAll(".search-result-item");
+
+			searchResultItems.forEach((item) => {
+				item.addEventListener("click", (e) => {
+					e.preventDefault();
+					const productId = getProductId(e);
+					const product = productList.find((product) => product.id === productId);
+					const productName = createSlug(product.name);
+					goToDetail(productId, productName);
+				});
+			});
+		}
 	}
 }
 
 searchInputEl.addEventListener("keyup", renderSearchModal);
 
-searchInputEl.addEventListener("blur", () => {
-	const existingSearchResult = document.querySelector(".search-result-container");
-	if (!existingSearchResult) {
+document.addEventListener("click", (e) => {
+	const searchModal = document.querySelector(".search-result-container");
+	if (searchModal && !searchInputEl.contains(e.target) && !searchModal.contains(e.target)) {
+		searchModal.remove();
+	} else {
 		return;
 	}
-	existingSearchResult.remove();
 });
 
 searchInputEl.addEventListener("click", renderSearchModal);
