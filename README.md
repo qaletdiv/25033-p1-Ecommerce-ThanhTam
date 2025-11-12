@@ -2,6 +2,8 @@
 
 Đồ án cuối khóa - Ứng dụng web thương mại điện tử
 
+Demo: https://alltech-demo.netlify.app/
+
 ## 🛠 Tech Stack
 
 - **Frontend:** Vanilla JavaScript (ES6+)
@@ -79,3 +81,4 @@
 - Password lưu plain text (không dùng trong production)
 - Validation là client-side
 - Dữ liệu xóa khi clear localStorage
+
