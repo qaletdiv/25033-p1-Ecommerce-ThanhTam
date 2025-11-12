@@ -3,11 +3,11 @@ import { setCurrentUser, updateUsersfromLocal } from "./localStorage";
 import {
 	calCartTotal,
 	cartItems,
+	currentUser,
 	decreaseQuantity,
+	getProductId,
 	increaseQuantity,
 	removeFromCart,
-	getProductId,
-	currentUser,
 	userList,
 } from "./main";
 

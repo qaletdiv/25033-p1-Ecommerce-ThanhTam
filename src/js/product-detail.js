@@ -5,6 +5,8 @@ import {
 	productList,
 	renderProducts,
 	showLoginModal,
+	goToDetail,
+	createSlug,
 } from "./main";
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -113,7 +115,9 @@ if (productRelatedContainer) {
 
 		if (viewBtn) {
 			const productId = getProductId(e);
-			window.location.href = `/product-details.html?id=${productId}`;
+			const product = productList.find((product) => product.id === productId);
+			const productName = createSlug(product.name);
+			goToDetail(productId, productName);
 			return;
 		}
 	});
