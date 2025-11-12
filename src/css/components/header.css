@@ -81,14 +81,15 @@
 
 .search-result-container {
 	position: absolute;
-	top: calc(100% + 8px);
+	top: calc(100% - 4px);
 	left: 50%;
 	translate: -50% 0%;
-	background-color: var(--bg-default);
+	background-color: white;
 	border-radius: 8px;
 	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 	min-height: 20rem;
-	max-height: 20rem;
+	max-height: 38rem;
+	overflow: hidden;
 	overflow-y: auto;
 	z-index: 1000;
 	min-width: 32rem;
