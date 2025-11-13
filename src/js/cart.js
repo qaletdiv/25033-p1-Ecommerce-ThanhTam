@@ -3,11 +3,11 @@ import { setCurrentUser, updateUsersfromLocal } from "./localStorage";
 import {
 	calCartTotal,
 	cartItems,
+	currentUser,
 	decreaseQuantity,
+	getProductId,
 	increaseQuantity,
 	removeFromCart,
-	getProductId,
-	currentUser,
 	userList,
 } from "./main";
 
@@ -124,7 +124,7 @@ function addtoCurrentUserCart() {
 		if (!Array.isArray(userList[indexToUpdate].orderHistory)) {
 			userList[indexToUpdate].orderHistory = [];
 		}
-
+//?
 		const orderId = `${currentUser.id}-${Date.now()}`;
 		const name = nameInput.value;
 		const phone = phoneInput.value;
