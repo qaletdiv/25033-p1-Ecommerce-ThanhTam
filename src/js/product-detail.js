@@ -21,7 +21,7 @@ const productRelatedContainer = document.getElementById("product-related-contain
 if (targetProduct) {
 	productDetailContainer.innerHTML = `
     <div class="product-detail-container" data-product-id="${targetProduct.id}">
-    <img class="product-detail-imgs" src="${targetProduct.images[0].url}">
+	<img class="product-detail-img" src="${targetProduct.images[0].url}" style="opacity:0">
     <div class="product-detail-info">
         <p class="product-category">${targetProduct.category}</p>
          <h1 class="product-detail-name fs-h2">${targetProduct.name}</h1>
@@ -45,6 +45,12 @@ if (targetProduct) {
        </div>
     </div>
     `;
+	const img = productDetailContainer.querySelector(".product-detail-img");
+
+	img.addEventListener("load", () => {
+		img.style.transition = "opacity 0.3s ease";
+		img.style.opacity = "1";
+	});
 } else {
 	productDetailContainer.innerHTML = `<p>Product Not Found</p>`;
 }

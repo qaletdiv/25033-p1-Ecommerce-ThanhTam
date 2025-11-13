@@ -1,58 +1,14 @@
 # 📋 TODO List - E-Commerce Project
 
-**Ngày tạo:** 2025-11-11 | **Cập nhật:** 2025-11-12 | **Tổng:** 26 tasks
+**Ngày tạo:** 2025-11-11 | **Cập nhật:** 2025-11-13 | **Tổng:** 22 tasks
 
 ---
 
-## 🔴 SYNTAX/BUGS - Critical Errors (9 tasks)
+## 🔴 SYNTAX/BUGS - Critical Errors (3 tasks)
 
-### #1 · CSS Variable Undefined: --fs-lg
-**File:** `src/css/pages/order-summary.css:139`
-**Priority:** P0
-**Branch:** `fix/css-undefined-variables`
-
-Sử dụng `var(--fs-lg)` nhưng variable này không tồn tại trong design system.
-
----
-
-### #2 · CSS Variable Undefined: --txt-primary
-**File:** `src/css/components/header.css:141`
-**Priority:** P0
-**Branch:** `fix/css-undefined-variables`
-
-Variable `--txt-primary` không được định nghĩa trong variables.
-
----
-
-### #3 · CSS Syntax Error: Missing Variable Prefix
-**File:** `src/css/pages/product-list.css:33`
-**Priority:** P0
-**Branch:** `fix/css-var-prefix`
-
-`var(fw-semibold)` thiếu `--` prefix trong variable name.
-
----
-
-### #4 · CSS Syntax Error: Invalid Transition
-**File:** `src/css/components/cart-modal.css:108-111`
-**Priority:** P0
-**Branch:** `fix/cart-modal-transition`
-
-Transition syntax không hợp lệ.
-
----
-
-### #5 · Search Results Not Clickable
-**File:** `src/js/main.js`
-**Priority:** P1
-**Branch:** `fix/search-modal-click-handler`
-
-Search modal hiển thị products nhưng click vào không có phản ứng.
-
----
 
 ### #6 · Error Message Cleanup Bug
-**File:** `src/js/main.js`
+**File:** `src/js/main.js:556`
 **Priority:** P1
 **Branch:** `fix/form-error-auto-clear`
 
@@ -60,21 +16,14 @@ Search modal hiển thị products nhưng click vào không có phản ứng.
 
 ---
 
-### #7 · Related Products Missing Slug in URL
-**File:** `src/js/product-detail.js`
-**Priority:** P1
-**Branch:** `fix/related-product-url-slug`
-
-URLs của related products thiếu product name slug.
-
 ---
 
 ### #8 · Cart Subtotal Element Not Populated
-**File:** `cart.html`
+**File:** `cart.html:131`, `src/js/cart.js`
 **Priority:** P1
 **Branch:** `fix/cart-subtotal-calculation`
 
-Element `.cart-subtotal` có thể không được tính toán và hiển thị đúng.
+Element `.cart-subtotal` tồn tại trong HTML nhưng không có JavaScript code nào populate giá trị vào element này.
 
 ---
 
@@ -249,16 +198,6 @@ Tồn tại cả `renderProducts()` và `renderProducts2()`, cần check xem có
 
 ---
 
-### #24 · Logout Action Lacks Confirmation
-**File:** `src/js/main.js`
-**Priority:** P3
-**Branch:** `feat/logout-confirmation-dialog`
-
-Logout button không có confirm dialog, dễ bấm nhầm.
-
-**Note:** Duplicate với #18, có thể merge branches.
-
----
 
 ## ✨ FEATURES - Missing Functionality (3 tasks)
 
@@ -306,15 +245,17 @@ _Chưa audit accessibility_
 
 | Category | Count | Priority Breakdown |
 |----------|-------|--------------------|
-| 🔴 SYNTAX/BUGS | 9 | P0: 4, P1: 5 |
+| 🔴 SYNTAX/BUGS | 3 | P1: 3 |
 | ⚠️ LOGIC | 5 | P0: 3, P1: 2 |
 | 🚀 PERFORMANCE | 1 | P0: 1 |
 | 🎨 UI/UX | 3 | P0: 2, P2: 1 |
 | 🔍 SEO | 0 | - |
-| 🧹 CODE QUALITY | 6 | P1: 2, P2: 3, P3: 1 |
+| 🧹 CODE QUALITY | 5 | P1: 2, P2: 3 |
 | ✨ FEATURES | 3 | P1: 3 |
 | ♿ ACCESSIBILITY | 0 | - |
-| **TOTAL** | **27** | P0: 10, P1: 12, P2: 4, P3: 1 |
+| **TOTAL** | **22** | P0: 6, P1: 10, P2: 6 |
+
+**Progress:** ✅ 6 tasks completed (5 SYNTAX/BUGS + 1 duplicate removed)
 
 ---
 
@@ -331,15 +272,16 @@ _Chưa audit accessibility_
 
 **MUST FIX before production:**
 
-1. **SYNTAX/BUGS P0** (#1-4) - CSS syntax errors
+1. ~~**SYNTAX/BUGS P0** (#1-4)~~ ✅ CSS syntax errors - RESOLVED
 2. **LOGIC P0** (#10-12) - Empty cart, error handling, validation
 3. **PERFORMANCE P0** (#15) - Image layout shift (CLS)
 4. **UI/UX P0** (#16-17) - Page reloads, responsive design
 
 **HIGH PRIORITY after launch:**
 
-5. **FEATURES P1** (#25-27) - My Account, Sorting, Pagination
-6. **CODE QUALITY P1** (#19-20) - CSS variables, duplicate classes
+5. **SYNTAX/BUGS P1** (#6, #8-9) - Error cleanup, cart subtotal, browser compat
+6. **FEATURES P1** (#25-27) - My Account, Sorting, Pagination
+7. **CODE QUALITY P1** (#19-20) - CSS variables, duplicate classes
 
 ---
 

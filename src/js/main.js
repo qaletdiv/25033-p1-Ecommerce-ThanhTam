@@ -19,10 +19,9 @@ const userBtnEl = document.getElementById("userBtn");
 const headerEl = document.querySelector("header");
 const cartContainerEl = document.getElementById("cart-container");
 const cartEl = document.querySelector("[data-cart]");
-
 export let cartItems, userList, productList, currentUser;
 
-//* DOM Init ========================================================================================================================================
+//* DOM Init ================================================================================================================================================================
 
 function initLocalStorageData() {
 	cartItems = getCartItemsFromLocal();
@@ -41,10 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	if (document.getElementById("products-container")) {
 		renderProducts(productList, productContainerEl);
-	}
-
-	if (cartEl) {
-		cartEl.style.display = "none";
 	}
 
 	cartBtnEl.addEventListener("click", () => {
@@ -78,7 +73,7 @@ export function renderProducts(arr, container) {
 			const productName = String(product.name || "").replace(/[<>]/g, "");
 			return `
 		<div class="product-card" data-product-id="${product.id}">
-			<a class="product-img" data-product-id="${product.id}"  href="#"><img src="${product.images[0].url}" loading="lazy"></a>
+			<a class="product-img" data-product-id="${product.id}" href="#"><img src="${product.images[0].url}" loading="lazy"></a>
 			<div class="product-info">
 				<p class="product-category">${product.category}</p>
 				<a class="product-name link">${productName}</a>
@@ -120,7 +115,7 @@ export function renderCart() {
 		return;
 	}
 
-	cartEl.style.display = "";
+	cartEl.style.display = "flex";
 	document.body.style.overflow = "hidden";
 	cartEl.showModal();
 
@@ -163,6 +158,16 @@ export function calCartTotal(classSelector, container, arr) {
 	}
 	totalPriceEl.textContent = `${totalPrice.toLocaleString("vi-VN")}đ`;
 }
+
+document.body.addEventListener("keyup", (e) => {
+	if (e.key === "Escape") {
+		if (cartEl) {
+			cartEl.style.display = "none";
+			cartEl.close();
+			document.body.style.overflow = "";
+		}
+	}
+});
 
 //* Cart ===========================================================================================================================================
 
