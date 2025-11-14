@@ -9,6 +9,8 @@ import {
 	setCurrentUser,
 } from "./localStorage.js";
 
+import { animate, stagger, inView } from "motion";
+
 //* DOM ======================================================================================================================================================================
 
 const productContainerEl = document.getElementById("products-container");
@@ -86,6 +88,12 @@ export function renderProducts(arr, container) {
 		</div>`;
 		})
 		.join("");
+
+	const productItem = document.querySelectorAll(".product-card");
+
+	inView(container, () => {
+		animate(productItem, { y: [10, 0], opacity: [0, 1] }, { duration: 0.18, delay: stagger(0.1) });
+	});
 }
 
 export function renderModal() {
