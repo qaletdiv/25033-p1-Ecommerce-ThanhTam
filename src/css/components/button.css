@@ -134,3 +134,27 @@
 .link {
 	cursor: pointer;
 }
+
+.btn-quantity {
+	font-size: var(--fs-default);
+	font-weight: var(--fw-semibold);
+	color: var(--txt-default);
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0.25rem 0.75rem;
+	border-radius: 0.125rem;
+	transition:
+		color,
+		background-color,
+		0.12s ease;
+
+	&:hover {
+		color: var(--txt-dark);
+		background: var(--bg-light);
+	}
+
+	&:active {
+		transform: scale(0.95);
+	}
+}

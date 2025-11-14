@@ -1,0 +1,115 @@
+.section {
+	padding-top: calc(var(--section-space-md));
+	padding-bottom: var(--section-space-md);
+}
+
+.section .container {
+	display: grid;
+	grid-template-columns: 280px 1fr;
+	gap: var(--space-2xl);
+	align-items: flex-start;
+}
+
+.account-menu-container {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	background-color: white;
+	border-radius: 1rem;
+	list-style: none;
+	margin: 0;
+}
+
+.account-menu-item a {
+	display: block;
+	padding: 1rem;
+	color: var(--txt-default);
+	text-decoration: none;
+	border-radius: 0.5rem;
+	font-weight: var(--fw-medium);
+}
+
+.account-menu-item a:hover {
+	background-color: var(--bg-light);
+}
+
+.account-card {
+	background-color: var(--bg-white);
+	border-radius: 1rem;
+	padding: 2rem;
+	margin-bottom: 1rem;
+}
+
+.account-order-list {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.account-order-item {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 1.5rem;
+	background-color: var(--bg-default);
+	border-radius: 1rem;
+}
+
+.account-order-header-info {
+	display: flex;
+	flex-direction: column;
+}
+
+.account-order-id {
+	font-size: var(--fs-h6);
+	font-weight: var(--fw-semibold);
+}
+
+.account-order-date {
+	color: var(--txt-light);
+}
+
+.account-order-details {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1.5rem;
+	padding: 1.5rem;
+	background-color: var(--bg-white);
+	border-radius: 0.5rem;
+}
+
+.order-status-success {
+	color: var(--txt-success);
+	font-weight: var(--fw-semibold);
+}
+
+.account-orders-list {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+
+	.cart-item {
+		padding: 1rem;
+	}
+}
+
+.account-order-total-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-top: 0.5rem;
+}
+
+.account-order-total-label {
+	font-size: var(--fs-default);
+	font-weight: var(--fw-semibold);
+	color: var(--txt-dark);
+}
+
+.account-order-total-price {
+	font-size: var(--fs-large);
+	font-weight: var(--fw-bold);
+	color: var(--txt-brand);
+}

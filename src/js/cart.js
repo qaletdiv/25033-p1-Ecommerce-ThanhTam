@@ -25,22 +25,20 @@ if (cartItems.length === 0) {
 		.map((item) => {
 			const productName = String(item.name || "").replace(/[<>]/g, "");
 			return `
-		<div class="cart-page-item" data-product-id="${item.id}">
-			<img src="${item.images[0].url}" alt="${productName}" class="cart-page-item-img">
-			<div class="cart-page-item-info">
-              
-				<p class="cart-page-item-name">${productName}</p>
-				<div class="cart-page-item-actions">
-				<div class="quantity-controls">
-					<button class="btn-quantity" data-action="decrease" aria-label="Giảm số lượng">-</button>
-					<span class="quantity-value">${item.quantity || 1}</span>
-					<button class="btn-quantity" data-action="increase" aria-label="Tăng số lượng">+</button>
+		<div class="cart-item" data-product-id="${item.id}">
+			<img src="${item.images[0].url}" alt="${productName}" class="cart-item-img">
+			<div class="cart-item-info">
+				<p class="cart-item-name">${productName}</p>
+				<div class="cart-item-action">
+					<div class="quantity-controls">
+						<button class="btn-quantity" data-action="decrease" aria-label="Giảm số lượng">-</button>
+						<span class="quantity-value">${item.quantity || 1}</span>
+						<button class="btn-quantity" data-action="increase" aria-label="Tăng số lượng">+</button>
+					</div>
+					<a class="fs-small link" data-remove aria-label="Xóa">Xóa</a>
 				</div>
-                <a class="fs-small link" data-remove aria-label="Xóa">Xóa</a>
 			</div>
-		</div>
-			
-			<p class="cart-page-item-price">${item.price.toLocaleString("vi-VN")}đ</p>
+			<p class="cart-item-price">${item.price.toLocaleString("vi-VN")}đ</p>
 		</div>`;
 		})
 		.join("");

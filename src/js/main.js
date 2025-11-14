@@ -1,12 +1,12 @@
 //* Local Storage =========================================================================================================================================================
 
 import {
-	createNewUser,
 	getCartItemsFromLocal,
 	getCurrentUser,
 	getProductfromLocal,
 	getUsersfromLocal,
 	setCurrentUser,
+	createNewUser,
 } from "./localStorage.js";
 
 import { animate, stagger, inView } from "motion";
@@ -701,8 +701,8 @@ function renderLoggedinHeader() {
 	userBtnEl.classList.remove("btn", "btn--icon-only");
 	userBtnEl.classList.add("user-is-loggedin");
 
-	userBtnEl.addEventListener("click", (e) => {
-		e.preventDefault();
+	userBtnEl.addEventListener("click", () => {
+		userBtnEl.href = "/account.html";
 	});
 	const signOutBtn = document.createElement("a");
 	signOutBtn.classList.add("nav-item", "is-loggedin");
