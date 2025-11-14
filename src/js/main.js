@@ -1,13 +1,15 @@
 //* Local Storage =========================================================================================================================================================
 
 import {
-	createNewUser,
 	getCartItemsFromLocal,
 	getCurrentUser,
 	getProductfromLocal,
 	getUsersfromLocal,
 	setCurrentUser,
+	createNewUser,
 } from "./localStorage.js";
+
+import { animate, stagger, inView } from "motion";
 
 //* DOM ======================================================================================================================================================================
 
@@ -86,6 +88,12 @@ export function renderProducts(arr, container) {
 		</div>`;
 		})
 		.join("");
+
+	const productItem = document.querySelectorAll(".product-card");
+
+	inView(container, () => {
+		animate(productItem, { y: [10, 0], opacity: [0, 1] }, { duration: 0.18, delay: stagger(0.1) });
+	});
 }
 
 export function renderModal() {
@@ -693,8 +701,8 @@ function renderLoggedinHeader() {
 	userBtnEl.classList.remove("btn", "btn--icon-only");
 	userBtnEl.classList.add("user-is-loggedin");
 
-	userBtnEl.addEventListener("click", (e) => {
-		e.preventDefault();
+	userBtnEl.addEventListener("click", () => {
+		userBtnEl.href = "/account.html";
 	});
 	const signOutBtn = document.createElement("a");
 	signOutBtn.classList.add("nav-item", "is-loggedin");

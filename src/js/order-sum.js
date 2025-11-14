@@ -24,21 +24,21 @@ export function renderOrderSum(order, container) {
 
         <div class="order-header">
             <div class="info-grid">
-                <div class="order-info-container">
-                    <p class="order-label">Mã đơn hàng:</p>
-                    <p class="order-info">#${order.orderId}</p>
+                <div class="info-item">
+                    <p class="info-label">Mã đơn hàng:</p>
+                    <p class="info-content">#${order.orderId}</p>
                 </div>
-                <div class="order-info-container">
-                    <p class="order-label">Ngày đặt:</p>
-                    <p class="order-info">${orderDate}</p>
+                <div class="info-item">
+                    <p class="info-label">Ngày đặt:</p>
+                    <p class="info-content">${orderDate}</p>
                 </div>
-                <div class="order-info-container">
-                    <p class="order-label">Phương thức thanh toán:</p>
-                    <p class="order-info">${order.paymentMethod}</p>
+                <div class="info-item">
+                    <p class="info-label">Phương thức thanh toán:</p>
+                    <p class="info-content">${order.paymentMethod}</p>
                 </div>
-                <div class="order-info-container">
-                    <p class="order-label">Trạng thái:</p>
-                    <p class="order-info order-status">Thành công</p>
+                <div class="info-item">
+                    <p class="info-label">Trạng thái:</p>
+                    <p class="info-content order-status">Thành công</p>
                 </div>
             </div>
         </div>
@@ -48,28 +48,28 @@ export function renderOrderSum(order, container) {
         <div class="customer-info">
             <h3>Thông tin khách hàng</h3>
             <div class="info-grid">
-                <div class="order-info-container">
-                    <p class="order-label">Tên người nhận:</p>
-                    <p class="order-info">${order.nameOrder}</p>
+                <div class="info-item">
+                    <p class="info-label">Tên người nhận:</p>
+                    <p class="info-content">${order.nameOrder}</p>
                 </div>
-                <div class="order-info-container">
-                    <p class="order-label">Email:</p>
-                    <p class="order-info">${order.email}</p>
+                <div class="info-item">
+                    <p class="info-label">Email:</p>
+                    <p class="info-content">${order.email}</p>
                 </div>
-                <div class="order-info-container">
-                    <p class="order-label">Số điện thoại:</p>
-                    <p class="order-info">${order.phoneNumber}</p>
+                <div class="info-item">
+                    <p class="info-label">Số điện thoại:</p>
+                    <p class="info-content">${order.phoneNumber}</p>
                 </div>
-                <div class="order-info-container">
-                    <p class="order-label">Địa chỉ giao hàng:</p>
-                    <p class="order-info">${order.address}, ${order.city}</p>
+                <div class="info-item">
+                    <p class="info-label">Địa chỉ giao hàng:</p>
+                    <p class="info-content">${order.address}, ${order.city}</p>
                 </div>
                 ${
 									order.note
 										? `
-                <div class="order-info-container">
-                    <p class="order-label">Ghi chú giao hàng:</p>
-                    <p class="order-info">${order.note}</p>
+                <div class="info-item">
+                    <p class="info-label">Ghi chú giao hàng:</p>
+                    <p class="info-content">${order.note}</p>
                 </div>
                 `
 										: ""
@@ -84,12 +84,12 @@ export function renderOrderSum(order, container) {
             <div class="info-grid"></div>
         </div>
 
-        <div class="section-divider"></div>
+  
 
         <div class="order-total">
-            <div class="order-info-container">
-                <p class="order-label">Tổng tiền:</p>
-                <p class="order-info total-price">${order.totalPrice}₫</p>
+            <div class="info-item">
+                <p class="info-label">Tổng tiền:</p>
+                <p class="info-content total-price">${order.totalPrice}₫</p>
             </div>
         </div>
     </div>
@@ -102,12 +102,10 @@ export function renderOrderSum(order, container) {
 		.map(
 			(item) => `
         <div class="cart-item">
+         <p class="quantity-value">x${item.quantity}</p>
             <img src="${item.images[0].url}" alt="${item.name}" class="cart-item-img">
             <div class="cart-item-info">
-                <p class="cart-item-name">${item.name}</p>
-                <div class="cart-item-action">
-                    <p class="quantity-value">x${item.quantity}</p>
-                </div>
+                <p class="cart-item-name">${item.name}</p>  
             </div>
             <p class="cart-item-price">${(item.price * item.quantity).toLocaleString("vi-VN")}₫</p>
         </div>`
