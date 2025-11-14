@@ -4,10 +4,12 @@ const userInServers = [
 	{
 		id: Date.now().toString(),
 		name: "Tam",
+		phoneNumber: "09655679812",
 		email: "thanhtamktvn600@gmail.com",
 		password: "123456789",
 		isLoggedin: false,
 		cart: [],
+		address: "52 Hoàng Văn Thụ, phường 12, quận Bình Thạnh",
 		orderHistory: [],
 	},
 ];
