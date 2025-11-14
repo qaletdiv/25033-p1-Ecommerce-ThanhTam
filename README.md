@@ -64,8 +64,11 @@ Demo: https://alltech-demo.netlify.app/
 - Hiển thị thông tin khách hàng và địa chỉ giao hàng
 - Nút "Tiếp tục mua sắm" và "In đơn hàng"
 
-### A.9. Màn hình tài khoản của tôi ❌
-- ⚠️ **Chưa hoàn thành:** Trang thông tin cá nhân và lịch sử đơn hàng
+### A.9. Màn hình tài khoản của tôi ✅
+- Hiển thị thông tin cá nhân (họ tên, email, số điện thoại, địa chỉ)
+- Hiển thị lịch sử đơn hàng đầy đủ
+- Chi tiết từng đơn hàng: mã đơn, ngày đặt, sản phẩm, số lượng, tổng tiền
+- Thông tin giao hàng: người nhận, địa chỉ, phương thức thanh toán, trạng thái
 
 ---
 

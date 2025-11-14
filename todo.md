@@ -1,6 +1,6 @@
 # 📋 TODO List - E-Commerce Project
 
-**Ngày tạo:** 2025-11-11 | **Cập nhật:** 2025-11-13 | **Tổng:** 22 tasks
+**Ngày tạo:** 2025-11-11 | **Cập nhật:** 2025-11-15 | **Tổng:** 20 tasks
 
 ---
 
@@ -146,7 +146,7 @@ _Chưa phát hiện issues về SEO_
 
 ---
 
-## 🧹 CODE QUALITY - Maintainability (6 tasks)
+## 🧹 CODE QUALITY - Maintainability (5 tasks)
 
 ### #19 · Hard-coded Colors Instead of CSS Variables
 **Files:** Multiple CSS files
@@ -157,17 +157,6 @@ Hard-coded color values thay vì sử dụng design system:
 - `white` literal trong `login.css`, `modal.css`, `cart-modal.css`
 - `#d4edda`, `#155724` trong `login.css` (success colors)
 - `#111` trong `form.css`
-
----
-
-### #20 · Duplicate CSS Class Definitions
-**Files:** `cart.css`, `cart-modal.css`, `login.css`, `form.css`
-**Priority:** P1
-**Branch:** `refactor/dedupe-css-classes`
-
-Classes được define ở nhiều nơi với styles khác nhau:
-- `.cart-item`: định nghĩa khác nhau trong `cart.css` và `cart-modal.css`
-- `.input-container`: định nghĩa tại 3 files khác nhau
 
 ---
 
@@ -199,18 +188,7 @@ Tồn tại cả `renderProducts()` và `renderProducts2()`, cần check xem có
 ---
 
 
-## ✨ FEATURES - Missing Functionality (3 tasks)
-
-### #25 · My Account Page Missing
-**Priority:** P1
-**Branch:** `feat/my-account-page`
-
-Toàn bộ My Account feature chưa được implement:
-- HTML page: `my-account.html`
-- JavaScript: `src/js/my-account.js`
-- Styles: `src/css/pages/my-account.css`
-- Header navigation link khi user logged in
-- Vite config entry point
+## ✨ FEATURES - Missing Functionality (2 tasks)
 
 ---
 
@@ -250,12 +228,16 @@ _Chưa audit accessibility_
 | 🚀 PERFORMANCE | 1 | P0: 1 |
 | 🎨 UI/UX | 3 | P0: 2, P2: 1 |
 | 🔍 SEO | 0 | - |
-| 🧹 CODE QUALITY | 5 | P1: 2, P2: 3 |
-| ✨ FEATURES | 3 | P1: 3 |
+| 🧹 CODE QUALITY | 5 | P1: 1, P2: 4 |
+| ✨ FEATURES | 2 | P1: 2 |
 | ♿ ACCESSIBILITY | 0 | - |
-| **TOTAL** | **22** | P0: 6, P1: 10, P2: 6 |
+| **TOTAL** | **20** | P0: 6, P1: 8, P2: 6 |
 
-**Progress:** ✅ 6 tasks completed (5 SYNTAX/BUGS + 1 duplicate removed)
+**Progress:** ✅ 8 tasks completed
+- 5 SYNTAX/BUGS (CSS syntax errors)
+- 1 CODE QUALITY (#20 - Duplicate CSS classes)
+- 1 FEATURES (#25 - My Account page)
+- 1 duplicate task removed
 
 ---
 
@@ -280,8 +262,8 @@ _Chưa audit accessibility_
 **HIGH PRIORITY after launch:**
 
 5. **SYNTAX/BUGS P1** (#6, #8-9) - Error cleanup, cart subtotal, browser compat
-6. **FEATURES P1** (#25-27) - My Account, Sorting, Pagination
-7. **CODE QUALITY P1** (#19-20) - CSS variables, duplicate classes
+6. **FEATURES P1** (#26-27) - Sorting, Pagination
+7. **CODE QUALITY P1** (#19) - CSS variables
 
 ---
 
