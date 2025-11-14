@@ -1,6 +1,6 @@
 # E-Commerce Website
 
-Đồ án cuối khóa - Ứng dụng web thương mại điện tử
+Ứng dụng web thương mại điện tử
 
 Demo: https://alltech-demo.netlify.app/
 
