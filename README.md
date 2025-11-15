@@ -65,8 +65,6 @@ wrangler login
 
 ## 📝 Ghi Chú
 
-- Dự án học tập, không có backend thực
-- Password lưu plain text (không dùng trong production)
-- Validation là client-side
-- Dữ liệu xóa khi clear localStorage
+- Dùng mockup data
+- Validation từ client-side
 
