@@ -50,7 +50,7 @@
             <div class="container">
                 <div class="filter-container" id="filter-container">
                     <div class="categories-container" id="categories-container">
-                        <button class="btn btn--link btn--sm" id="show-all-btn">Tất cả</button>
+                        <button class="btn btn--link btn--sm" id="show-all-btn">Toàn bộ</button>
                     </div>
                     <div class="prices-container">
                         <select class="dropdown" id="price-range">
@@ -62,7 +62,7 @@
                             <option value="40-100">Trên 40tr</option>
                         </select>
                     </div>
-                    <div class="sort-container">
+                    <!-- <div class="sort-container">
                         <select class="dropdown" id="sort-range">
                             <option value="new">Mới nhất</option>
                             <option value="featured">Nổi bật</option>
@@ -71,9 +71,14 @@
                             <option value="A-Z">A-Z</option>
                             <option value="Z-A">Z-A</option>
                         </select>
-                    </div>
+                    </div> -->
                 </div>
                 <div id="products-container" class="products-container" data-category="all"></div>
+                <nav aria-lable="pagination">
+                    <ul class="pagination-container">
+                        
+                    </ul>
+                </nav>
             </div>
         </section>
         <dialog class="cart-container" data-cart>
@@ -94,7 +99,7 @@
             </div>
         </dialog>
     </main>
-    <script type="module" src="/src/js/main.js"></script>
+    <script type="module" src="/src/js/app.js"></script>
 </body>
 
 </html>

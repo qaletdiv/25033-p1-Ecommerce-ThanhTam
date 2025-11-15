@@ -23,8 +23,8 @@ export default defineConfig({
 			},
 			output: {
 				manualChunks: {
-					shared: ["./src/js/localStorage.js"],
-					data: ["./src/js/mock-data.js"],
+					shared: ["./src/js/data/storageService.js"],
+					data: ["./src/js/data/mockData.js"],
 					provinces: ["vietnam-provinces-js"],
 				},
 			},
