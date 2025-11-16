@@ -1,11 +1,10 @@
 const { getAllProvince } = await import("vietnam-provinces-js/provinces");
 const provinces = await getAllProvince();
 
-import { setCurrentUser, updateUsersfromLocal } from "../data/index.js";
-import { appState } from "../data/index.js";
+import { decreaseQuantity, increaseQuantity, removeFromCart } from "../components/cartModal.js";
+import { appState, setCurrentUser, updateUsersfromLocal } from "../data/index.js";
 import { getProductId } from "../utils/helpers.js";
 import { calCartTotal } from "../utils/index.js";
-import { decreaseQuantity, increaseQuantity, removeFromCart } from "../components/cartModal.js";
 
 const cartContainerEl = document.getElementById("cart-page-container");
 

@@ -1,4 +1,5 @@
 import { appState } from "../data/index.js";
+
 // } from "../data/index.js";
 
 const urlParams = new URLSearchParams(window.location.search);

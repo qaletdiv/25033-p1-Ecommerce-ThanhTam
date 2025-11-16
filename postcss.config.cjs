@@ -9,7 +9,7 @@ module.exports = {
 				"custom-media-queries": true,
 			},
 			autoprefixer: {
-				grid: true, 
+				grid: true,
 			},
 		},
 

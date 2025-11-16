@@ -1,5 +1,5 @@
-import { renderProducts } from "../utils";
 import { appState } from "../data";
+import { renderProducts } from "../utils";
 
 const featuredList = document.getElementById("products-featured-container");
 

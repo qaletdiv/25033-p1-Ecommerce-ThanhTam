@@ -1,18 +1,13 @@
 :root {
-	/* Base spacing */
-	--space-xs: 0.25rem;
-	--space-sm: 0.5rem;
-	--space-md: 0.75rem;
+	/* Base spacing (only used ones) */
 	--space-lg: 1rem;
 	--space-xl: 1.5rem;
 	--space-2xl: 2rem;
-	--space-3xl: 3rem;
 
 	/* Header spacing */
 	--header-height: 70px;
 
 	/* Section spacing */
-	--section-space-default: 10rem;
 	--section-space-lg: 10rem;
 	--section-space-md: 7.5rem;
 	--section-space-sm: 5rem;

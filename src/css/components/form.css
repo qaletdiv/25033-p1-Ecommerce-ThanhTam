@@ -1,3 +1,11 @@
+/* ==========================================================================
+   FORM COMPONENTS
+   ========================================================================== */
+
+/* ==========================================================================
+   TEXT INPUTS
+   ========================================================================== */
+
 .input {
 	display: block;
 	width: 100%;
@@ -8,6 +16,21 @@
 	border: solid 1px var(--bd-light);
 	border-radius: 9999px;
 	box-sizing: border-box;
+	background-color: var(--bg-white);
+	transition:
+		background-color 0.15s ease,
+		border-color 0.15s ease;
+}
+
+.input:hover:not(:disabled):not(:focus) {
+	background-color: var(--bg-default);
+	border-color: var(--bd-default);
+}
+
+.input:disabled {
+	cursor: not-allowed;
+	opacity: 0.4;
+	background-color: var(--bg-light);
 }
 
 .input svg {
@@ -15,11 +38,16 @@
 	height: 1rem;
 }
 
+/* Input Validation */
 input[type="email"]:invalid ~ button[type="submit"],
 input[type="password"]:invalid ~ button[type="submit"] {
 	opacity: 0.6;
 	pointer-events: none;
 }
+
+/* ==========================================================================
+   LABELS
+   ========================================================================== */
 
 label {
 	font-size: var(--fs-small);
@@ -28,10 +56,14 @@ label {
 	text-align: left;
 }
 
+/* ==========================================================================
+   SELECT / DROPDOWN
+   ========================================================================== */
+
 select {
 	display: block;
-	background-color: transparent;
-	border: solid 1px var(--bd-default);
+	background-color: var(--bg-white);
+	border: solid 1px var(--bd-light);
 	border-radius: 9999px;
 	appearance: none;
 	-webkit-appearance: none;
@@ -43,9 +75,48 @@ select {
 	background-position: right 10px center;
 	background-size: 20px;
 	min-width: 15ch;
+	color: var(--txt-default);
+	transition:
+		background-color 0.15s ease,
+		border-color 0.15s ease;
 }
 
-/* Radio button cards */
+select:hover:not(:disabled):not(:focus) {
+	background-color: var(--bg-default);
+	border-color: var(--bd-default);
+}
+
+select:disabled {
+	cursor: not-allowed;
+	opacity: 0.4;
+	background-color: var(--bg-light);
+}
+
+/* Dropdown Variant */
+.dropdown {
+	padding-left: 1rem;
+	background-color: var(--bg-white);
+	border: 1px solid var(--bd-light);
+	transition:
+		background-color 0.15s ease,
+		border-color 0.15s ease;
+
+	&:hover:not(:disabled):not(:focus) {
+		background-color: var(--bg-default);
+		border-color: var(--bd-default);
+	}
+
+	&:disabled {
+		cursor: not-allowed;
+		opacity: 0.4;
+		background-color: var(--bg-light);
+	}
+}
+
+/* ==========================================================================
+   RADIO BUTTONS
+   ========================================================================== */
+
 .radio-group {
 	display: flex;
 	flex-direction: column;
@@ -86,6 +157,7 @@ select {
 	height: 2.5rem;
 }
 
+/* Radio Indicator */
 .radio-input label::before {
 	content: "";
 	position: absolute;
@@ -97,6 +169,7 @@ select {
 	background-color: transparent;
 }
 
+/* Radio States */
 .radio-input input[type="radio"]:checked + label {
 	color: var(--txt-dark);
 	outline: none;
@@ -104,20 +177,16 @@ select {
 }
 
 .radio-input input[type="radio"]:checked + label::before {
-	outline: 1px solid #111;
+	outline: 1px solid var(--txt-dark);
 	outline-offset: 2px;
-	background: #111;
-}
-
-.radio-input input[type="radio"]:focus-visible + label {
-	outline: 2px solid #111;
-	outline-offset: 2px;
+	background: var(--txt-dark);
 }
 
 .radio-input label:hover {
 	background: var(--bg-light);
+	transition: background-color 0.15s ease;
 }
 
 .radio-input label:active {
-	transform: translateX(1px);
+	transform: scale(0.99);
 }

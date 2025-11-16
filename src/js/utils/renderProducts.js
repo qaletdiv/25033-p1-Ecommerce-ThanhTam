@@ -1,4 +1,4 @@
-import { animate, stagger, inView } from "motion";
+import { animate, inView, stagger } from "motion";
 
 export function renderProducts(arr, container) {
 	container.innerHTML = "";

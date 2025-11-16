@@ -1,7 +1,7 @@
-import { appState } from "../data/index.js";
 import { addtoCart } from "../components/cartModal.js";
+import { appState } from "../data/index.js";
+import { createSlug, getProductId, goToDetail } from "../utils/helpers.js";
 import { renderProducts, showLoginModal } from "../utils/index.js";
-import { getProductId, goToDetail, createSlug } from "../utils/helpers.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get("id");

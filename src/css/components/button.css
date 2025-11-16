@@ -1,3 +1,11 @@
+/* ==========================================================================
+   BUTTON COMPONENTS
+   ========================================================================== */
+
+/* ==========================================================================
+   BASE BUTTON
+   ========================================================================== */
+
 .btn {
 	display: inline-flex;
 	align-items: center;
@@ -12,6 +20,10 @@
 	gap: 0.5rem;
 	height: 48px;
 	cursor: pointer;
+	transition:
+		background-color 0.15s ease,
+		border-color 0.15s ease,
+		transform 0.1s ease;
 }
 
 .btn svg {
@@ -20,13 +32,9 @@
 	height: 1rem;
 }
 
+/* Button States */
 .btn:hover {
 	text-decoration: none;
-}
-
-.btn:focus-visible {
-	outline: 2px solid var(--bd-brand);
-	outline-offset: 2px;
 }
 
 .btn:active:not(:disabled) {
@@ -38,7 +46,11 @@
 	opacity: 0.4;
 }
 
-/* Button Variants */
+/* ==========================================================================
+   BUTTON VARIANTS
+   ========================================================================== */
+
+/* Primary Button */
 .btn--primary {
 	background-color: var(--bg-brand);
 	color: var(--txt-white);
@@ -50,6 +62,7 @@
 	border-color: var(--brand-800);
 }
 
+/* White Button */
 .btn--white {
 	background-color: white;
 	color: var(--txt-default);
@@ -60,6 +73,7 @@
 	color: white;
 }
 
+/* Link Button */
 .btn--link {
 	background-color: transparent;
 	color: var(--txt-brand);
@@ -74,6 +88,7 @@
 	border-color: transparent;
 }
 
+/* Outline Button */
 .btn--outline {
 	background-color: transparent;
 	color: var(--txt-brand);
@@ -88,7 +103,9 @@
 	border-color: transparent;
 }
 
-/* Button Sizes */
+/* ==========================================================================
+   BUTTON SIZES
+   ========================================================================== */
 
 .btn--lg {
 	height: 64px;
@@ -102,6 +119,7 @@
 	font-size: 0.75rem;
 }
 
+/* Icon Only Button */
 .btn--icon-only {
 	padding: 0;
 	width: 44px;
@@ -109,8 +127,12 @@
 	min-width: auto;
 	background-color: transparent;
 
-	&:hover {
+	&:hover:not(:disabled) {
 		background-color: var(--bg-light);
+	}
+
+	&:active:not(:disabled) {
+		transform: scale(0.95);
 	}
 }
 
@@ -118,6 +140,44 @@
 	width: 1.25rem;
 	height: 1.25rem;
 }
+
+/* ==========================================================================
+   SPECIALIZED BUTTONS
+   ========================================================================== */
+
+/* Quantity Control Button */
+.btn-quantity {
+	font-size: var(--fs-default);
+	font-weight: var(--fw-semibold);
+	color: var(--txt-default);
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0.25rem 0.75rem;
+	border-radius: 0.125rem;
+	transition:
+		color 0.15s ease,
+		background-color 0.15s ease,
+		transform 0.1s ease;
+
+	&:hover:not(:disabled) {
+		color: var(--txt-dark);
+		background: var(--bg-light);
+	}
+
+	&:active:not(:disabled) {
+		transform: scale(0.95);
+	}
+
+	&:disabled {
+		cursor: not-allowed;
+		opacity: 0.4;
+	}
+}
+
+/* ==========================================================================
+   BUTTON GROUPS
+   ========================================================================== */
 
 .btn-group {
 	display: inline-flex;
@@ -131,30 +191,10 @@
 	}
 }
 
+/* ==========================================================================
+   LINK UTILITIES
+   ========================================================================== */
+
 .link {
 	cursor: pointer;
-}
-
-.btn-quantity {
-	font-size: var(--fs-default);
-	font-weight: var(--fw-semibold);
-	color: var(--txt-default);
-	background: transparent;
-	border: none;
-	cursor: pointer;
-	padding: 0.25rem 0.75rem;
-	border-radius: 0.125rem;
-	transition:
-		color,
-		background-color,
-		0.12s ease;
-
-	&:hover {
-		color: var(--txt-dark);
-		background: var(--bg-light);
-	}
-
-	&:active {
-		transform: scale(0.95);
-	}
 }

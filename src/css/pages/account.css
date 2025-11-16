@@ -27,6 +27,7 @@
 	text-decoration: none;
 	border-radius: 0.5rem;
 	font-weight: var(--fw-medium);
+	transition: background-color 0.15s ease;
 }
 
 .account-menu-item a:hover {

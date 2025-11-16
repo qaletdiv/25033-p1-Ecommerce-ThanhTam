@@ -1,16 +1,22 @@
-import { appState } from "./data/index.js";
-import { renderCart, renderProducts, showLoginModal, renderSearchModal } from "./utils/index.js";
 import {
 	addtoCart,
-	removeFromCart,
-	increaseQuantity,
 	decreaseQuantity,
+	increaseQuantity,
+	removeFromCart,
 } from "./components/cartModal.js";
-import { getProductId, goToDetail, createSlug } from "./utils/index.js";
-import { updateUserLoggoutState, renderLoggedinHeader } from "./utils/auth.js";
+import { appState } from "./data/index.js";
+import { renderLoggedinHeader, updateUserLoggoutState } from "./utils/auth.js";
+import {
+	createSlug,
+	getProductId,
+	goToDetail,
+	renderCart,
+	renderProducts,
+	renderSearchModal,
+	showLoginModal,
+} from "./utils/index.js";
 
 //* DOM Init ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 const productContainerEls = document.querySelector(".products-container");
 const cartBtnEl = document.getElementById("cartBtn");
@@ -19,7 +25,6 @@ const cartEl = document.querySelector("[data-cart]");
 const searchInputEl = document.querySelector("[type=search]");
 
 document.addEventListener("DOMContentLoaded", () => {
-
 	cartBtnEl.addEventListener("click", () => {
 		if (!appState.currentUser.isLoggedin) {
 			showLoginModal();

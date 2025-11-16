@@ -1,5 +1,5 @@
 import { appState } from "../data/index.js";
-import { getProductId, goToDetail, createSlug } from "./helpers.js";
+import { createSlug, getProductId, goToDetail } from "./helpers.js";
 
 const headerEl = document.querySelector("header");
 const searchInputEl = document.querySelector("[type=search]");

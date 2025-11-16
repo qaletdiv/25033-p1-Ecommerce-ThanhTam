@@ -60,8 +60,9 @@
 	cursor: pointer;
 	height: 44px;
 
-	&:hover {
-		background: #f9f9f9;
+	&:hover:not(:focus) {
+		background: var(--bg-default);
+		border-color: var(--bd-default);
 	}
 }
 
@@ -98,10 +99,11 @@
 	padding: 1rem;
 	text-decoration: none;
 	border-radius: 6px;
+	transition: background-color 0.15s ease;
 
 	&:hover {
 		text-decoration: none;
-		background-color: var(--bg-light, #f5f5f5);
+		background-color: var(--bg-light);
 	}
 
 	&:last-child {
@@ -168,6 +170,9 @@
 	border-radius: 9999px;
 	cursor: pointer;
 	max-width: 100%;
+	transition:
+		background-color 0.15s ease,
+		color 0.15s ease;
 
 	&:hover {
 		background-color: var(--bg-light);

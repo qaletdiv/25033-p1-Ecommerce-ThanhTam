@@ -1,6 +1,6 @@
-* {
-	box-sizing: border-box;
-}
+/* ==========================================================================
+   BASE STYLES
+   ========================================================================== */
 
 html {
 	font-size: 100%;
@@ -26,7 +26,11 @@ main {
 	width: 100%;
 }
 
-/* Typography Defaults */
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+
+/* Headings */
 h1,
 h2,
 h3,
@@ -48,45 +52,54 @@ h1 {
 	letter-spacing: var(--ls-tight);
 	font-weight: var(--fw-extrabold);
 }
+
 h2 {
 	font-size: var(--fs-h2);
 	line-height: 1.2;
 	letter-spacing: -0.01em;
 }
+
 h3 {
 	font-size: var(--fs-h3);
 	line-height: 1.2;
 }
+
 h4 {
 	font-size: var(--fs-h4);
 	line-height: 1.4;
 }
+
 h5 {
 	font-size: var(--fs-h5);
 	line-height: 1.4;
 }
+
 h6 {
 	font-size: var(--fs-h6);
 	line-height: 1.5;
 }
 
+/* Paragraph */
 p {
 	margin: 0 0 1rem 0;
 }
 
+/* ==========================================================================
+   INTERACTIVE ELEMENTS
+   ========================================================================== */
+
+/* Buttons */
 button {
 	cursor: pointer;
 }
 
-input:focus-visible {
-	outline: solid 2px var(--txt-dark);
-}
-
+/* Links */
 a {
 	font-size: var(--fs-default);
 	color: var(--txt-brand);
 	text-decoration: none;
 	line-height: 1.5;
+	transition: color 0.15s ease;
 }
 
 a:hover {
@@ -97,8 +110,62 @@ a:hover {
 	color: var(--txt-dark);
 }
 
-/* Typography Utility Classes */
+/* ==========================================================================
+   LAYOUT UTILITIES
+   ========================================================================== */
 
+.container {
+	margin: 0 auto;
+	padding: 0 1.25rem;
+	max-width: 1440px;
+}
+
+.section {
+	padding-top: var(--section-space-lg);
+	padding-bottom: var(--section-space-md);
+}
+
+.section-header {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1rem;
+}
+
+.section-title {
+	font-family: var(--display-font);
+	letter-spacing: 0.02em;
+	line-height: 1.1;
+	font-weight: 400;
+	text-transform: uppercase;
+	margin-bottom: 2rem;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   ICON UTILITIES
+   ========================================================================== */
+
+.lucide {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+
+	&.size-default {
+		font-size: 1.25rem;
+		font-weight: 400;
+	}
+
+	&.size-small {
+		font-size: 1rem;
+	}
+}
+
+/* ==========================================================================
+   TYPOGRAPHY UTILITIES
+   ========================================================================== */
+
+/* Font Size */
 .fs-h1 {
 	font-size: var(--fs-h1);
 	line-height: 1.1;
@@ -149,7 +216,7 @@ a:hover {
 	font-size: var(--fs-label);
 }
 
-/* Font Weight Classes */
+/* Font Weight */
 .fw-default {
 	font-weight: var(--fw-default);
 }
@@ -168,153 +235,4 @@ a:hover {
 
 .fw-extrabold {
 	font-weight: var(--fw-extrabold);
-}
-
-.fw-black {
-	font-weight: var(--fw-black);
-}
-
-.container {
-	margin: 0 auto;
-	padding: 0 1.25rem;
-	max-width: 1440px;
-}
-
-.section {
-	padding-top: var(--section-space-lg);
-	padding-bottom: var(--section-space-md);
-}
-
-.section-header {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 1rem;
-}
-
-.section-title {
-	font-family: var(--display-font);
-	letter-spacing: 0.02em;
-	line-height: 1.1;
-	font-weight: 400;
-	text-transform: uppercase;
-	margin-bottom: 2rem;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-.lucide {
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-
-	&.size-default {
-		font-size: 1.25rem;
-		font-weight: 400;
-	}
-
-	&.size-small {
-		font-size: 1rem;
-	}
-
-	&.size-large {
-		font-size: 1.5rem;
-	}
-}
-
-/* Shared Info Components */
-.info-grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 1rem;
-}
-
-.info-item {
-	display: flex;
-	flex-direction: column;
-	gap: 0.25rem;
-}
-
-.info-label {
-	font-size: var(--fs-default);
-	color: var(--txt-light);
-	font-weight: var(--fw-medium);
-	margin: 0;
-}
-
-.info-content {
-	font-size: var(--fs-default);
-	color: var(--txt-dark);
-	font-weight: var(--fw-medium);
-	margin: 0;
-}
-
-/* Shared Cart Item */
-
-.cart-items-container {
-	display: flex;
-	flex-direction: column;
-	gap: 2rem;
-}
-
-.cart-item {
-	display: flex;
-	align-items: center;
-	gap: 1.5rem;
-	background-color: var(--bg-white);
-	border-radius: 0.5rem;
-
-	.cart-item-img {
-		display: block;
-		width: 4.5rem;
-		height: 4.5rem;
-		object-fit: contain;
-		margin: 0;
-		background-color: var(--bg-default);
-		border-radius: 0.5rem;
-	}
-
-	.cart-item-price {
-		font-size: var(--fs-default);
-		font-weight: var(--fw-semibold);
-		color: var(--txt-dark);
-		text-align: right;
-	}
-
-	.cart-item-info {
-		display: flex;
-		flex: 1;
-		flex-direction: column;
-		gap: 0.5rem;
-
-		.cart-item-name {
-			width: 100%;
-			font-size: var(--fs-default);
-			color: var(--txt-dark);
-			margin: 0;
-			max-width: 100%;
-		}
-
-		.cart-item-action {
-			display: flex;
-			gap: 1rem;
-			align-items: center;
-
-			.quantity-controls {
-				display: flex;
-				align-items: center;
-				gap: 0.25rem;
-				border: 1px solid var(--bd-light);
-				border-radius: 0.25rem;
-				padding: 0.25rem;
-			}
-
-			.quantity-value {
-				font-size: var(--fs-small);
-				font-weight: var(--fw-medium);
-				margin: 0;
-				min-width: 2rem;
-				text-align: center;
-			}
-		}
-	}
 }

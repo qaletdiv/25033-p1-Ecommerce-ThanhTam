@@ -32,8 +32,3 @@
 	color: var(--txt-default);
 	font-weight: var(--fw-semibold);
 }
-
-.empty-message {
-	text-align: center;
-	margin-top: 2rem;
-}
