@@ -1,25 +1,13 @@
 # 📋 TODO List - E-Commerce Project
 
-**Ngày tạo:** 2025-11-11 | **Cập nhật:** 2025-11-15 | **Tổng:** 20 tasks
+**Ngày tạo:** 2025-11-11 | **Cập nhật:** 2025-11-16 | **Tổng:** 17 tasks
 
 ---
 
-## 🔴 SYNTAX/BUGS - Critical Errors (3 tasks)
-
-
-### #6 · Error Message Cleanup Bug
-**File:** `src/js/main.js:556`
-**Priority:** P1
-**Branch:** `fix/form-error-auto-clear`
-
-`renderErrorMsg()` function không tự động xóa error messages khi form trở nên valid.
-
----
-
----
+## 🔴 SYNTAX/BUGS - Critical Errors (2 tasks)
 
 ### #8 · Cart Subtotal Element Not Populated
-**File:** `cart.html:131`, `src/js/cart.js`
+**File:** `cart.html:131`, `src/js/pages/cartPage.js`
 **Priority:** P1
 **Branch:** `fix/cart-subtotal-calculation`
 
@@ -39,7 +27,7 @@ Sử dụng container queries (`container-type`, `20cqi` unit) và `text-box-tri
 ## ⚠️ LOGIC - Business Logic Issues (5 tasks)
 
 ### #10 · Empty Cart Payment Form Still Accessible
-**File:** `src/js/cart.js:21-23`
+**File:** `src/js/pages/cartPage.js:21-23`
 **Priority:** P0
 **Branch:** `fix/empty-cart-validation`
 
@@ -48,17 +36,17 @@ Khi giỏ hàng rỗng, form thanh toán vẫn hiển thị và có thể submit
 ---
 
 ### #11 · Missing Error Handling for Order Retrieval
-**File:** `src/js/order-sum.js`, `src/js/cart.js`
+**File:** `src/js/pages/orderSummary.js`, `src/js/pages/cartPage.js`
 **Priority:** P0
 **Branch:** `fix/order-error-handling`
 
-- `order-sum.js`: Không handle trường hợp orderId không tồn tại hoặc orderOwner = null
+- `orderSummary.js`: Không handle trường hợp orderId không tồn tại hoặc orderOwner = null
 - Thiếu try/catch cho các async operations
 
 ---
 
 ### #12 · Payment Form Validation Insufficient
-**File:** `src/js/cart.js:144-146`
+**File:** `src/js/pages/cartPage.js:144-146`
 **Priority:** P0
 **Branch:** `fix/payment-form-validation`
 
@@ -71,7 +59,7 @@ Form validation còn thiếu:
 ---
 
 ### #13 · TotalPrice Stored as String
-**File:** `src/js/cart.js:162-164`
+**File:** `src/js/pages/cartPage.js:162-164`
 **Priority:** P1
 **Branch:** `refactor/order-price-storage`
 
@@ -80,7 +68,7 @@ Form validation còn thiếu:
 ---
 
 ### #14 · Top-Level Await Race Condition
-**File:** `src/js/cart.js:16`
+**File:** `src/js/pages/cartPage.js:16`
 **Priority:** P1
 **Branch:** `refactor/provinces-lazy-init`
 
@@ -96,18 +84,18 @@ Form validation còn thiếu:
 **Branch:** `fix/image-dimensions-cls`
 
 Images không có `width`/`height` attributes → browser không reserve space → layout shift khi ảnh load:
-- Product cards: `src/js/main.js:81`
-- Product detail: `src/js/product-detail.js:22`
-- Cart items: `src/js/cart.js:29`, `src/js/main.js:135`
-- Order summary: `src/js/order-sum.js:105`
-- Search results: `src/js/main.js:372`
+- Product cards: `src/js/utils/renderProducts.js`
+- Product detail: `src/js/pages/productDetail.js`
+- Cart items: `src/js/utils/renderCart.js`, `src/js/components/cartModal.js`
+- Order summary: `src/js/pages/orderSummary.js`
+- Search results: `src/js/utils/renderSearchModal.js`
 
 ---
 
 ## 🎨 UI/UX - User Experience Issues (3 tasks)
 
 ### #16 · Excessive Page Reloads on Cart Actions
-**File:** `src/js/cart.js:83, 88, 94`
+**File:** `src/js/pages/cartPage.js:83, 88, 94`
 **Priority:** P0
 **Branch:** `refactor/cart-dynamic-update`
 
@@ -124,15 +112,16 @@ Mỗi lần tăng/giảm/xóa sản phẩm đều gọi `window.location.reload(
 **Branch:** `feat/mobile-responsive-layout`
 
 Toàn bộ site không responsive:
-- Header search bar: fixed `32rem` width
-- Modals: fixed `400x400px`
+- Header search bar: fixed `30rem` width
+- Modals: fixed dimensions
 - Product detail: 2-column grid không collapse
 - Forms không adapt cho mobile screens
+- Collection grid: 3 columns không responsive
 
 ---
 
 ### #18 · No Logout Confirmation
-**File:** `src/js/main.js`
+**File:** `src/js/app.js`
 **Priority:** P2
 **Branch:** `feat/logout-confirmation-dialog`
 
@@ -140,13 +129,7 @@ Logout action không có confirmation dialog, người dùng có thể vô tình
 
 ---
 
-## 🔍 SEO - Search Engine Optimization (0 tasks)
-
-_Chưa phát hiện issues về SEO_
-
----
-
-## 🧹 CODE QUALITY - Maintainability (5 tasks)
+## 🧹 CODE QUALITY - Maintainability (4 tasks)
 
 ### #19 · Hard-coded Colors Instead of CSS Variables
 **Files:** Multiple CSS files
@@ -161,7 +144,7 @@ Hard-coded color values thay vì sử dụng design system:
 ---
 
 ### #21 · Price Range Magic Numbers
-**File:** `src/js/main.js`
+**File:** `src/js/features/productFilter.js`
 **Priority:** P2
 **Branch:** `refactor/price-range-constants`
 
@@ -169,28 +152,25 @@ Price ranges được hardcode nhiều lần trong code thay vì constants.
 
 ---
 
-### #22 · Duplicate renderProducts Functions
-**File:** `src/js/main.js`
+### #22 · Check for Duplicate Render Logic
+**Files:** `src/js/utils/renderProducts.js`, `src/js/app.js`
 **Priority:** P2
 **Branch:** `refactor/merge-render-functions`
 
-Tồn tại cả `renderProducts()` và `renderProducts2()`, cần check xem có duplicate code không.
+Cần review xem có duplicate rendering logic giữa các modules không.
 
 ---
 
-### #23 · Import Side Effects from main.js
-**File:** `src/js/order-sum.js:1`
+### #23 · Circular Import Risk
+**Files:** Various import paths
 **Priority:** P2
 **Branch:** `refactor/extract-shared-data`
 
-`import { userList } from "./main"` - import từ main.js có thể gây side effects và circular dependencies.
+Cần review import structure để tránh circular dependencies, đặc biệt với `src/js/data/index.js`.
 
 ---
-
 
 ## ✨ FEATURES - Missing Functionality (2 tasks)
-
----
 
 ### #26 · Product Sorting Not Implemented
 **Priority:** P1
@@ -213,31 +193,44 @@ Products list không có pagination:
 
 ---
 
-## ♿ ACCESSIBILITY - A11y Issues (0 tasks)
-
-_Chưa audit accessibility_
-
----
-
 ## 📊 Summary
 
 | Category | Count | Priority Breakdown |
 |----------|-------|--------------------|
-| 🔴 SYNTAX/BUGS | 3 | P1: 3 |
+| 🔴 SYNTAX/BUGS | 2 | P1: 2 |
 | ⚠️ LOGIC | 5 | P0: 3, P1: 2 |
 | 🚀 PERFORMANCE | 1 | P0: 1 |
 | 🎨 UI/UX | 3 | P0: 2, P2: 1 |
-| 🔍 SEO | 0 | - |
-| 🧹 CODE QUALITY | 5 | P1: 1, P2: 4 |
+| 🧹 CODE QUALITY | 4 | P1: 1, P2: 3 |
 | ✨ FEATURES | 2 | P1: 2 |
-| ♿ ACCESSIBILITY | 0 | - |
-| **TOTAL** | **20** | P0: 6, P1: 8, P2: 6 |
+| **TOTAL** | **17** | P0: 6, P1: 7, P2: 4 |
 
-**Progress:** ✅ 8 tasks completed
-- 5 SYNTAX/BUGS (CSS syntax errors)
-- 1 CODE QUALITY (#20 - Duplicate CSS classes)
-- 1 FEATURES (#25 - My Account page)
-- 1 duplicate task removed
+**Recent Completions:** ✅ 11 tasks
+- Refactored folder structure (pages/, utils/, features/, components/)
+- Added collection page với category thumbnails
+- Updated header navigation (+ Danh mục, - Liên hệ)
+- Increased typography sizes (h1-h6 +15%)
+- Reorganized header.css structure
+- Fixed collection page routing
+- Added Unsplash category images
+- Completed product listing page
+- Updated vite.config.js with collection entry
+
+---
+
+## 🔥 Critical Path (Deploy Checklist)
+
+**MUST FIX before production:**
+
+1. **LOGIC P0** (#10-12) - Empty cart, error handling, validation
+2. **PERFORMANCE P0** (#15) - Image layout shift (CLS)
+3. **UI/UX P0** (#16-17) - Page reloads, responsive design
+
+**HIGH PRIORITY after launch:**
+
+4. **SYNTAX/BUGS P1** (#8-9) - Cart subtotal, browser compat
+5. **FEATURES P1** (#26-27) - Sorting, Pagination
+6. **CODE QUALITY P1** (#19) - CSS variables
 
 ---
 
@@ -250,23 +243,6 @@ _Chưa audit accessibility_
 
 ---
 
-## 🔥 Critical Path (Deploy Checklist)
-
-**MUST FIX before production:**
-
-1. ~~**SYNTAX/BUGS P0** (#1-4)~~ ✅ CSS syntax errors - RESOLVED
-2. **LOGIC P0** (#10-12) - Empty cart, error handling, validation
-3. **PERFORMANCE P0** (#15) - Image layout shift (CLS)
-4. **UI/UX P0** (#16-17) - Page reloads, responsive design
-
-**HIGH PRIORITY after launch:**
-
-5. **SYNTAX/BUGS P1** (#6, #8-9) - Error cleanup, cart subtotal, browser compat
-6. **FEATURES P1** (#26-27) - Sorting, Pagination
-7. **CODE QUALITY P1** (#19) - CSS variables
-
----
-
 ## 📝 Notes
 
 - **Build:** Vite config hoàn chỉnh, không có build errors
@@ -274,3 +250,4 @@ _Chưa audit accessibility_
 - **Browser Support:** Cần test container queries trên Firefox/Safari
 - **Mobile:** Chưa có responsive design (blocking issue)
 - **Testing:** Chưa có automated tests
+- **New Structure:** src/js organized into pages/, utils/, features/, components/
