@@ -1,0 +1,37 @@
+/* ==========================================================================
+   BREAKPOINTS - Custom Media Queries
+   ========================================================================== */
+
+/**
+ * Custom media queries for responsive design.
+ * Usage: @media (--mobile) { ... }
+ *
+ * These breakpoints align with common device sizes and are ready for
+ * implementing responsive design (addresses task #17).
+ */
+
+/* Mobile devices (phones) */
+@custom-media --mobile (max-width: 767px);
+@custom-media --mobile-only (max-width: 767px);
+
+/* Tablet devices */
+@custom-media --tablet (min-width: 768px) and (max-width: 1023px);
+@custom-media --tablet-up (min-width: 768px);
+@custom-media --tablet-down (max-width: 1023px);
+
+/* Desktop devices */
+@custom-media --desktop (min-width: 1024px);
+@custom-media --desktop-up (min-width: 1024px);
+
+/* Large desktop/wide screens */
+@custom-media --desktop-large (min-width: 1440px);
+
+/* Small devices (mobile + small tablets) */
+@custom-media --small (max-width: 1023px);
+
+/* Medium and up (tablets + desktop) */
+@custom-media --medium-up (min-width: 768px);
+
+/* Touch devices hint (useful for hover effects) */
+@custom-media --hover-capable (hover: hover) and (pointer: fine);
+@custom-media --touch-device (hover: none) and (pointer: coarse);

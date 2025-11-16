@@ -2,14 +2,24 @@ import { resolve } from "node:path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
+	css: {
+		devSourcemap: true,
+	},
+
 	server: {
 		host: "localhost",
 		port: 5173,
 	},
+
 	build: {
 		cssCodeSplit: true,
 		minify: "esbuild",
+		cssMinify: false,
+
+		target: ["es2022", "chrome89", "edge89", "firefox89", "safari15"],
+
 		sourcemap: false,
+
 		rollupOptions: {
 			input: {
 				main: resolve(__dirname, "index.html"),
@@ -27,6 +37,14 @@ export default defineConfig({
 					shared: ["./src/js/data/storageService.js"],
 					data: ["./src/js/data/mockData.js"],
 					provinces: ["vietnam-provinces-js"],
+				},
+
+				// Organize CSS assets in separate directory
+				assetFileNames: (assetInfo) => {
+					if (assetInfo.name?.endsWith(".css")) {
+						return "assets/css/[name]-[hash][extname]";
+					}
+					return "assets/[name]-[hash][extname]";
 				},
 			},
 		},
