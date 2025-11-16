@@ -63,6 +63,10 @@ coverage/
 tmp/
 temp/
 
+# Cloudflare Wrangler
+.wrangler/
+.dev.vars
 
 # Claude AI artifacts
 .claude/
+CLAUDE.md

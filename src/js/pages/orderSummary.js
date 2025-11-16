@@ -1,10 +1,11 @@
-import { userList } from "./main";
+import { appState } from "../data/index.js";
+// } from "../data/index.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const orderId = urlParams.get("id");
 const orderContainerEl = document.querySelector(".order-summary-container");
 
-const orderOwner = userList.find((user) => {
+const orderOwner = appState.userList.find((user) => {
 	return user.orderHistory.find((order) => order.orderId === orderId);
 });
 

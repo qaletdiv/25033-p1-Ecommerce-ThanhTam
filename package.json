@@ -1,7 +1,7 @@
 {
 	"name": "ecom-project",
 	"version": "1.0.0",
-	"description": "E-commerce web application built with vanilla JavaScript, Vite, and PostCSS - Final course project",
+	"description": "E-commerce web application built with vanilla JavaScript, Vite, and PostCSS ",
 	"type": "module",
 	"author": "",
 	"license": "MIT",

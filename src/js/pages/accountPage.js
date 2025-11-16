@@ -1,10 +1,10 @@
-import { currentUser, userList } from "./main";
+import { appState } from "../data/index.js";
 
 function renderAccountInfo() {
 	const accountInfo = document.getElementById("account-info");
 	const accountOrderHistory = document.getElementById("account-order-history");
 
-	const user = userList.find((user) => user.id === currentUser.id);
+	const user = appState.userList.find((user) => user.id === appState.currentUser.id);
 	const userOrderHistory = user.orderHistory;
 
 	accountInfo.innerHTML = `

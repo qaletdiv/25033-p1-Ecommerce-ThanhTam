@@ -1,4 +1,4 @@
-import { products } from "./mock-data";
+import { products } from "../data/mockData.js";
 
 const userInServers = [
 	{
@@ -87,3 +87,10 @@ export function updateUsersfromLocal(users) {
 	localStorage.setItem("users", JSON.stringify(users));
 	return users;
 }
+
+export const appState = {
+	cartItems: getCartItemsFromLocal(),
+	userList: getUsersfromLocal(),
+	productList: getProductfromLocal(),
+	currentUser: getCurrentUser(),
+};

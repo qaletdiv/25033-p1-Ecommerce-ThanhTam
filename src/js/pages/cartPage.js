@@ -1,27 +1,20 @@
-import { setCurrentUser, updateUsersfromLocal } from "./localStorage";
-
-import {
-	calCartTotal,
-	cartItems,
-	currentUser,
-	decreaseQuantity,
-	getProductId,
-	increaseQuantity,
-	removeFromCart,
-	userList,
-} from "./main";
-
-// Lazy load provinces data to reduce initial bundle size
 const { getAllProvince } = await import("vietnam-provinces-js/provinces");
 const provinces = await getAllProvince();
+
+import { setCurrentUser, updateUsersfromLocal } from "../data/index.js";
+import { appState } from "../data/index.js";
+import { getProductId } from "../utils/helpers.js";
+import { calCartTotal } from "../utils/index.js";
+import { decreaseQuantity, increaseQuantity, removeFromCart } from "../components/cartModal.js";
+
 const cartContainerEl = document.getElementById("cart-page-container");
 
 //* Render giỏ hàng
 
-if (cartItems.length === 0) {
+if (appState.cartItems.length === 0) {
 	cartContainerEl.textContent = "Giỏ hàng của bạn đang trống";
 } else {
-	cartContainerEl.innerHTML = cartItems
+	cartContainerEl.innerHTML = appState.cartItems
 		.map((item) => {
 			const productName = String(item.name || "").replace(/[<>]/g, "");
 			return `
@@ -47,7 +40,7 @@ if (cartItems.length === 0) {
 const cartSumEl = document.querySelector(".cart-sum-container");
 
 if (cartSumEl) {
-	calCartTotal(".cart-total-price", cartSumEl, cartItems);
+	calCartTotal(".cart-total-price", cartSumEl, appState.cartItems);
 }
 
 //* Tăng giảm số lượng item và re render giỏ hàng
@@ -77,23 +70,23 @@ cartEl.addEventListener("click", (e) => {
 
 	if (btnIncrease) {
 		increaseQuantity(productId);
-		localStorage.setItem("cart", JSON.stringify(cartItems));
+		localStorage.setItem("cart", JSON.stringify(appState.cartItems));
 		window.location.reload();
 	}
 	if (btnDecrease) {
 		decreaseQuantity(productId);
-		localStorage.setItem("cart", JSON.stringify(cartItems));
+		localStorage.setItem("cart", JSON.stringify(appState.cartItems));
 		window.location.reload();
 	}
 
 	if (removeBtn) {
 		removeFromCart(productId);
-		localStorage.setItem("cart", JSON.stringify(cartItems));
+		localStorage.setItem("cart", JSON.stringify(appState.cartItems));
 		window.location.reload();
 	}
 });
 
-//* Lấy data từ giỏ hàng và update vào orderHistory của currentUser và user có cùng id trong userList
+//* Lấy data từ giỏ hàng và update vào orderHistory của appState.currentUser và user có cùng id trong appState.userList
 
 const paymentBtn = document.getElementById("payBtn");
 const formEl = document.getElementById("payment-form");
@@ -110,20 +103,19 @@ provinces.forEach((province) => {
 	provincesSelectEl.appendChild(option);
 });
 
-export function removeItemsfromCart(cartItems) {
-	cartItems.length = 0;
-	localStorage.setItem("cart", JSON.stringify(cartItems));
+export function removeItemsfromCart() {
+	appState.cartItems.length = 0;
+	localStorage.setItem("cart", JSON.stringify(appState.cartItems));
 }
 
 function addtoCurrentUserCart() {
-	const indexToUpdate = userList.findIndex((user) => user.id === currentUser.id);
+	const indexToUpdate = appState.userList.findIndex((user) => user.id === appState.currentUser.id);
 
 	if (indexToUpdate !== -1) {
-		if (!Array.isArray(userList[indexToUpdate].orderHistory)) {
-			userList[indexToUpdate].orderHistory = [];
+		if (!Array.isArray(appState.userList[indexToUpdate].orderHistory)) {
+			appState.userList[indexToUpdate].orderHistory = [];
 		}
-//?
-		const orderId = `${currentUser.id}-${Date.now()}`;
+		const orderId = `${appState.currentUser.id}-${Date.now()}`;
 		const name = nameInput.value;
 		const phone = phoneInput.value;
 		const address = addressInput.value;
@@ -143,28 +135,28 @@ function addtoCurrentUserCart() {
 			alert("vui lòng điền đầy đủ thông tin");
 			return;
 		} else {
-			userList[indexToUpdate].orderHistory.push({
-				userId: currentUser.id,
-				name: currentUser.name,
+			appState.userList[indexToUpdate].orderHistory.push({
+				userId: appState.currentUser.id,
+				name: appState.currentUser.name,
 				date: Date.now(),
 				orderId: orderId,
 				nameOrder: name,
 				address: address,
 				city: city,
 				note: note,
-				email: currentUser.email,
+				email: appState.currentUser.email,
 				phoneNumber: phone,
 				paymentMethod: paymentText,
-				orderItems: [...cartItems],
-				totalItem: cartItems.reduce((total, current) => total + current.quantity, 0),
-				totalPrice: cartItems
+				orderItems: [...appState.cartItems],
+				totalItem: appState.cartItems.reduce((total, current) => total + current.quantity, 0),
+				totalPrice: appState.cartItems
 					.reduce((total, current) => total + current.price * current.quantity, 0)
 					.toLocaleString("vi-VN"),
 			});
 
-			updateUsersfromLocal(userList);
-			setCurrentUser(userList[indexToUpdate]);
-			removeItemsfromCart(cartItems);
+			updateUsersfromLocal(appState.userList);
+			setCurrentUser(appState.userList[indexToUpdate]);
+			removeItemsfromCart(appState.cartItems);
 			goToSummary(orderId);
 		}
 	}

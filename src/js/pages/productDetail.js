@@ -1,18 +1,12 @@
-import {
-	addtoCart,
-	currentUser,
-	getProductId,
-	productList,
-	renderProducts,
-	showLoginModal,
-	goToDetail,
-	createSlug,
-} from "./main";
+import { appState } from "../data/index.js";
+import { addtoCart } from "../components/cartModal.js";
+import { renderProducts, showLoginModal } from "../utils/index.js";
+import { getProductId, goToDetail, createSlug } from "../utils/helpers.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get("id");
 
-const targetProduct = productList.find((product) => product.id === Number(productId));
+const targetProduct = appState.productList.find((product) => product.id === Number(productId));
 
 const productDetailContainer = document.getElementById("product-detail-container");
 
@@ -74,7 +68,7 @@ productDetailContainer.addEventListener("click", (e) => {
 	}
 
 	if (addBtn) {
-		if (!currentUser?.isLoggedin) {
+		if (!appState.currentUser?.isLoggedin) {
 			showLoginModal();
 			return;
 		}
@@ -91,7 +85,7 @@ productDetailContainer.addEventListener("click", (e) => {
 const currentCategory = targetProduct.category;
 
 if (productRelatedContainer) {
-	const relatedProduct = productList
+	const relatedProduct = appState.productList
 		.filter((product) => product.category === currentCategory && product.id !== targetProduct.id)
 		.slice(0, 4);
 
@@ -105,7 +99,7 @@ if (productRelatedContainer) {
 		const addBtn = e.target.closest("button");
 
 		if (addBtn) {
-			if (!currentUser?.isLoggedin) {
+			if (!appState.currentUser?.isLoggedin) {
 				showLoginModal();
 				return;
 			}
@@ -121,7 +115,7 @@ if (productRelatedContainer) {
 
 		if (viewBtn) {
 			const productId = getProductId(e);
-			const product = productList.find((product) => product.id === productId);
+			const product = appState.productList.find((product) => product.id === productId);
 			const productName = createSlug(product.name);
 			goToDetail(productId, productName);
 			return;
