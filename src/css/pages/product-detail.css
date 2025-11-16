@@ -1,7 +1,6 @@
 .section {
 	padding-bottom: 0rem;
 	padding-top: var(--header-height);
-	min-height: 80vh;
 }
 
 .product-related-section {
@@ -21,13 +20,12 @@
 
 .product-detail-container {
 	display: grid;
-	grid-template-columns: 1fr 0.8fr;
+	grid-template-columns: 1fr 1fr;
 	gap: 1rem;
 }
 
 .product-detail-img {
 	width: 100%;
-	max-height: calc(100% - var(--header-height));
 	aspect-ratio: 1 / 1;
 	background: var(--bg-light);
 	padding: 6rem;

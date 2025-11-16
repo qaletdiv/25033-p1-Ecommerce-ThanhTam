@@ -289,7 +289,6 @@ a:hover {
 		.cart-item-name {
 			width: 100%;
 			font-size: var(--fs-default);
-			font-weight: var(--fw-medium);
 			color: var(--txt-dark);
 			margin: 0;
 			max-width: 100%;

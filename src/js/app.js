@@ -56,6 +56,14 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 });
 
+window.addEventListener("scroll", () => {
+	if (window.scrollY > 100) {
+		headerEl.style.outline = "1px solid var(--bd-light)";
+	} else {
+		headerEl.style.outline = "";
+	}
+});
+
 //* Product List Event Delegation //////////////////////////////////////////////////////////////////////////////////////////
 
 if (productContainerEls) {

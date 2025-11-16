@@ -25,8 +25,8 @@
 	--display-font: "Anton", system-ui, sans-serif;
 
 	/* Letter spacing */
-	--ls-tight: -0.025em;
-	--ls-normal: 0.01em;
+	--ls-tight: -0.02em;
+	--ls-normal: 0em;
 	--ls-wide: 0.025em;
 	--ls-wider: 0.05em;
 }
