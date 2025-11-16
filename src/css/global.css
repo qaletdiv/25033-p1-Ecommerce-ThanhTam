@@ -120,6 +120,22 @@ a:hover {
 	max-width: 1440px;
 }
 
+/* Flexbox Utilities */
+.flex {
+	display: flex;
+}
+
+.flex-col {
+	display: flex;
+	flex-direction: column;
+}
+
+.flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .section {
 	padding-top: var(--section-space-lg);
 	padding-bottom: var(--section-space-md);

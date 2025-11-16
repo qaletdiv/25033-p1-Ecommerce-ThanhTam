@@ -1,14 +1,33 @@
 :root {
-	/* Base spacing (only used ones) */
+	/* Base spacing */
+	--space-xs: 0.25rem;
+	--space-sm: 0.5rem;
+	--space-md: 0.75rem;
 	--space-lg: 1rem;
 	--space-xl: 1.5rem;
 	--space-2xl: 2rem;
+	--space-3xl: 3rem;
+	--space-4xl: 4rem;
 
 	/* Header spacing */
-	--header-height: 70px;
+	--header-height: 4.375rem; /* 70px */
 
 	/* Section spacing */
 	--section-space-lg: 10rem;
 	--section-space-md: 7.5rem;
 	--section-space-sm: 5rem;
+
+	/* Z-index scale */
+	--z-base: 1;
+	--z-dropdown: 100;
+	--z-sticky: 200;
+	--z-modal: 400;
+	--z-tooltip: 600;
+
+	/* Border radius */
+	--radius-sm: 0.25rem;
+	--radius-md: 0.5rem;
+	--radius-lg: 0.75rem;
+	--radius-xl: 1rem;
+	--radius-pill: 9999px;
 }

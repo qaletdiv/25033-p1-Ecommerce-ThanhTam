@@ -5,20 +5,14 @@
 	height: auto;
 	width: clamp(375px, 90vw, 600px);
 	border: none;
-	outline: none;
 	padding: 2rem;
 	gap: 2em;
 	background: white;
-	border-radius: 0.75rem;
+	border-radius: var(--radius-lg);
 	animation: slideOut 0.4s cubic-bezier(1, 0, 0, 1);
 
 	&::backdrop {
-		background-color: rgba(0 0 0);
-		opacity: 0.8;
-	}
-
-	&:focus {
-		outline: none;
+		background-color: rgba(0, 0, 0, 0.8);
 	}
 }
 
