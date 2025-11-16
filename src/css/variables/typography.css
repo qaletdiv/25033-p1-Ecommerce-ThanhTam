@@ -26,5 +26,7 @@
 
 	/* Letter spacing */
 	--ls-tight: -0.025em;
+	--ls-normal: 0.01em;
 	--ls-wide: 0.025em;
+	--ls-wider: 0.05em;
 }

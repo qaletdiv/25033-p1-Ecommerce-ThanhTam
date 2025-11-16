@@ -19,6 +19,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility;
+	font-optical-sizing: auto;
 }
 
 main {
@@ -37,17 +38,20 @@ h6 {
 	line-height: 1.2;
 	margin: 0;
 	color: var(--txt-dark);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
 	font-size: var(--fs-h1);
 	line-height: 1.1;
 	letter-spacing: var(--ls-tight);
+	font-weight: var(--fw-extrabold);
 }
 h2 {
 	font-size: var(--fs-h2);
 	line-height: 1.2;
-	letter-spacing: 0;
+	letter-spacing: -0.01em;
 }
 h3 {
 	font-size: var(--fs-h3);
@@ -189,11 +193,13 @@ a:hover {
 
 .section-title {
 	font-family: var(--display-font);
-	letter-spacing: 0;
+	letter-spacing: 0.02em;
 	line-height: 1.1;
 	font-weight: 400;
 	text-transform: uppercase;
 	margin-bottom: 2rem;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 .lucide {

@@ -18,7 +18,7 @@ export default defineConfig({
 
 		target: ["es2022", "chrome89", "edge89", "firefox89", "safari15"],
 
-		sourcemap: false,
+		sourcemap: process.env.NODE_ENV === "production" ? "hidden" : true,
 
 		rollupOptions: {
 			input: {
