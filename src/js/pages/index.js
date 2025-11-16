@@ -1,0 +1,9 @@
+import { renderProducts } from "../utils";
+import { appState } from "../data";
+
+const featuredList = document.getElementById("products-featured-container");
+
+if (document.getElementById("products-featured-container")) {
+	const featuredProductList = appState.productList.filter((product) => product.featured === true);
+	renderProducts(featuredProductList, featuredList);
+}

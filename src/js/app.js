@@ -11,7 +11,7 @@ import { updateUserLoggoutState, renderLoggedinHeader } from "./utils/auth.js";
 
 //* DOM Init ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const featuredList = document.getElementById("products-featured-container");
+
 const productContainerEls = document.querySelector(".products-container");
 const cartBtnEl = document.getElementById("cartBtn");
 const headerEl = document.querySelector("header");
@@ -19,10 +19,6 @@ const cartEl = document.querySelector("[data-cart]");
 const searchInputEl = document.querySelector("[type=search]");
 
 document.addEventListener("DOMContentLoaded", () => {
-	if (document.getElementById("products-featured-container")) {
-		const featuredProductList = appState.productList.filter((product) => product.featured === true);
-		renderProducts(featuredProductList, featuredList);
-	}
 
 	cartBtnEl.addEventListener("click", () => {
 		if (!appState.currentUser.isLoggedin) {
