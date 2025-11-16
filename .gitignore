@@ -69,3 +69,4 @@ temp/
 
 # Claude AI artifacts
 .claude/
+CLAUDE.md

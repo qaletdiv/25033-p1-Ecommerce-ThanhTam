@@ -1,10 +1,10 @@
 :root {
-	--fs-h1: clamp(0.875rem, calc(0.875rem + 1.875vw), 2.75rem);
-	--fs-h2: clamp(0.875rem, calc(0.875rem + 1.375vw), 2.25rem);
-	--fs-h3: clamp(0.875rem, calc(0.875rem + 1.125vw), 2rem);
-	--fs-h4: clamp(0.875rem, calc(0.875rem + 0.875vw), 1.75rem);
-	--fs-h5: clamp(0.875rem, calc(0.875rem + 0.625vw), 1.5rem);
-	--fs-h6: clamp(0.875rem, calc(0.875rem + 0.375vw), 1.25rem);
+	--fs-h1: clamp(0.875rem, calc(0.875rem + 2.275vw), 3.15rem);
+	--fs-h2: clamp(0.875rem, calc(0.875rem + 1.725vw), 2.6rem);
+	--fs-h3: clamp(0.875rem, calc(0.875rem + 1.425vw), 2.3rem);
+	--fs-h4: clamp(0.875rem, calc(0.875rem + 1.125vw), 2rem);
+	--fs-h5: clamp(0.875rem, calc(0.875rem + 0.875vw), 1.75rem);
+	--fs-h6: clamp(0.875rem, calc(0.875rem + 0.575vw), 1.45rem);
 	--fs-default: clamp(0.875rem, calc(0.875rem + 0.125vw), 1rem);
 	--fs-large: clamp(0.875rem, calc(0.875rem + 0.375vw), 1.25rem);
 	--fs-small: 0.875rem; /* Already at minimum */

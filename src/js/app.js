@@ -9,7 +9,8 @@ import {
 import { getProductId, goToDetail, createSlug } from "./utils/index.js";
 import { updateUserLoggoutState, renderLoggedinHeader } from "./utils/auth.js";
 
-const defaultList = document.getElementById("products-container");
+//* DOM Init ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 const featuredList = document.getElementById("products-featured-container");
 const productContainerEls = document.querySelector(".products-container");
 const cartBtnEl = document.getElementById("cartBtn");
@@ -21,10 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	if (document.getElementById("products-featured-container")) {
 		const featuredProductList = appState.productList.filter((product) => product.featured === true);
 		renderProducts(featuredProductList, featuredList);
-	}
-
-	if (document.getElementById("products-container")) {
-		renderProducts(appState.productList, defaultList);
 	}
 
 	cartBtnEl.addEventListener("click", () => {
@@ -59,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 });
 
-//* Behavior của btn Add to Cart và "Xem ngay" trong product list
+//* Product List Event Delegation //////////////////////////////////////////////////////////////////////////////////////////
 
 if (productContainerEls) {
 	productContainerEls.addEventListener("click", (e) => {
@@ -92,7 +89,7 @@ if (productContainerEls) {
 	});
 }
 
-//* Event Delegation cho modal Cart
+//* Event Delegation cho modal Cart ///////////////////////////////////////////////////////////////////////////////////////
 
 cartEl.addEventListener("click", (e) => {
 	const cartCloseBtnEl = e.target.closest("[data-close]");
@@ -131,9 +128,8 @@ cartEl.addEventListener("click", (e) => {
 	renderCart();
 });
 
+//* Event Delegation cho Search Input ///////////////////////////////////////////////////////////////////////////////////////
 
-
-//* Search by name, brand, keyword
 document.addEventListener("click", (e) => {
 	const searchModal = document.querySelector(".search-result-container");
 	if (searchModal && !searchInputEl.contains(e.target) && !searchModal.contains(e.target)) {

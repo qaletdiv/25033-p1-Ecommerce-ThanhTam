@@ -24,6 +24,10 @@ export function goToDetail(productId, productName) {
 	window.location.href = `/product-details.html?id=${productId}&name=${productName}`;
 }
 
+export function goToCategory(categoryName) {
+	window.location.href = `/products-list.html?category=${categoryName}`;
+}
+
 export function calCartTotal(classSelector, container, arr) {
 	const totalPriceEl = container.querySelector(classSelector);
 	const totalPrice = arr.reduce((total, currentItem) => {

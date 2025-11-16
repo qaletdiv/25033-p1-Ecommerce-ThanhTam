@@ -19,7 +19,7 @@ export function updateUserLoggoutState(user) {
 export function renderLoggedinHeader() {
 	const userBtnEl = document.getElementById("userBtn");
 	const headerActionEl = document.querySelector(".nav-actions");
-	userBtnEl.innerHTML += `Hello ${appState.currentUser.name.charAt(0).toUpperCase() + appState.currentUser.name.slice(1)}`;
+	userBtnEl.innerHTML += `${appState.currentUser.name.charAt(0).toUpperCase() + appState.currentUser.name.slice(1)}`;
 	userBtnEl.classList.remove("btn", "btn--icon-only");
 	userBtnEl.classList.add("user-is-loggedin");
 
