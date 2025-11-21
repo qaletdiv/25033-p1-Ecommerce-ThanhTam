@@ -11,7 +11,6 @@ import {
 	getProductId,
 	goToDetail,
 	renderCart,
-	renderProducts,
 	renderSearchModal,
 	showLoginModal,
 } from "./utils/index.js";
