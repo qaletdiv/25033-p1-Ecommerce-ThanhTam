@@ -64,7 +64,7 @@ window.addEventListener("scroll", () => {
 	}
 });
 
-//* Product List Event Delegation //////////////////////////////////////////////////////////////////////////////////////////
+//* Product List Event Delegation ////////////////////////////////////////////////////////////////////////////////////////////
 
 if (productContainerEls) {
 	productContainerEls.addEventListener("click", (e) => {
@@ -90,7 +90,9 @@ if (productContainerEls) {
 
 		if (viewBtn) {
 			const productId = getProductId(e);
-			const product = appState.productList.find((product) => product.id === productId);
+			const product = appState.productList.find(
+				(product) => product.id === productId
+			);
 			const productName = createSlug(product.name);
 			goToDetail(productId, productName);
 		}
@@ -112,7 +114,9 @@ cartEl.addEventListener("click", (e) => {
 		return;
 	}
 
-	const productId = Number(e.target.closest("[data-product-id]").dataset.productId);
+	const productId = Number(
+		e.target.closest("[data-product-id]").dataset.productId
+	);
 
 	if (!productId) {
 		return;
@@ -140,7 +144,11 @@ cartEl.addEventListener("click", (e) => {
 
 document.addEventListener("click", (e) => {
 	const searchModal = document.querySelector(".search-result-container");
-	if (searchModal && !searchInputEl.contains(e.target) && !searchModal.contains(e.target)) {
+	if (
+		searchModal &&
+		!searchInputEl.contains(e.target) &&
+		!searchModal.contains(e.target)
+	) {
 		searchModal.remove();
 	} else {
 		return;
