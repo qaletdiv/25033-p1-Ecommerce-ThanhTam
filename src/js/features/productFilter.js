@@ -1,61 +1,114 @@
 import { appState } from "../data/index.js";
-
 import { renderProducts } from "./productRenderer.js";
 
-//* Filter by categories
-const categoriesEl = document.getElementById("categories-container");
-const filterEl = document.getElementById("filter-container");
-const productContainerEl = document.getElementById("products-container");
 
-function updateCurrentCategory(category) {
-	productContainerEl.dataset.category = `${category}` || "all";
-}
 
-if (productContainerEl && categoriesEl) {
-	const productBycategories = Object.groupBy(appState.productList, (product) => product.category);
-	const categoriesName = Object.keys(productBycategories);
-	categoriesName.forEach((category) => {
-		const item = document.createElement("button");
-		item.classList.add("btn", "btn--link", "btn--sm");
-		item.innerText = `${category}`;
-		item.dataset.category = `${category}`;
-		categoriesEl.append(item);
-	});
 
-	if (filterEl) {
-		filterEl.addEventListener("click", (e) => {
-			const productId = e.target.innerText.toLowerCase();
-			const pageTitleEl = document.getElementById("product-category-name");
-			const matchCategoryProducts = productBycategories[productId];
 
-			if (e.target.id === "show-all-btn") {
-				renderProducts(appState.productList, productContainerEl);
-				pageTitleEl.textContent = "Toàn bộ sản phẩm";
-				productContainerEl.dataset.category = "all";
-			}
 
-			if (!matchCategoryProducts) {
-				return;
-			} else {
-				renderProducts(matchCategoryProducts, productContainerEl);
-				selectEl.value = "all";
-			}
 
-			pageTitleEl.textContent =
-				productId.toUpperCase().charAt(0).toUpperCase() + productId.slice(1);
 
-			updateCurrentCategory(productId);
 
-			if (document.querySelector(".empty-message")) {
-				document.querySelector(".empty-message").remove();
-			}
-		});
-	}
-}
 
-//* Filter by prices
 
-const selectEl = document.getElementById("price-range");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const categoriesEl = document.getElementById("categories-container");
+// const filterEl = document.getElementById("filter-container");
+// const productContainerEl = document.getElementById("products-container");
+
+// function updateCurrentCategory(category) {
+// 	productContainerEl.dataset.category = `${category}` || "all";
+// }
+
+// if (productContainerEl && categoriesEl) {
+// 	const productBycategories = Object.groupBy(appState.productList, (product) => product.category);
+// 	const categoriesName = Object.keys(productBycategories);
+// 	categoriesName.forEach((category) => {
+// 		const item = document.createElement("button");
+// 		item.classList.add("btn", "btn--link", "btn--sm");
+// 		item.innerText = `${category}`;
+// 		item.dataset.category = `${category}`;
+// 		categoriesEl.append(item);
+// 	});
+
+// 	if (filterEl) {
+// 		filterEl.addEventListener("click", (e) => {
+// 			const productId = e.target.innerText.toLowerCase();
+// 			const pageTitleEl = document.getElementById("product-category-name");
+// 			const matchCategoryProducts = productBycategories[productId];
+
+// 			if (e.target.id === "show-all-btn") {
+// 				renderProducts(appState.productList, productContainerEl);
+// 				pageTitleEl.textContent = "Toàn bộ sản phẩm";
+// 				productContainerEl.dataset.category = "all";
+// 			}
+
+// 			if (!matchCategoryProducts) {
+// 				return;
+// 			} else {
+// 				renderProducts(matchCategoryProducts, productContainerEl);
+// 				selectEl.value = "all";
+// 			}
+
+// 			pageTitleEl.textContent =
+// 				productId.toUpperCase().charAt(0).toUpperCase() + productId.slice(1);
+
+// 			updateCurrentCategory(productId);
+
+// 			if (document.querySelector(".empty-message")) {
+// 				document.querySelector(".empty-message").remove();
+// 			}
+// 		});
+// 	}
+// }
+
+// const selectEl = document.getElementById("price-range");
 
 // function showEmptyMessage(container, message) {
 // 	const emptyText = document.createElement("p");
