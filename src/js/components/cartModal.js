@@ -1,5 +1,5 @@
 import { appState } from "../data/index.js";
-import { renderCart } from "../utils/index.js";
+import { renderCart, updateCartBadge } from "../utils/index.js";
 
 const cartEl = document.querySelector("[data-cart]");
 
@@ -26,6 +26,7 @@ export function addtoCart(productId, button, quantityNum) {
 	localStorage.setItem("cart", JSON.stringify(appState.cartItems));
 
 	setTimeout(() => {
+		updateCartBadge(appState.cartItems);
 		renderCart();
 		requestAnimationFrame(() => {
 			const itemInCart = cartEl.querySelector(

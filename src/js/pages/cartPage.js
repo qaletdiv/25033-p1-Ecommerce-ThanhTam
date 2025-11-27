@@ -18,9 +18,15 @@ const cartContainerEl = document.getElementById("cart-page-container");
 
 //* Render giỏ hàng
 
+const totalCartItem = appState.cartItems.reduce(
+	(total, current) => total + current.quantity,
+	0
+);
+
 if (appState.cartItems.length === 0) {
 	cartContainerEl.textContent = "Giỏ hàng của bạn đang trống";
 } else {
+	document.querySelector("#cart-title").textContent += ` (${totalCartItem})`;
 	cartContainerEl.innerHTML = appState.cartItems
 		.map((item) => {
 			const productName = String(item.name || "").replace(/[<>]/g, "");

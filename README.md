@@ -2,7 +2,7 @@
 
 Ứng dụng web thương mại điện tử với đầy đủ tính năng mua sắm trực tuyến, được xây dựng bằng Vanilla JavaScript và Vite.
 
-Demo: https://alltech-demo.netlify.app/
+Demo: https://alltech-ecom-app.pages.dev/
 
 ## 🛠 Tech Stack
 
@@ -61,7 +61,7 @@ wrangler login
 ## 📊 Dữ Liệu
 
 - **28 sản phẩm mock** (6 categories: smartphone, laptop, tablet, desktop, monitor, accessory)
-- **1 user test mặc định:** `test@example.com` / `test1234`
+- **1 user test mặc định:** `demo@gmail.com` / `123456789`
 - Lưu trữ: localStorage (userList, cart, currentUser, productList, orderHistory)
 
 ## 📁 Project Structure

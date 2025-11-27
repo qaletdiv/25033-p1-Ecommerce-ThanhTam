@@ -39,3 +39,23 @@ export function calCartTotal(classSelector, container, arr) {
 	}
 	totalPriceEl.textContent = `${totalPrice.toLocaleString("vi-VN")}đ`;
 }
+
+export function updateCartBadge(cartItems) {
+	const badgeEl = document.querySelector("[data-cart-count]");
+	if (!badgeEl) {
+		return;
+	}
+
+	const totalQuantity = cartItems.reduce(
+		(total, item) => total + item.quantity,
+		0
+	);
+
+	if (totalQuantity > 0) {
+		badgeEl.textContent = `(${totalQuantity})`;
+		badgeEl.style.display = "inline";
+	} else {
+		badgeEl.textContent = "";
+		badgeEl.style.display = "none";
+	}
+}

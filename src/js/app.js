@@ -13,6 +13,7 @@ import {
 	renderCart,
 	renderSearchModal,
 	showLoginModal,
+	updateCartBadge,
 } from "./utils/index.js";
 
 //* DOM Init ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,6 +25,8 @@ const cartEl = document.querySelector("[data-cart]");
 const searchInputEl = document.querySelector("[type=search]");
 
 document.addEventListener("DOMContentLoaded", () => {
+	updateCartBadge(appState.cartItems);
+
 	cartBtnEl.addEventListener("click", () => {
 		if (!appState.currentUser.isLoggedin) {
 			showLoginModal();
@@ -137,6 +140,7 @@ cartEl.addEventListener("click", (e) => {
 	}
 
 	localStorage.setItem("cart", JSON.stringify(appState.cartItems));
+	updateCartBadge(appState.cartItems);
 	renderCart();
 });
 

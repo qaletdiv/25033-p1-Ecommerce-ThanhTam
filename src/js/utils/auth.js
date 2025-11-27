@@ -28,7 +28,7 @@ export function renderLoggedinHeader() {
 	});
 	const signOutBtn = document.createElement("a");
 	signOutBtn.classList.add("nav-item", "is-loggedin");
-	signOutBtn.textContent = "Logout";
+	signOutBtn.textContent = "Đăng xuất";
 	signOutBtn.href = "#";
 	headerActionEl.prepend(signOutBtn);
 }

@@ -38,14 +38,13 @@
                 <a href="/login.html" class="btn btn--icon-only" id="userBtn" aria-label="Login"><i
                         class="lucide icon-user size-default"></i></a>
                 <button class="btn btn--icon-only" id="cartBtn" aria-label="Open cart" disabled><i
-                        class="lucide icon-shopping-cart size-default"></i></button>
+                        class="lucide icon-shopping-cart size-default"></i><span class="cart-badge" data-cart-count></span></button>
             </div>
         </div>
     </header>
     <main>
         <section class="section cart-section">
             <div class="container">
-                <h1 class="section-title">Thanh toán</h1>
                 <div class="cart-page-container">
                     <div class="payment-form-section" id="payment-form">
                         <div class="payment-card">
@@ -122,8 +121,8 @@
 
 
                     <div class="cart-summary-section">
-                        <div class="payment-card">
-                            <h2 class="card-title">Đơn hàng của bạn</h2>
+                        <div class="payment-card order-card">
+                            <h2 class="card-title" id="cart-title">Đơn hàng của bạn</h2>
                             <div class="cart-items-container" id="cart-page-container"></div>
                             <div class="cart-sum-container">
                                 <div class="cart-sum-info">
@@ -139,8 +138,6 @@
                                     <p class="cart-total-price"></p>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>

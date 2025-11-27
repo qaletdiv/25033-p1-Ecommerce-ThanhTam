@@ -5,7 +5,7 @@ const userInServers = [
 		id: Date.now().toString(),
 		name: "Tam",
 		phoneNumber: "09655679812",
-		email: "thanhtamktvn600@gmail.com",
+		email: "demo@gmail.com",
 		password: "123456789",
 		isLoggedin: false,
 		cart: [],
