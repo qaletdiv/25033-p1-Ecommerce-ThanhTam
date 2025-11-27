@@ -12,7 +12,7 @@ export function renderLoginModal() {
 			"beforeend",
 			`<dialog data-modal class="modal">
         <div>
-            <p class="modal-title">Please login to proceed</p>
+            <p class="modal-title">Vui lòng đăng nhập để tiếp tục</p>
             <button class="btn btn--icon-only btn--small modal-close" aria-label="Close modal"><i class="lucide icon-x size-default"></i></button>
             <div class="btn-group">
                 <a class="btn btn--primary" href="/login.html">Đăng nhập</a>

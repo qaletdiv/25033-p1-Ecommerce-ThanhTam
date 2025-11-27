@@ -52,7 +52,7 @@ if (targetProduct) {
 		img.style.opacity = "1";
 	});
 } else {
-	productDetailContainer.innerHTML = `<p>Product Not Found</p>`;
+	productDetailContainer.innerHTML = `<p>Không tìm thấy sản phẩm</p>`;
 }
 
 productDetailContainer.addEventListener("click", (e) => {
