@@ -32,12 +32,18 @@ formEl.addEventListener("submit", (e) => {
 		errorMsg.push("Vui lòng xác nhận mật khẩu");
 	}
 
-	if (passwordInput !== "" && confirmPassInput !== "" && confirmPassInput !== passwordInput) {
+	if (
+		passwordInput !== "" &&
+		confirmPassInput !== "" &&
+		confirmPassInput !== passwordInput
+	) {
 		errorMsg.push("Mật khẩu không khớp");
 	}
 
 	if (emailInput !== "") {
-		const isEmailMatch = appState.userList.some((user) => user.email === emailInput);
+		const isEmailMatch = appState.userList.some(
+			(user) => user.email === emailInput
+		);
 		if (isEmailMatch) {
 			errorMsg.push("Địa chỉ email này đã được đăng ký");
 		}
@@ -50,7 +56,9 @@ formEl.addEventListener("submit", (e) => {
 
 	createNewUser(nameInput, emailInput, passwordInput);
 
-	const successMsg = ["Đăng ký thành công! Bạn sẽ được điều hướng đến trang đăng nhập"];
+	const successMsg = [
+		"Đăng ký thành công! Bạn sẽ được điều hướng đến trang đăng nhập",
+	];
 	renderSuccessMsg(successMsg, formEl);
 
 	submitBtn.disabled = true;

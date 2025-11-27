@@ -1,4 +1,4 @@
-import { animate, inView, stagger } from "motion";
+// import { animate, inView, stagger } from "motion";
 
 export function renderProducts(arr, container) {
 	container.innerHTML = "";
@@ -21,9 +21,13 @@ export function renderProducts(arr, container) {
 		})
 		.join("");
 
-	const productItem = document.querySelectorAll(".product-card");
+	// const productItem = document.querySelectorAll(".product-card");
 
-	inView(container, () => {
-		animate(productItem, { y: [10, 0], opacity: [0, 1] }, { duration: 0.18, delay: stagger(0.1) });
-	});
+	// inView(container, () => {
+	// 	animate(
+	// 		productItem,
+	// 		{ y: [10, 0], opacity: [0, 1] },
+	// 		{ duration: 0.18, delay: stagger(0.1) }
+	// 	);
+	// });
 }

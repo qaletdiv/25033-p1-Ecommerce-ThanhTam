@@ -50,16 +50,15 @@
             <div class="container">
                 <div class="filter-container" id="filter-container">
                     <div class="categories-container" id="categories-container">
-                        <!-- <button class="btn btn--link btn--sm" id="show-all-btn">Toàn bộ</button> -->
-                        <p id="products-count"></p>
+                        <button class="btn btn--link btn--sm" id="show-all-btn">Toàn bộ</button>
                     </div>
                     <div class="prices-container">
-                        <select class="dropdown" id="price-range">
-                            <option value="all">Nổi bật</option>
-                            <option value="0-5">Bán chạy</option>
-                            <option value="5-10">Giá tăng dần</option>
-                            <option value="10-20">Giá giảm dần</option>
-                            <option value="20-40">Mới</option>
+                        <select class="dropdown" id="sort-options">
+                            <option value="featured" selected>Nổi bật</option>
+                            <option value="best-seller">Bán chạy</option>
+                            <option value="price-ascending">Giá tăng dần</option>
+                            <option value="price-decending">Giá giảm dần</option>
+                            <option value="new-arrival">Mới</option>
                         </select>
                     </div>
                 </div>
@@ -94,7 +93,8 @@
         </div>
     </footer>
     <script type="module" src="/src/js/app.js"></script>
-    <script type="module" src="src/js/pages/productListing.js"></script>
+    <script type="module" src="/src/js/pages/productListing.js"></script>
+    <script type="module" src="/src/js/features/productFilter.js"></script>
 </body>
 
 </html>

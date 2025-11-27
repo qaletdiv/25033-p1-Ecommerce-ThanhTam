@@ -6,11 +6,17 @@ import { renderProducts, showLoginModal } from "../utils/index.js";
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get("id");
 
-const targetProduct = appState.productList.find((product) => product.id === Number(productId));
+const targetProduct = appState.productList.find(
+	(product) => product.id === Number(productId)
+);
 
-const productDetailContainer = document.getElementById("product-detail-container");
+const productDetailContainer = document.getElementById(
+	"product-detail-container"
+);
 
-const productRelatedContainer = document.getElementById("product-related-container");
+const productRelatedContainer = document.getElementById(
+	"product-related-container"
+);
 
 if (targetProduct) {
 	productDetailContainer.innerHTML = `
@@ -86,7 +92,10 @@ const currentCategory = targetProduct.category;
 
 if (productRelatedContainer) {
 	const relatedProduct = appState.productList
-		.filter((product) => product.category === currentCategory && product.id !== targetProduct.id)
+		.filter(
+			(product) =>
+				product.category === currentCategory && product.id !== targetProduct.id
+		)
 		.slice(0, 4);
 
 	if (relatedProduct) {
@@ -115,7 +124,9 @@ if (productRelatedContainer) {
 
 		if (viewBtn) {
 			const productId = getProductId(e);
-			const product = appState.productList.find((product) => product.id === productId);
+			const product = appState.productList.find(
+				(product) => product.id === productId
+			);
 			const productName = createSlug(product.name);
 			goToDetail(productId, productName);
 			return;
