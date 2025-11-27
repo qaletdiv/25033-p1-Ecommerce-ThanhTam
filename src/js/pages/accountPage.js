@@ -4,7 +4,9 @@ function renderAccountInfo() {
 	const accountInfo = document.getElementById("account-info");
 	const accountOrderHistory = document.getElementById("account-order-history");
 
-	const user = appState.userList.find((user) => user.id === appState.currentUser.id);
+	const user = appState.userList.find(
+		(user) => user.id === appState.currentUser.id
+	);
 	const userOrderHistory = user.orderHistory;
 
 	accountInfo.innerHTML = `
@@ -37,11 +39,14 @@ function renderAccountInfo() {
         <ul class="account-order-list">
             ${userOrderHistory
 							.map((order) => {
-								const orderDate = new Date(order.date).toLocaleDateString("vi-VN", {
-									year: "numeric",
-									month: "long",
-									day: "numeric",
-								});
+								const orderDate = new Date(order.date).toLocaleDateString(
+									"vi-VN",
+									{
+										year: "numeric",
+										month: "long",
+										day: "numeric",
+									}
+								);
 
 								const itemsHTML = order.orderItems
 									.map(

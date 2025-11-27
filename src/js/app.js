@@ -1,17 +1,22 @@
-import { appState } from "./data/index.js";
-import { renderCart, renderProducts, showLoginModal, renderSearchModal } from "./utils/index.js";
 import {
 	addtoCart,
-	removeFromCart,
-	increaseQuantity,
 	decreaseQuantity,
+	increaseQuantity,
+	removeFromCart,
 } from "./components/cartModal.js";
-import { getProductId, goToDetail, createSlug } from "./utils/index.js";
-import { updateUserLoggoutState, renderLoggedinHeader } from "./utils/auth.js";
+import { appState } from "./data/index.js";
+import { renderLoggedinHeader, updateUserLoggoutState } from "./utils/auth.js";
+import {
+	createSlug,
+	getProductId,
+	goToDetail,
+	renderCart,
+	renderSearchModal,
+	showLoginModal,
+} from "./utils/index.js";
 
 //* DOM Init ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const featuredList = document.getElementById("products-featured-container");
 const productContainerEls = document.querySelector(".products-container");
 const cartBtnEl = document.getElementById("cartBtn");
 const headerEl = document.querySelector("header");
@@ -19,11 +24,6 @@ const cartEl = document.querySelector("[data-cart]");
 const searchInputEl = document.querySelector("[type=search]");
 
 document.addEventListener("DOMContentLoaded", () => {
-	if (document.getElementById("products-featured-container")) {
-		const featuredProductList = appState.productList.filter((product) => product.featured === true);
-		renderProducts(featuredProductList, featuredList);
-	}
-
 	cartBtnEl.addEventListener("click", () => {
 		if (!appState.currentUser.isLoggedin) {
 			showLoginModal();
@@ -56,7 +56,15 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 });
 
-//* Product List Event Delegation //////////////////////////////////////////////////////////////////////////////////////////
+window.addEventListener("scroll", () => {
+	if (window.scrollY > 100) {
+		headerEl.style.outline = "1px solid var(--bd-light)";
+	} else {
+		headerEl.style.outline = "";
+	}
+});
+
+//* Product List Event Delegation ////////////////////////////////////////////////////////////////////////////////////////////
 
 if (productContainerEls) {
 	productContainerEls.addEventListener("click", (e) => {
@@ -82,7 +90,9 @@ if (productContainerEls) {
 
 		if (viewBtn) {
 			const productId = getProductId(e);
-			const product = appState.productList.find((product) => product.id === productId);
+			const product = appState.productList.find(
+				(product) => product.id === productId
+			);
 			const productName = createSlug(product.name);
 			goToDetail(productId, productName);
 		}
@@ -104,7 +114,9 @@ cartEl.addEventListener("click", (e) => {
 		return;
 	}
 
-	const productId = Number(e.target.closest("[data-product-id]").dataset.productId);
+	const productId = Number(
+		e.target.closest("[data-product-id]").dataset.productId
+	);
 
 	if (!productId) {
 		return;
@@ -132,7 +144,11 @@ cartEl.addEventListener("click", (e) => {
 
 document.addEventListener("click", (e) => {
 	const searchModal = document.querySelector(".search-result-container");
-	if (searchModal && !searchInputEl.contains(e.target) && !searchModal.contains(e.target)) {
+	if (
+		searchModal &&
+		!searchInputEl.contains(e.target) &&
+		!searchModal.contains(e.target)
+	) {
 		searchModal.remove();
 	} else {
 		return;

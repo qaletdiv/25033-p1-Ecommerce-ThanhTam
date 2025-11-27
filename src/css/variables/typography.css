@@ -1,4 +1,5 @@
 :root {
+	/* Font sizes */
 	--fs-h1: clamp(0.875rem, calc(0.875rem + 2.275vw), 3.15rem);
 	--fs-h2: clamp(0.875rem, calc(0.875rem + 1.725vw), 2.6rem);
 	--fs-h3: clamp(0.875rem, calc(0.875rem + 1.425vw), 2.3rem);
@@ -7,7 +8,7 @@
 	--fs-h6: clamp(0.875rem, calc(0.875rem + 0.575vw), 1.45rem);
 	--fs-default: clamp(0.875rem, calc(0.875rem + 0.125vw), 1rem);
 	--fs-large: clamp(0.875rem, calc(0.875rem + 0.375vw), 1.25rem);
-	--fs-small: 0.875rem; /* Already at minimum */
+	--fs-small: 0.875rem;
 	--fs-caption: 0.75rem;
 	--fs-label: 0.75rem;
 
@@ -24,7 +25,6 @@
 	--default-font: "Inter", system-ui, sans-serif;
 	--display-font: "Anton", system-ui, sans-serif;
 
-	/* Letter spacing */
-	--ls-tight: -0.025em;
-	--ls-wide: 0.025em;
+	/* Letter spacing (only used one) */
+	--ls-tight: -0.02em;
 }

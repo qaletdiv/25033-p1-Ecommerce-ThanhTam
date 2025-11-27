@@ -50,41 +50,28 @@
             <div class="container">
                 <div class="filter-container" id="filter-container">
                     <div class="categories-container" id="categories-container">
-                        <!-- <button class="btn btn--link btn--sm" id="show-all-btn">Toàn bộ</button> -->
-                        <p id="products-count"></p>
+                        <button class="btn btn--link btn--sm" id="show-all-btn">Toàn bộ</button>
                     </div>
                     <div class="prices-container">
-                        <select class="dropdown" id="price-range">
-                            <option value="all">Lọc theo giá</option>
-                            <option value="0-5">Dưới 5tr</option>
-                            <option value="5-10"> Từ 5-10tr</option>
-                            <option value="10-20">Từ 10-20tr</option>
-                            <option value="20-40">Từ 20-40tr</option>
-                            <option value="40-100">Trên 40tr</option>
+                        <select class="dropdown" id="sort-options">
+                            <option value="featured" selected>Nổi bật</option>
+                            <option value="best-seller">Bán chạy</option>
+                            <option value="price-ascending">Giá tăng dần</option>
+                            <option value="price-decending">Giá giảm dần</option>
+                            <option value="new-arrival">Mới</option>
                         </select>
                     </div>
-                    <!-- <div class="sort-container">
-                        <select class="dropdown" id="sort-range">
-                            <option value="new">Mới nhất</option>
-                            <option value="featured">Nổi bật</option>
-                            <option value="how-high">Giá tăng dần</option>
-                            <option value="high-low"> Giá giảm dần</option>
-                            <option value="A-Z">A-Z</option>
-                            <option value="Z-A">Z-A</option>
-                        </select>
-                    </div> -->
                 </div>
                 <div id="products-container" class="products-container"></div>
                 <!-- <nav aria-lable="pagination">
                     <ul class="pagination-container">
-                        
                     </ul>
                 </nav> -->
             </div>
         </section>
         <dialog class="cart-container" data-cart>
             <div class="cart-header">
-                <h2>Giỏ hàng</h2>
+                <h4>Giỏ hàng</h4>
                 <button class="btn btn--small btn--icon-only" data-close><i
                         class="lucide icon-x size-default"></i></button>
             </div>
@@ -106,7 +93,8 @@
         </div>
     </footer>
     <script type="module" src="/src/js/app.js"></script>
-    <script type="module" src="src/js/pages/productListing.js"></script>
+    <script type="module" src="/src/js/pages/productListing.js"></script>
+    <script type="module" src="/src/js/features/productFilter.js"></script>
 </body>
 
 </html>

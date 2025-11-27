@@ -1,4 +1,5 @@
 import { appState } from "../data/index.js";
+
 // } from "../data/index.js";
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -9,7 +10,9 @@ const orderOwner = appState.userList.find((user) => {
 	return user.orderHistory.find((order) => order.orderId === orderId);
 });
 
-const foundOrder = orderOwner?.orderHistory.find((order) => order.orderId === orderId);
+const foundOrder = orderOwner?.orderHistory.find(
+	(order) => order.orderId === orderId
+);
 
 renderOrderSum(foundOrder, orderContainerEl);
 
@@ -98,7 +101,9 @@ export function renderOrderSum(order, container) {
 
 	container.innerHTML = orderSummaryEl;
 
-	const orderItemsContainer = container.querySelector(".order-items-summary .info-grid");
+	const orderItemsContainer = container.querySelector(
+		".order-items-summary .info-grid"
+	);
 	const itemsHTML = order.orderItems
 		.map(
 			(item) => `

@@ -1,11 +1,18 @@
 const { getAllProvince } = await import("vietnam-provinces-js/provinces");
 const provinces = await getAllProvince();
 
-import { setCurrentUser, updateUsersfromLocal } from "../data/index.js";
-import { appState } from "../data/index.js";
+import {
+	decreaseQuantity,
+	increaseQuantity,
+	removeFromCart,
+} from "../components/cartModal.js";
+import {
+	appState,
+	setCurrentUser,
+	updateUsersfromLocal,
+} from "../data/index.js";
 import { getProductId } from "../utils/helpers.js";
 import { calCartTotal } from "../utils/index.js";
-import { decreaseQuantity, increaseQuantity, removeFromCart } from "../components/cartModal.js";
 
 const cartContainerEl = document.getElementById("cart-page-container");
 
@@ -109,7 +116,9 @@ export function removeItemsfromCart() {
 }
 
 function addtoCurrentUserCart() {
-	const indexToUpdate = appState.userList.findIndex((user) => user.id === appState.currentUser.id);
+	const indexToUpdate = appState.userList.findIndex(
+		(user) => user.id === appState.currentUser.id
+	);
 
 	if (indexToUpdate !== -1) {
 		if (!Array.isArray(appState.userList[indexToUpdate].orderHistory)) {
@@ -120,18 +129,29 @@ function addtoCurrentUserCart() {
 		const phone = phoneInput.value;
 		const address = addressInput.value;
 		const note = noteTextarea.value;
-		const city = provincesSelectEl.options[provincesSelectEl.selectedIndex].text;
-		const selectedPayment = formEl.querySelector("input[name='payment-method']:checked");
+		const city =
+			provincesSelectEl.options[provincesSelectEl.selectedIndex].text;
+		const selectedPayment = formEl.querySelector(
+			"input[name='payment-method']:checked"
+		);
 
 		let paymentText;
 
 		if (selectedPayment) {
-			const labelEl = document.querySelector(`label[for="${selectedPayment.id}"]`);
+			const labelEl = document.querySelector(
+				`label[for="${selectedPayment.id}"]`
+			);
 			const spanEl = labelEl?.querySelector("span");
 			paymentText = spanEl?.textContent.trim();
 		}
 
-		if (name === "" || phone === "" || address === "" || city === "" || !selectedPayment) {
+		if (
+			name === "" ||
+			phone === "" ||
+			address === "" ||
+			city === "" ||
+			!selectedPayment
+		) {
 			alert("vui lòng điền đầy đủ thông tin");
 			return;
 		} else {
@@ -148,9 +168,15 @@ function addtoCurrentUserCart() {
 				phoneNumber: phone,
 				paymentMethod: paymentText,
 				orderItems: [...appState.cartItems],
-				totalItem: appState.cartItems.reduce((total, current) => total + current.quantity, 0),
+				totalItem: appState.cartItems.reduce(
+					(total, current) => total + current.quantity,
+					0
+				),
 				totalPrice: appState.cartItems
-					.reduce((total, current) => total + current.price * current.quantity, 0)
+					.reduce(
+						(total, current) => total + current.price * current.quantity,
+						0
+					)
 					.toLocaleString("vi-VN"),
 			});
 

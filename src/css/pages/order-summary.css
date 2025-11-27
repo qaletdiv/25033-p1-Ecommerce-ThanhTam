@@ -12,7 +12,7 @@
 
 .order-success-banner {
 	background: var(--bg-white);
-	border-radius: 1rem;
+	border-radius: var(--radius-xl);
 	padding: var(--space-2xl);
 	display: flex;
 	align-items: center;
@@ -28,7 +28,7 @@
 	height: 4rem;
 	background: var(--bg-success);
 	color: var(--txt-success);
-	border-radius: 9999px;
+	border-radius: var(--radius-pill);
 
 	> i {
 		font-size: 2rem;
@@ -55,7 +55,7 @@
 
 .order-summary {
 	background: var(--bg-white);
-	border-radius: 1rem;
+	border-radius: var(--radius-xl);
 	padding: var(--space-2xl);
 	display: flex;
 	flex-direction: column;

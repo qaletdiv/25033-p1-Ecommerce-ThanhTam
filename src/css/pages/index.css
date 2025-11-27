@@ -15,13 +15,17 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.95) 100%);
-		z-index: 1;
+		background: linear-gradient(
+			to bottom,
+			rgba(0, 0, 0, 0.1) 50%,
+			rgba(0, 0, 0, 0.95) 100%
+		);
+		z-index: var(--z-base);
 	}
 
 	> img {
 		width: 100%;
-		height: 85vh;
+		height: 85vh; /* Large hero image taking most of viewport */
 		overflow: hidden;
 		object-position: center top;
 		object-fit: cover;
@@ -32,16 +36,16 @@
 	display: flex;
 	flex-direction: column;
 	position: absolute;
-	bottom: 15%;
-	left: 5%;
-	z-index: 2;
+	bottom: 15%; /* Position above bottom for readability */
+	left: 5%; /* Left-aligned with padding */
+	z-index: var(--z-base);
 	gap: 1.25rem;
 	color: white;
-	max-width: 60ch;
+	max-width: 60ch; /* Optimal line length for readability */
 
 	.featured-banner-title {
 		color: white;
-		font-size: calc(var(--fs-h1) * 1.8);
+		font-size: calc(var(--fs-h1) * 1.8); /* Extra large hero title */
 		font-family: var(--display-font);
 		text-transform: uppercase;
 		line-height: 1.2;
@@ -50,9 +54,9 @@
 	}
 
 	p {
-		opacity: 0.75;
+		opacity: 0.75; /* Subtle text on hero overlay */
 		font-size: var(--fs-large);
-		font-weight: 350;
+		font-weight: 350; /* Light weight for hero description */
 	}
 
 	.btn {
@@ -73,5 +77,5 @@
 	overflow: hidden;
 	height: auto;
 	object-fit: cover;
-	border-radius: 0.75rem;
+	border-radius: var(--radius-lg);
 }

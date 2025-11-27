@@ -1,0 +1,132 @@
+/* ==========================================================================
+   SHARED COMPONENTS
+   Components dùng chung trên nhiều trang
+   ========================================================================== */
+
+/* ==========================================================================
+   CART TOTAL
+   ========================================================================== */
+
+.cart-total {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-top: 1px solid var(--bd-light);
+	margin-top: auto;
+	padding-top: 1rem;
+}
+
+.cart-total-label {
+	font-size: var(--fs-default);
+	font-weight: var(--fw-medium);
+	color: var(--txt-default);
+}
+
+.cart-total-price {
+	font-size: var(--fs-large);
+	font-weight: var(--fw-bold);
+	color: var(--txt-dark);
+}
+
+/* ==========================================================================
+   INFO COMPONENTS
+   ========================================================================== */
+
+.info-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
+}
+
+.info-item {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+
+.info-label {
+	font-size: var(--fs-default);
+	color: var(--txt-light);
+	font-weight: var(--fw-medium);
+	margin: 0;
+}
+
+.info-content {
+	font-size: var(--fs-default);
+	color: var(--txt-dark);
+	font-weight: var(--fw-medium);
+	margin: 0;
+}
+
+/* ==========================================================================
+   CART ITEM COMPONENT
+   ========================================================================== */
+
+.cart-items-container {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.cart-item {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+	background-color: var(--bg-white);
+	border-radius: var(--radius-md);
+}
+
+.cart-item-img {
+	display: block;
+	width: 4.5rem;
+	height: 4.5rem;
+	object-fit: contain;
+	margin: 0;
+	background-color: var(--bg-default);
+	border-radius: var(--radius-md);
+}
+
+.cart-item-price {
+	font-size: var(--fs-default);
+	font-weight: var(--fw-semibold);
+	color: var(--txt-dark);
+	text-align: right;
+}
+
+.cart-item-info {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.cart-item-name {
+	width: 100%;
+	font-size: var(--fs-small);
+	color: var(--txt-dark);
+	margin: 0;
+	max-width: 90%;
+}
+
+.cart-item-action {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+}
+
+.quantity-controls {
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+	border: 1px solid var(--bd-light);
+	border-radius: var(--radius-sm);
+	padding: 0.25rem;
+}
+
+.quantity-value {
+	font-size: var(--fs-small);
+	font-weight: var(--fw-medium);
+	margin: 0;
+	min-width: 2rem;
+	text-align: center;
+}

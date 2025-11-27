@@ -14,7 +14,7 @@
 	gap: 2rem;
 	padding: 2rem 1rem 1.5rem 1rem;
 	background: var(--bg-light);
-	border-radius: 0.75rem;
+	border-radius: var(--radius-lg);
 	text-align: center;
 	align-items: center;
 	justify-content: space-between;

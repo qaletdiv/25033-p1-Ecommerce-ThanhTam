@@ -7,12 +7,11 @@
 	justify-content: center;
 	padding: 1rem;
 	background: var(--bg-white);
-	border-radius: 1rem;
+	border-radius: var(--radius-xl);
 	border: none;
 
 	&::backdrop {
-		background-color: rgba(0 0 0);
-		opacity: 0.5;
+		background-color: rgba(0, 0, 0, 0.5);
 	}
 }
 
@@ -26,5 +25,5 @@
 	position: absolute;
 	top: 0.5rem;
 	right: 0.5rem;
-	z-index: 10;
+	z-index: var(--z-base);
 }

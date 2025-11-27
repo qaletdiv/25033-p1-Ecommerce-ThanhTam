@@ -6,7 +6,16 @@ export const products = [
 		category: "smartphone",
 		price: 34990000,
 		featured: true,
-		keywords: ["điện thoại", "smartphone", "di động", "phone", "iphone", "apple"],
+		createdAt: "2024-11-15",
+		salesCount: 353,
+		keywords: [
+			"điện thoại",
+			"smartphone",
+			"di động",
+			"phone",
+			"iphone",
+			"apple",
+		],
 
 		images: [
 			{
@@ -37,6 +46,8 @@ export const products = [
 		category: "smartphone",
 		price: 14990000,
 		featured: false,
+		createdAt: "2024-06-20",
+		salesCount: 2100,
 		keywords: ["điện thoại", "smartphone", "di động", "phone", "nothing"],
 
 		images: [
@@ -68,6 +79,8 @@ export const products = [
 		category: "laptop",
 		price: 52990000,
 		featured: true,
+		createdAt: "2024-09-15",
+		salesCount: 134,
 		keywords: ["máy tính", "laptop", "máy tính xách tay", "macbook", "apple"],
 
 		images: [
@@ -99,6 +112,8 @@ export const products = [
 		category: "tablet",
 		price: 28990000,
 		featured: true,
+		createdAt: "2024-10-15",
+		salesCount: 353,
 		keywords: ["máy tính bảng", "tablet", "ipad", "apple"],
 
 		images: [
@@ -130,6 +145,8 @@ export const products = [
 		category: "monitor",
 		price: 39990000,
 		featured: false,
+		createdAt: "2024-05-01",
+		salesCount: 134,
 		keywords: ["màn hình", "monitor", "display", "apple"],
 
 		images: [
@@ -161,7 +178,16 @@ export const products = [
 		category: "smartphone",
 		price: 22990000,
 		featured: true,
-		keywords: ["điện thoại", "smartphone", "di động", "phone", "pixel", "google"],
+		createdAt: "2024-10-20",
+		salesCount: 353,
+		keywords: [
+			"điện thoại",
+			"smartphone",
+			"di động",
+			"phone",
+			"pixel",
+			"google",
+		],
 
 		images: [
 			{
@@ -192,6 +218,8 @@ export const products = [
 		category: "desktop",
 		price: 49990000,
 		featured: true,
+		createdAt: "2024-06-01",
+		salesCount: 101,
 		keywords: ["máy tính để bàn", "desktop", "pc", "mac", "apple"],
 
 		images: [
@@ -223,7 +251,16 @@ export const products = [
 		category: "accessory",
 		price: 13990000,
 		featured: true,
-		keywords: ["tai nghe", "headphone", "earphone", "airpods", "apple", "phụ kiện"],
+		createdAt: "2024-09-01",
+		salesCount: 2772,
+		keywords: [
+			"tai nghe",
+			"headphone",
+			"earphone",
+			"airpods",
+			"apple",
+			"phụ kiện",
+		],
 
 		images: [
 			{
@@ -254,6 +291,8 @@ export const products = [
 		category: "tablet",
 		price: 29990000,
 		featured: true,
+		createdAt: "2024-08-01",
+		salesCount: 360,
 		keywords: ["máy tính bảng", "tablet", "samsung", "galaxy"],
 
 		images: [
@@ -285,6 +324,8 @@ export const products = [
 		category: "accessory",
 		price: 8990000,
 		featured: true,
+		createdAt: "2024-09-01",
+		salesCount: 2376,
 		keywords: ["tai nghe", "headphone", "earphone", "sony", "phụ kiện"],
 
 		images: [
@@ -316,7 +357,15 @@ export const products = [
 		category: "accessory",
 		price: 21990000,
 		featured: false,
-		keywords: ["đồng hồ thông minh", "smartwatch", "watch", "apple", "phụ kiện"],
+		createdAt: "2024-07-10",
+		salesCount: 2217,
+		keywords: [
+			"đồng hồ thông minh",
+			"smartwatch",
+			"watch",
+			"apple",
+			"phụ kiện",
+		],
 
 		images: [
 			{
@@ -348,7 +397,16 @@ export const products = [
 		category: "smartphone",
 		price: 29990000,
 		featured: false,
-		keywords: ["điện thoại", "smartphone", "di động", "phone", "samsung", "galaxy"],
+		createdAt: "2024-08-15",
+		salesCount: 420,
+		keywords: [
+			"điện thoại",
+			"smartphone",
+			"di động",
+			"phone",
+			"samsung",
+			"galaxy",
+		],
 
 		images: [
 			{
@@ -379,6 +437,8 @@ export const products = [
 		category: "smartphone",
 		price: 27990000,
 		featured: false,
+		createdAt: "2024-07-10",
+		salesCount: 504,
 		keywords: ["điện thoại", "smartphone", "di động", "phone", "xiaomi"],
 
 		images: [
@@ -410,6 +470,8 @@ export const products = [
 		category: "smartphone",
 		price: 24990000,
 		featured: false,
+		createdAt: "2024-06-25",
+		salesCount: 560,
 		keywords: ["điện thoại", "smartphone", "di động", "phone", "oppo"],
 
 		images: [
@@ -441,6 +503,8 @@ export const products = [
 		category: "smartphone",
 		price: 19990000,
 		featured: false,
+		createdAt: "2024-06-01",
+		salesCount: 960,
 		keywords: ["điện thoại", "smartphone", "di động", "phone", "oneplus"],
 
 		images: [
@@ -473,6 +537,8 @@ export const products = [
 		category: "laptop",
 		price: 44990000,
 		featured: false,
+		createdAt: "2024-05-15",
+		salesCount: 154,
 		keywords: ["máy tính", "laptop", "máy tính xách tay", "dell"],
 
 		images: [
@@ -504,6 +570,8 @@ export const products = [
 		category: "laptop",
 		price: 39990000,
 		featured: false,
+		createdAt: "2024-06-10",
+		salesCount: 192,
 		keywords: ["máy tính", "laptop", "máy tính xách tay", "asus", "gaming"],
 
 		images: [
@@ -535,6 +603,8 @@ export const products = [
 		category: "laptop",
 		price: 41990000,
 		featured: false,
+		createdAt: "2024-03-20",
+		salesCount: 154,
 		keywords: ["máy tính", "laptop", "máy tính xách tay", "lenovo", "thinkpad"],
 
 		images: [
@@ -567,6 +637,8 @@ export const products = [
 		category: "desktop",
 		price: 69990000,
 		featured: false,
+		createdAt: "2024-01-15",
+		salesCount: 25,
 		keywords: ["máy tính để bàn", "desktop", "pc", "hp", "gaming"],
 
 		images: [
@@ -598,6 +670,8 @@ export const products = [
 		category: "desktop",
 		price: 24990000,
 		featured: false,
+		createdAt: "2024-03-01",
+		salesCount: 200,
 		keywords: ["máy tính để bàn", "desktop", "pc", "dell"],
 
 		images: [
@@ -629,6 +703,8 @@ export const products = [
 		category: "desktop",
 		price: 29990000,
 		featured: false,
+		createdAt: "2024-11-01",
+		salesCount: 150,
 		keywords: ["máy tính để bàn", "desktop", "pc", "intel", "mini pc"],
 
 		images: [
@@ -661,6 +737,8 @@ export const products = [
 		category: "monitor",
 		price: 44990000,
 		featured: false,
+		createdAt: "2024-09-01",
+		salesCount: 173,
 		keywords: ["màn hình", "monitor", "display", "samsung", "gaming"],
 
 		images: [
@@ -692,6 +770,8 @@ export const products = [
 		category: "monitor",
 		price: 32990000,
 		featured: false,
+		createdAt: "2024-01-15",
+		salesCount: 102,
 		keywords: ["màn hình", "monitor", "display", "lg"],
 
 		images: [
@@ -723,6 +803,8 @@ export const products = [
 		category: "monitor",
 		price: 89990000,
 		featured: false,
+		createdAt: "2024-03-15",
+		salesCount: 26,
 		keywords: ["màn hình", "monitor", "display", "asus"],
 
 		images: [
@@ -754,6 +836,8 @@ export const products = [
 		category: "monitor",
 		price: 14990000,
 		featured: false,
+		createdAt: "2023-09-20",
+		salesCount: 360,
 		keywords: ["màn hình", "monitor", "display", "dell"],
 
 		images: [
@@ -786,6 +870,8 @@ export const products = [
 		category: "accessory",
 		price: 2490000,
 		featured: false,
+		createdAt: "2024-05-10",
+		salesCount: 4004,
 		keywords: ["chuột", "mouse", "logitech", "phụ kiện"],
 
 		images: [
@@ -817,6 +903,8 @@ export const products = [
 		category: "accessory",
 		price: 4990000,
 		featured: false,
+		createdAt: "2024-04-15",
+		salesCount: 3080,
 		keywords: ["bàn phím", "keyboard", "keychron", "phụ kiện"],
 
 		images: [
@@ -848,7 +936,15 @@ export const products = [
 		category: "accessory",
 		price: 4490000,
 		featured: false,
-		keywords: ["sạc dự phòng", "power bank", "pin dự phòng", "anker", "phụ kiện"],
+		createdAt: "2024-03-20",
+		salesCount: 4004,
+		keywords: [
+			"sạc dự phòng",
+			"power bank",
+			"pin dự phòng",
+			"anker",
+			"phụ kiện",
+		],
 
 		images: [
 			{
@@ -879,6 +975,8 @@ export const products = [
 		category: "accessory",
 		price: 3290000,
 		featured: false,
+		createdAt: "2024-06-05",
+		salesCount: 3850,
 		keywords: ["chuột", "mouse", "razer", "gaming", "phụ kiện"],
 
 		images: [

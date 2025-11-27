@@ -18,7 +18,7 @@
 
 .payment-card {
 	background: var(--bg-white);
-	border-radius: 1rem;
+	border-radius: var(--radius-xl);
 	padding: 2rem;
 	display: flex;
 	flex-direction: column;
@@ -46,7 +46,7 @@
 	height: auto;
 	padding: 0.75rem 1rem;
 	resize: vertical;
-	border-radius: 0.75rem;
+	border-radius: var(--radius-lg);
 	line-height: 1.5;
 }
 
@@ -75,29 +75,6 @@
 		margin: 0;
 		font-size: var(--fs-default);
 	}
-}
-
-.cart-total {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	border: none;
-	margin: 0;
-	padding: 0;
-}
-
-.cart-total-label {
-	font-size: var(--fs-default);
-	font-weight: var(--fw-bold);
-	color: var(--txt-dark);
-	margin: 0;
-}
-
-.cart-total-price {
-	font-size: var(--fs-large);
-	font-weight: var(--fw-bold);
-	color: var(--txt-dark);
-	margin: 0;
 }
 
 .cart-action {

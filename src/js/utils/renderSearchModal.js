@@ -1,5 +1,5 @@
 import { appState } from "../data/index.js";
-import { getProductId, goToDetail, createSlug } from "./helpers.js";
+import { createSlug, getProductId, goToDetail } from "./helpers.js";
 
 const headerEl = document.querySelector("header");
 const searchInputEl = document.querySelector("[type=search]");
@@ -18,7 +18,9 @@ export function renderSearchModal() {
 	const searchResultEl = document.createElement("div");
 	searchResultEl.classList.add("search-result-container");
 
-	const existingSearchModal = document.querySelector(".search-result-container");
+	const existingSearchModal = document.querySelector(
+		".search-result-container"
+	);
 
 	if (existingSearchModal) {
 		existingSearchModal.remove();
@@ -47,15 +49,21 @@ export function renderSearchModal() {
 			.join("");
 		headerEl.append(searchResultEl);
 
-		const searchResultContainer = document.querySelector(".search-result-container");
+		const searchResultContainer = document.querySelector(
+			".search-result-container"
+		);
 		if (searchResultContainer) {
-			const searchResultItems = searchResultContainer.querySelectorAll(".search-result-item");
+			const searchResultItems = searchResultContainer.querySelectorAll(
+				".search-result-item"
+			);
 
 			searchResultItems.forEach((item) => {
 				item.addEventListener("click", (e) => {
 					e.preventDefault();
 					const productId = getProductId(e);
-					const product = appState.productList.find((product) => product.id === productId);
+					const product = appState.productList.find(
+						(product) => product.id === productId
+					);
 					const productName = createSlug(product.name);
 					goToDetail(productId, productName);
 				});

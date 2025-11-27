@@ -1,65 +1,30 @@
 :root {
 	/* Primitive Colors */
 
-	/* Neutral Colors (50-900) */
-	--neutral-50: #fafafa;
+	/* Neutral Colors */
 	--neutral-100: #ebebeb;
-	--neutral-200: #e5e5e5;
 	--neutral-300: #e1e1e1;
 	--neutral-400: #d9d9d9;
 	--neutral-500: #8c8c8c;
-	--neutral-600: #555;
 	--neutral-700: #444;
-	--neutral-800: #222;
 	--neutral-900: #111;
 
-	/* Brand Colors (50-900) */
+	/* Brand Colors */
 	--brand-50: #fff8f7;
-	--brand-100: #feebe7;
-	--brand-200: #ffdcd3;
-	--brand-300: #93c5fd;
-	--brand-400: #60a5fa;
-	--brand-500: #3b82f6;
-	--brand-600: #2563eb;
 	--brand-700: #111;
 	--brand-800: #c34127;
-	--brand-900: #05073d;
 
-	/* Success Colors (50-900) */
-	--success-50: #f0fdf4;
+	/* Success Colors */
 	--success-100: #dcfce7;
-	--success-200: #bbf7d0;
-	--success-300: #86efac;
-	--success-400: #4ade80;
-	--success-500: #22c55e;
-	--success-600: #16a34a;
 	--success-700: #15803d;
-	--success-800: #166534;
-	--success-900: #14532d;
 
-	/* Warning Colors (50-900) */
-	--warning-50: #fffbeb;
+	/* Warning Colors */
 	--warning-100: #fef3c7;
-	--warning-200: #fde68a;
-	--warning-300: #fcd34d;
-	--warning-400: #fbbf24;
-	--warning-500: #f59e0b;
-	--warning-600: #d97706;
 	--warning-700: #b45309;
-	--warning-800: #92400e;
-	--warning-900: #78350f;
 
-	/* Error Colors (50-900) */
-	--error-50: #fef2f2;
+	/* Error Colors */
 	--error-100: #fee2e2;
-	--error-200: #fecaca;
-	--error-300: #fca5a5;
-	--error-400: #f87171;
-	--error-500: #ef4444;
-	--error-600: #dc2626;
 	--error-700: #b91c1c;
-	--error-800: #991b1b;
-	--error-900: #7f1d1d;
 
 	/* Semantic Colors */
 

@@ -4,11 +4,18 @@ import { renderCart } from "../utils/index.js";
 const cartEl = document.querySelector("[data-cart]");
 
 export function addtoCart(productId, button, quantityNum) {
-	const product = appState.productList.find((product) => product.id === productId);
-	const existingInCart = appState.cartItems.find((product) => product.id === productId);
+	const product = appState.productList.find(
+		(product) => product.id === productId
+	);
+	const existingInCart = appState.cartItems.find(
+		(product) => product.id === productId
+	);
 
 	if (!existingInCart) {
-		appState.cartItems.unshift({ ...product, quantity: quantityNum ? quantityNum : 1 });
+		appState.cartItems.unshift({
+			...product,
+			quantity: quantityNum ? quantityNum : 1,
+		});
 	} else {
 		existingInCart.quantity += quantityNum;
 	}
@@ -21,7 +28,9 @@ export function addtoCart(productId, button, quantityNum) {
 	setTimeout(() => {
 		renderCart();
 		requestAnimationFrame(() => {
-			const itemInCart = cartEl.querySelector(`[data-product-id="${productId}"]`);
+			const itemInCart = cartEl.querySelector(
+				`[data-product-id="${productId}"]`
+			);
 			itemInCart.scrollIntoView({ behavior: "smooth", block: "center" });
 			itemInCart.classList.add("highlighted-in-cart");
 		});
@@ -32,15 +41,21 @@ export function addtoCart(productId, button, quantityNum) {
 }
 
 export function increaseQuantity(productId) {
-	const product = appState.cartItems.find((product) => product.id === productId);
+	const product = appState.cartItems.find(
+		(product) => product.id === productId
+	);
 	product.quantity++;
 }
 
 export function decreaseQuantity(productId) {
-	const product = appState.cartItems.find((product) => product.id === productId);
+	const product = appState.cartItems.find(
+		(product) => product.id === productId
+	);
 	product.quantity--;
 	if (product.quantity < 1) {
-		const index = appState.cartItems.findIndex((product) => product.id === productId);
+		const index = appState.cartItems.findIndex(
+			(product) => product.id === productId
+		);
 
 		if (index !== -1) {
 			appState.cartItems.splice(index, 1);
@@ -49,7 +64,9 @@ export function decreaseQuantity(productId) {
 }
 
 export function removeFromCart(productId) {
-	const index = appState.cartItems.findIndex((product) => product.id === productId);
+	const index = appState.cartItems.findIndex(
+		(product) => product.id === productId
+	);
 
 	if (index !== -1) {
 		appState.cartItems.splice(index, 1);
