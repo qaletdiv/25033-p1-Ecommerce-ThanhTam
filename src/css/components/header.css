@@ -59,6 +59,7 @@
 	color: var(--txt-light);
 	cursor: pointer;
 	height: 44px;
+	padding-left: 3rem;
 
 	&:hover {
 		background: var(--bg-default);
@@ -68,7 +69,7 @@
 
 .search-icon {
 	position: absolute;
-	right: 1rem;
+	left: 1rem;
 	top: 50%;
 	transform: translateY(-50%);
 	color: var(--txt-light);
@@ -77,15 +78,19 @@
 /* Search Results Dropdown */
 .search-result-container {
 	position: absolute;
-	top: calc(100% - 8px); /* Overlap input slightly for connected appearance */
+	top: calc(100% - 8px);
+	/* Overlap input slightly for connected appearance */
 	left: 50%;
 	translate: -50% 0%;
 	background-color: white;
 	border-radius: var(--radius-md);
 	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-	min-height: 20rem; /* Reasonable minimum for search results */
-	max-height: 30rem; /* Limit height for scrollability */
-	width: 40%; /* Narrower than full width for better UX */
+	min-height: 20rem;
+	/* Reasonable minimum for search results */
+	max-height: 30rem;
+	/* Limit height for scrollability */
+	width: 40%;
+	/* Narrower than full width for better UX */
 	overflow: hidden;
 	overflow-y: auto;
 	z-index: var(--z-dropdown);
