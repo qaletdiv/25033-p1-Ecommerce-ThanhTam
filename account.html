@@ -1,90 +1,102 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Giỏ hàng</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="/src/css/main.css" />
+		<link rel="stylesheet" href="/src/css/pages/account.css" />
+		<link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/font/lucide.css" />
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giỏ hàng</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="/src/css/main.css">
-    <link rel="stylesheet" href="/src/css/pages/account.css">
-    <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/font/lucide.css">
-</head>
+	<body>
+		<header class="header">
+			<div class="header-container">
+				<div class="nav-links">
+					<a href="/" class="nav-logo">AllTech.</a>
+					<nav class="nav-menu">
+						<ul>
+							<li><a class="nav-item" href="/products-list.html">Sản phẩm</a></li>
+							<li><a class="nav-item" href="/collection.html">Danh mục</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="nav-search-container">
+					<form>
+						<i class="lucide icon-search search-icon size-default"></i>
+						<input
+							type="search"
+							id="search-input"
+							class="input search-input"
+							placeholder="Nhập tên điện thoại, laptop, phụ kiện cần tìm"
+						/>
+					</form>
+				</div>
+				<div class="nav-actions">
+					<a
+						href="/login.html"
+						class="btn btn--icon-only"
+						id="userBtn"
+						aria-label="Login"
+					>
+						<i class="lucide icon-user size-default"></i>
+					</a>
+					<button class="btn btn--icon-only" id="cartBtn" aria-label="Open cart">
+						<i class="lucide icon-shopping-cart size-default"></i>
+						<span class="cart-badge" data-cart-count></span>
+					</button>
+				</div>
+			</div>
+		</header>
+		<main>
+			<section class="section">
+				<div class="container">
+					<ul class="account-menu-container">
+						<li class="account-menu-item">
+							<a>Thông tin tài khoản</a>
+						</li>
+						<li class="account-menu-item">
+							<a>Lịch sử đơn hàng</a>
+						</li>
+						<li class="account-menu-item">
+							<a>Đăng xuất</a>
+						</li>
+					</ul>
+					<div class="account-content-container">
+						<div id="account-info"></div>
+						<div id="account-order-history"></div>
+					</div>
+				</div>
+			</section>
 
-<body>
-    <header class="header">
-        <div class="header-container">
-            <div class="nav-links">
-                <a href="/" class="nav-logo">AllTech.</a>
-                <nav class="nav-menu">
-                    <ul>
-                        <li><a class="nav-item" href="/products-list.html">Sản phẩm</a></li>
-                        <li><a class="nav-item" href="/collection.html">Danh mục</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="nav-search-container">
-                <form>
-                    <i class="lucide icon-search search-icon size-default"></i>
-                    <input type="search" id="search-input" class="input search-input"
-                        placeholder="Nhập tên điện thoại, laptop, phụ kiện cần tìm">
-                </form>
-            </div>
-            <div class="nav-actions">
-                <a href="/login.html" class="btn btn--icon-only" id="userBtn" aria-label="Login"><i
-                        class="lucide icon-user size-default"></i></a>
-                <button class="btn btn--icon-only" id="cartBtn" aria-label="Open cart"><i
-                        class="lucide icon-shopping-cart size-default"></i><span class="cart-badge" data-cart-count></span></button>
-            </div>
-        </div>
-    </header>
-    <main>
-        <section class="section">
-            <div class="container">
-                <ul class="account-menu-container">
-                    <li class="account-menu-item">
-                        <a>Thông tin tài khoản</a>
-                    </li>
-                    <li class="account-menu-item">
-                        <a>Lịch sử đơn hàng</a>
-                    </li>
-                    <li class="account-menu-item">
-                        <a>Đăng xuất</a>
-                    </li>
-                </ul>
-                <div class="account-content-container">
-                    <div id="account-info"></div>
-                    <div id="account-order-history"></div>
-                </div>
+			<dialog class="cart-container" data-cart>
+				<div class="cart-header">
+					<h4>Giỏ hàng</h4>
+					<button class="btn btn--small btn--icon-only" data-close>
+						<i class="lucide icon-x size-default"></i>
+					</button>
+				</div>
+				<div class="cart-items-container" id="cart-container"></div>
+				<div class="cart-total">
+					<p class="cart-total-label">Tổng tiền:</p>
+					<p class="cart-total-price"></p>
+				</div>
+				<div class="cart-action btn-group">
+					<button class="btn btn--outline" onclick="window.location.href = '/cart.html'">
+						Xem giỏ hàng
+					</button>
+					<button class="btn btn--primary">Thanh toán</button>
+				</div>
+			</dialog>
+		</main>
 
-            </div>
-        </section>
-
-        <dialog class="cart-container" data-cart>
-            <div class="cart-header">
-                <h4>Giỏ hàng</h4>
-                <button class="btn btn--small btn--icon-only" data-close><i
-                        class="lucide icon-x size-default"></i></button>
-            </div>
-            <div class="cart-items-container" id="cart-container"></div>
-            <div class="cart-total">
-                <p class="cart-total-label">Tổng tiền:</p>
-                <p class="cart-total-price"></p>
-            </div>
-            <div class="cart-action btn-group">
-                <button class="btn btn--outline" onclick="window.location.href='/cart.html'">Xem giỏ
-                    hàng</button>
-                <button class="btn btn--primary">Thanh toán</button>
-            </div>
-        </dialog>
-    </main>
-
-    <script type="module" src="/src/js/app.js"></script>
-    <script type="module" src="/src/js/pages/accountPage.js"></script>
-</body>
-
+		<script type="module" src="/src/js/app.js"></script>
+		<script type="module" src="/src/js/pages/accountPage.js"></script>
+	</body>
 </html>

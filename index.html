@@ -1,103 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Homepage</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="/src/css/main.css" />
+		<link rel="stylesheet" href="/src/css/pages/index.css" />
+		<link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/font/lucide.css" />
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="/src/css/main.css">
-    <link rel="stylesheet" href="/src/css/pages/index.css">
-    <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/font/lucide.css">
-</head>
+	<body>
+		<header class="header">
+			<div class="header-container">
+				<div class="nav-links">
+					<a href="/" class="nav-logo">AllTech.</a>
+					<nav class="nav-menu">
+						<ul>
+							<li><a class="nav-item" href="/products-list.html">Sản phẩm</a></li>
+							<li><a class="nav-item" href="/collection.html">Danh mục</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="nav-search-container">
+					<form>
+						<i class="lucide icon-search search-icon size-default"></i>
+						<input
+							type="search"
+							id="search-input"
+							class="input search-input"
+							placeholder="Nhập tên điện thoại, laptop, phụ kiện cần tìm"
+						/>
+					</form>
+				</div>
+				<div class="nav-actions">
+					<a
+						href="/login.html"
+						class="btn btn--icon-only"
+						id="userBtn"
+						aria-label="Login"
+					>
+						<i class="lucide icon-user size-default"></i>
+					</a>
+					<button
+						class="btn btn--icon-only btn--small"
+						id="cartBtn"
+						aria-label="Open cart"
+					>
+						<i class="lucide icon-shopping-cart size-default"></i>
+						<span class="cart-badge" data-cart-count></span>
+					</button>
+				</div>
+			</div>
+		</header>
+		<main>
+			<section class="section section-featured">
+				<div class="featured-banner">
+					<div class="featured-banner-info">
+						<h2 class="featured-banner-title fs-h1">HyperX Cloud III S Wireless</h2>
+						<p>
+							Huyền thoại được tái sinh — kết hợp cùng những thiết bị esports số 1
+							được các tuyển thủ chuyên nghiệp tin dùng.
+						</p>
+						<a
+							href="/product-details.html?id=8&name=airpods-max-headphones"
+							class="btn btn--white btn--lg"
+						>
+							Xem ngay
+						</a>
+					</div>
+					<img
+						src="https://concept-theme-tech.myshopify.com/cdn/shop/files/home-slider-02.webp?v=1708353161&width=2000"
+						alt="Featured Banner"
+					/>
+				</div>
+				<div class="banner-container">
+					<img class="banner" src="/banners/HyperOne Gen 3.jpg" alt="HyperOne Gen 3" />
+					<img
+						class="banner"
+						src="/banners/HyperWork  Breaking limits.jpg"
+						alt="HyperWork Breaking limits"
+					/>
+				</div>
+			</section>
+			<section class="section">
+				<div class="container">
+					<div class="section-header">
+						<h1 class="section-title">Sản phẩm nổi bật</h1>
+						<a href="/products-list.html" class="btn btn--outline">Xem thêm</a>
+					</div>
+					<div id="products-featured-container" class="products-container"></div>
+				</div>
+			</section>
 
-<body>
-    <header class="header">
-        <div class="header-container">
-            <div class="nav-links">
-                <a href="/" class="nav-logo">AllTech.</a>
-                <nav class="nav-menu">
-                    <ul>
-                        <li><a class="nav-item" href="/products-list.html">Sản phẩm</a></li>
-                        <li><a class="nav-item" href="/collection.html">Danh mục</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="nav-search-container">
-                <form>
-                    <i class="lucide icon-search search-icon size-default"></i>
-                    <input type="search" id="search-input" class="input search-input"
-                        placeholder="Nhập tên điện thoại, laptop, phụ kiện cần tìm">
-                </form>
-            </div>
-            <div class="nav-actions">
-                <a href="/login.html" class="btn btn--icon-only" id="userBtn" aria-label="Login"><i
-                        class="lucide icon-user size-default"></i></a>
-                <button class="btn btn--icon-only btn--small" id="cartBtn" aria-label="Open cart"><i
-                        class="lucide icon-shopping-cart size-default"></i><span class="cart-badge"
-                        data-cart-count></span></button>
-            </div>
-        </div>
-    </header>
-    <main>
-        <section class="section section-featured">
-            <div class="featured-banner">
-                <div class="featured-banner-info">
-                    <h2 class="featured-banner-title fs-h1">HyperX Cloud III S Wireless</h2>
-                    <p>Huyền thoại được tái sinh — kết hợp cùng những thiết bị esports số 1
-                        được các
-                        tuyển thủ chuyên
-                        nghiệp tin dùng.</p>
-                    <a href="/product-details.html?id=8&name=airpods-max-headphones" class="btn btn--white btn--lg">Xem
-                        ngay</a>
-                </div>
-                <img src="https://concept-theme-tech.myshopify.com/cdn/shop/files/home-slider-02.webp?v=1708353161&width=2000"
-                    alt="Featured Banner">
-            </div>
-            <div class="banner-container">
-                <img class="banner" src="/banners/HyperOne Gen 3.jpg" alt="HyperOne Gen 3">
-                <img class="banner" src="/banners/HyperWork  Breaking limits.jpg" alt="HyperWork Breaking limits">
-            </div>
-        </section>
-        <section class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h1 class="section-title">Sản phẩm nổi bật</h1>
-                    <a href="/products-list.html" class="btn btn--outline">Xem thêm</a>
-                </div>
-                <div id="products-featured-container" class="products-container"></div>
-            </div>
-        </section>
-
-        <dialog class="cart-container" data-cart>
-            <div class="cart-header">
-                <h4>Giỏ hàng</h4>
-                <button class="btn btn--small btn--icon-only" data-close><i
-                        class="lucide icon-x size-default"></i></button>
-            </div>
-            <div class="cart-items-container" id="cart-container"></div>
-            <div class="cart-total">
-                <p class="cart-total-label">Tổng tiền:</p>
-                <p class="cart-total-price"></p>
-            </div>
-            <div class="cart-action btn-group">
-                <button class="btn btn--outline" onclick="window.location.href='/cart.html'">Xem giỏ
-                    hàng</button>
-                <button class="btn btn--primary">Thanh toán</button>
-            </div>
-        </dialog>
-    </main>
-    <footer class="footer">
-        <div class="footer-link-container">
-            <p class="footer-link">AllTech</p>
-        </div>
-    </footer>
-    <script type="module" src="/src/js/app.js"></script>
-    <script type="module" src="/src/js/pages/index.js"></script>
-</body>
-
+			<dialog class="cart-container" data-cart>
+				<div class="cart-header">
+					<h4>Giỏ hàng</h4>
+					<button class="btn btn--small btn--icon-only" data-close>
+						<i class="lucide icon-x size-default"></i>
+					</button>
+				</div>
+				<div class="cart-items-container" id="cart-container"></div>
+				<div class="cart-total">
+					<p class="cart-total-label">Tổng tiền:</p>
+					<p class="cart-total-price"></p>
+				</div>
+				<div class="cart-action btn-group">
+					<button class="btn btn--outline" onclick="window.location.href = '/cart.html'">
+						Xem giỏ hàng
+					</button>
+					<button class="btn btn--primary">Thanh toán</button>
+				</div>
+			</dialog>
+		</main>
+		<footer class="footer">
+			<div class="footer-link-container">
+				<p class="footer-link">AllTech</p>
+			</div>
+		</footer>
+		<script type="module" src="/src/js/app.js"></script>
+		<script type="module" src="/src/js/pages/index.js"></script>
+	</body>
 </html>
