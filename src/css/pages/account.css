@@ -37,7 +37,7 @@
 .account-card {
 	background-color: var(--bg-white);
 	border-radius: var(--radius-xl);
-	padding: 2rem;
+	padding: 1rem;
 	margin-bottom: 1rem;
 }
 
