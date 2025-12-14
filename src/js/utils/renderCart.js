@@ -5,22 +5,22 @@ const cartContainerEl = document.getElementById("cart-container");
 const cartEl = document.querySelector("[data-cart]");
 
 export function renderCart() {
-	if (!(cartEl && cartContainerEl)) {
-		return;
-	}
+  if (!(cartEl && cartContainerEl)) {
+    return;
+  }
 
-	cartEl.style.display = "flex";
-	document.body.style.overflow = "hidden";
-	cartEl.showModal();
+  cartEl.style.display = "flex";
+  document.body.style.overflow = "hidden";
+  cartEl.showModal();
 
-	if (appState.cartItems.length === 0) {
-		cartContainerEl.textContent = `Chưa có sản phẩm nào`;
-	} else {
-		cartContainerEl.innerHTML = appState.cartItems
-			.map((product) => {
-				const productName = String(product.name || "").replace(/[<>]/g, "");
+  if (appState.cartItems.length === 0) {
+    cartContainerEl.textContent = `Chưa có sản phẩm nào`;
+  } else {
+    cartContainerEl.innerHTML = appState.cartItems
+      .map((product) => {
+        const productName = String(product.name || "").replace(/[<>]/g, "");
 
-				return `<div class="cart-item" data-product-id="${product.id}">
+        return `<div class="cart-item" data-product-id="${product.id}">
             <img src="${product.images[0].url}" alt="${productName}" class="cart-item-img" loading="lazy">
             <div class="cart-item-info">
                 <p class="cart-item-name">${productName}</p>
@@ -35,8 +35,8 @@ export function renderCart() {
             </div>
             <p class="cart-item-price">${product.price.toLocaleString("vi-VN")}đ</p>
         </div>`;
-			})
-			.join("");
-	}
-	calCartTotal(".cart-total-price", cartEl, appState.cartItems);
+      })
+      .join("");
+  }
+  calCartTotal(".cart-total-price", cartEl, appState.cartItems);
 }

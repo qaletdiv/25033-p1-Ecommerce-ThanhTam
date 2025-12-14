@@ -1,41 +1,41 @@
 {
-	"name": "ecom-project",
-	"version": "1.0.0",
-	"description": "E-commerce web application built with vanilla JavaScript, Vite, and PostCSS ",
-	"type": "module",
-	"author": "",
-	"license": "MIT",
-	"keywords": [
-		"ecommerce",
-		"vanilla-js",
-		"vite",
-		"localStorage",
-		"multi-page-app"
-	],
-	"scripts": {
-		"dev": "vite",
-		"build": "vite build",
-		"preview": "vite preview",
-		"lint": "biome check .",
-		"lint:fix": "biome check --write .",
-		"format": "biome format --write . && prettier --write '**/*.html' '**/*.css'",
-		"check": "biome check --write ."
-	},
-	"devDependencies": {
-		"@biomejs/biome": "2.3.1",
-		"@csstools/postcss-global-data": "^3.1.0",
-		"autoprefixer": "^10.4.22",
-		"cssnano": "^7.1.2",
-		"motion": "^12.23.24",
-		"postcss-custom-media": "^11.0.6",
-		"postcss-import": "^16.1.1",
-		"postcss-preset-env": "^10.4.0",
-		"prettier": "^3.7.4",
-		"vietnam-provinces-js": "^2.0.0",
-		"vite": "^7.1.12"
-	},
-	"engines": {
-		"node": ">=18.0.0",
-		"npm": ">=9.0.0"
-	}
+  "name": "ecom-project",
+  "version": "1.0.0",
+  "description": "E-commerce web application built with vanilla JavaScript, Vite, and PostCSS ",
+  "type": "module",
+  "author": "",
+  "license": "MIT",
+  "keywords": [
+    "ecommerce",
+    "vanilla-js",
+    "vite",
+    "localStorage",
+    "multi-page-app"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write . && prettier --write '**/*.html' '**/*.css'",
+    "check": "biome check --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.3.1",
+    "@csstools/postcss-global-data": "^3.1.0",
+    "autoprefixer": "^10.4.22",
+    "cssnano": "^7.1.2",
+    "motion": "^12.23.24",
+    "postcss-custom-media": "^11.0.6",
+    "postcss-import": "^16.1.1",
+    "postcss-preset-env": "^10.4.0",
+    "prettier": "^3.7.4",
+    "vietnam-provinces-js": "^2.0.0",
+    "vite": "^7.1.12"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
 }
