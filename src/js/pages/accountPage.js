@@ -1,15 +1,17 @@
 import { appState } from "../data/index.js";
 
 function renderAccountInfo() {
-  const accountInfo = document.getElementById("account-info");
-  const accountOrderHistory = document.getElementById("account-order-history");
+    const accountInfo = document.getElementById("account-info");
+    const accountOrderHistory = document.getElementById(
+        "account-order-history"
+    );
 
-  const user = appState.userList.find(
-    (user) => user.id === appState.currentUser.id
-  );
-  const userOrderHistory = user.orderHistory;
+    const user = appState.userList.find(
+        (user) => user.id === appState.currentUser.id
+    );
+    const userOrderHistory = user.orderHistory;
 
-  accountInfo.innerHTML = `
+    accountInfo.innerHTML = `
     <div class="account-card">
         <h2 class="fs-h4">Thông tin tài khoản</h2>
         <div class="info-grid">
@@ -33,24 +35,24 @@ function renderAccountInfo() {
     </div>
 `;
 
-  accountOrderHistory.innerHTML = `
+    accountOrderHistory.innerHTML = `
     <div class="account-card">
         <h2 class="fs-h4">Lịch sử đơn hàng</h2>
         <ul class="account-order-list">
             ${userOrderHistory
-              .map((order) => {
-                const orderDate = new Date(order.date).toLocaleDateString(
-                  "vi-VN",
-                  {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  }
-                );
+                .map((order) => {
+                    const orderDate = new Date(order.date).toLocaleDateString(
+                        "vi-VN",
+                        {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                        }
+                    );
 
-                const itemsHTML = order.orderItems
-                  .map(
-                    (item) => `
+                    const itemsHTML = order.orderItems
+                        .map(
+                            (item) => `
 										<div class="cart-item">
 											<img src="${item.images[0].url}" alt="${item.name}" class="cart-item-img">
 											<div class="cart-item-info">
@@ -62,10 +64,10 @@ function renderAccountInfo() {
 											<p class="cart-item-price">${(item.price * item.quantity).toLocaleString("vi-VN")}₫</p>
 										</div>
 									`
-                  )
-                  .join("");
+                        )
+                        .join("");
 
-                return `
+                    return `
             <li class="account-order-item">
                 <div class="account-order-header-info">
                     <span class="account-order-id">#${order.orderId}</span>
@@ -101,8 +103,8 @@ function renderAccountInfo() {
                     <span class="account-order-total-price">${order.totalPrice}₫</span>
                 </div>
             </li>`;
-              })
-              .join("")}
+                })
+                .join("")}
         </ul>
     </div>
 `;

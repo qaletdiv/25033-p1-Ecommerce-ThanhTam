@@ -7,23 +7,23 @@ const orderId = urlParams.get("id");
 const orderContainerEl = document.querySelector(".order-summary-container");
 
 const orderOwner = appState.userList.find((user) => {
-  return user.orderHistory.find((order) => order.orderId === orderId);
+    return user.orderHistory.find((order) => order.orderId === orderId);
 });
 
 const foundOrder = orderOwner?.orderHistory.find(
-  (order) => order.orderId === orderId
+    (order) => order.orderId === orderId
 );
 
 renderOrderSum(foundOrder, orderContainerEl);
 
 export function renderOrderSum(order, container) {
-  const orderDate = new Date(order.date).toLocaleDateString("vi-VN", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+    const orderDate = new Date(order.date).toLocaleDateString("vi-VN", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    });
 
-  const orderSummaryEl = `
+    const orderSummaryEl = `
     <div class="order-summary">
 
         <div class="order-header">
@@ -69,14 +69,14 @@ export function renderOrderSum(order, container) {
                     <p class="info-content">${order.address}, ${order.city}</p>
                 </div>
                 ${
-                  order.note
-                    ? `
+                    order.note
+                        ? `
                 <div class="info-item">
                     <p class="info-label">Ghi chú giao hàng:</p>
                     <p class="info-content">${order.note}</p>
                 </div>
                 `
-                    : ""
+                        : ""
                 }
             </div>
         </div>
@@ -99,14 +99,14 @@ export function renderOrderSum(order, container) {
     </div>
     `;
 
-  container.innerHTML = orderSummaryEl;
+    container.innerHTML = orderSummaryEl;
 
-  const orderItemsContainer = container.querySelector(
-    ".order-items-summary .info-grid"
-  );
-  const itemsHTML = order.orderItems
-    .map(
-      (item) => `
+    const orderItemsContainer = container.querySelector(
+        ".order-items-summary .info-grid"
+    );
+    const itemsHTML = order.orderItems
+        .map(
+            (item) => `
         <div class="cart-item">
          <p class="quantity-value">x${item.quantity}</p>
             <img src="${item.images[0].url}" alt="${item.name}" class="cart-item-img">
@@ -115,8 +115,8 @@ export function renderOrderSum(order, container) {
             </div>
             <p class="cart-item-price">${(item.price * item.quantity).toLocaleString("vi-VN")}₫</p>
         </div>`
-    )
-    .join("");
+        )
+        .join("");
 
-  orderItemsContainer.innerHTML = itemsHTML;
+    orderItemsContainer.innerHTML = itemsHTML;
 }

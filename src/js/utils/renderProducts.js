@@ -1,11 +1,11 @@
 // import { animate, inView, stagger } from "motion";
 
 export function renderProducts(arr, container) {
-  container.innerHTML = "";
-  container.innerHTML = arr
-    .map((product) => {
-      const productName = String(product.name || "").replace(/[<>]/g, "");
-      return `
+    container.innerHTML = "";
+    container.innerHTML = arr
+        .map((product) => {
+            const productName = String(product.name || "").replace(/[<>]/g, "");
+            return `
         <div class="product-card" data-product-id="${product.id}">
             <a class="product-img" data-product-id="${product.id}" href="#"><img src="${product.images[0].url}" loading="lazy"></a>
             <div class="product-info">
@@ -18,16 +18,16 @@ export function renderProducts(arr, container) {
                 <a href="#">Xem chi tiết <span><i class="lucide icon-chevron-right size-small"></i></span></a>
             </div>
         </div>`;
-    })
-    .join("");
+        })
+        .join("");
 
-  // const productItem = document.querySelectorAll(".product-card");
+    // const productItem = document.querySelectorAll(".product-card");
 
-  // inView(container, () => {
-  // 	animate(
-  // 		productItem,
-  // 		{ y: [10, 0], opacity: [0, 1] },
-  // 		{ duration: 0.18, delay: stagger(0.1) }
-  // 	);
-  // });
+    // inView(container, () => {
+    // 	animate(
+    // 		productItem,
+    // 		{ y: [10, 0], opacity: [0, 1] },
+    // 		{ duration: 0.18, delay: stagger(0.1) }
+    // 	);
+    // });
 }

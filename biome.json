@@ -1,73 +1,73 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.1/schema.json",
+    "$schema": "https://biomejs.dev/schemas/2.3.1/schema.json",
 
-  "vcs": {
-    "enabled": true,
-    "clientKind": "git",
-    "useIgnoreFile": true,
-    "defaultBranch": "main"
-  },
+    "vcs": {
+        "enabled": true,
+        "clientKind": "git",
+        "useIgnoreFile": true,
+        "defaultBranch": "main"
+    },
 
-  "files": {
-    "ignoreUnknown": true,
-    "includes": ["**/*.js", "**/*.html", "**/*.json"]
-  },
+    "files": {
+        "ignoreUnknown": true,
+        "includes": ["**/*.js", "**/*.html", "**/*.json"]
+    },
 
-  "formatter": {
-    "enabled": true,
-    "indentStyle": "space",
-    "indentWidth": 4,
-    "lineWidth": 80,
-    "lineEnding": "lf"
-  },
-
-  "javascript": {
     "formatter": {
-      "quoteStyle": "double",
-      "semicolons": "always",
-      "trailingCommas": "es5",
-      "arrowParentheses": "always"
+        "enabled": true,
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "lineWidth": 80,
+        "lineEnding": "lf"
+    },
+
+    "javascript": {
+        "formatter": {
+            "quoteStyle": "double",
+            "semicolons": "always",
+            "trailingCommas": "es5",
+            "arrowParentheses": "always"
+        }
+    },
+
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+
+            "suspicious": {
+                "noConsole": {
+                    "level": "warn",
+                    "options": {
+                        "allow": ["error", "warn", "info"]
+                    }
+                },
+                "noDoubleEquals": "error",
+                "noDebugger": "error"
+            },
+
+            "style": {
+                "useConst": "error",
+                "useTemplate": "warn"
+            },
+
+            "correctness": {
+                "noUnusedVariables": "error",
+                "noUndeclaredVariables": "error",
+                "noUnreachable": "error"
+            },
+
+            "complexity": {
+                "noUselessCatch": "error",
+                "noUselessRename": "error",
+                "useOptionalChain": "warn",
+                "useSimplifiedLogicExpression": "warn"
+            },
+
+            "security": {
+                "noDangerouslySetInnerHtml": "warn",
+                "noGlobalEval": "error"
+            }
+        }
     }
-  },
-
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true,
-
-      "suspicious": {
-        "noConsole": {
-          "level": "warn",
-          "options": {
-            "allow": ["error", "warn", "info"]
-          }
-        },
-        "noDoubleEquals": "error",
-        "noDebugger": "error"
-      },
-
-      "style": {
-        "useConst": "error",
-        "useTemplate": "warn"
-      },
-
-      "correctness": {
-        "noUnusedVariables": "error",
-        "noUndeclaredVariables": "error",
-        "noUnreachable": "error"
-      },
-
-      "complexity": {
-        "noUselessCatch": "error",
-        "noUselessRename": "error",
-        "useOptionalChain": "warn",
-        "useSimplifiedLogicExpression": "warn"
-      },
-
-      "security": {
-        "noDangerouslySetInnerHtml": "warn",
-        "noGlobalEval": "error"
-      }
-    }
-  }
 }
