@@ -2,3 +2,4 @@
 @import "./variables/variables.css";
 @import "./global.css";
 @import "./components/components.css";
+@import "./variables/breakpoints.css";

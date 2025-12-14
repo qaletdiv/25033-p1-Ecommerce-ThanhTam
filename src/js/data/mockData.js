@@ -24,6 +24,24 @@ export const products = [
 				alt: "iPhone 15 Pro Max màu Titan tự nhiên",
 				isMain: true,
 			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=80",
+				alt: "iPhone 15 Pro Max - Góc nghiêng",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1591337676887-a217a6970a8a?w=800&q=80",
+				alt: "iPhone 15 Pro Max - Camera chi tiết",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=800&q=80",
+				alt: "iPhone 15 Pro Max - Trong tay",
+				isMain: false,
+			},
 		],
 
 		description:
@@ -56,6 +74,24 @@ export const products = [
 				url: "/images/Nothing.webp",
 				alt: "Nothing Phone (2) màu trắng trong suốt",
 				isMain: true,
+			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&q=80",
+				alt: "Nothing Phone (2) - Mặt trước",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=800&q=80",
+				alt: "Nothing Phone (2) - Góc nghiêng",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=800&q=80",
+				alt: "Nothing Phone (2) - Chi tiết",
+				isMain: false,
 			},
 		],
 
@@ -90,6 +126,24 @@ export const products = [
 				alt: "MacBook Pro 14 inch M3 Space Gray",
 				isMain: true,
 			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80",
+				alt: "MacBook Pro - Góc nghiêng",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&q=80",
+				alt: "MacBook Pro - Bàn phím",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=800&q=80",
+				alt: "MacBook Pro - Workspace",
+				isMain: false,
+			},
 		],
 
 		description:
@@ -123,6 +177,24 @@ export const products = [
 				alt: "iPad Pro 11 inch M4 Silver",
 				isMain: true,
 			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=800&q=80",
+				alt: "iPad Pro - Góc nghiêng",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=800&q=80",
+				alt: "iPad Pro - Với Apple Pencil",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?w=800&q=80",
+				alt: "iPad Pro - Drawing",
+				isMain: false,
+			},
 		],
 
 		description:
@@ -155,6 +227,24 @@ export const products = [
 				url: "/images/studio-display-main.webp",
 				alt: "Apple Studio Display",
 				isMain: true,
+			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800&q=80",
+				alt: "Apple Studio Display - Workspace setup",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1527443060795-0402a18906c9?w=800&q=80",
+				alt: "Apple Studio Display - Góc nghiêng",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80",
+				alt: "Apple Studio Display - Màn hình chi tiết",
+				isMain: false,
 			},
 		],
 
@@ -196,6 +286,24 @@ export const products = [
 				alt: "Google Pixel 8 Pro Bay Blue",
 				isMain: true,
 			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&q=80",
+				alt: "Google Pixel 8 Pro - Mặt trước",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1605236453806-6ff36851218e?w=800&q=80",
+				alt: "Google Pixel 8 Pro - Camera",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=800&q=80",
+				alt: "Google Pixel 8 Pro - Trong tay",
+				isMain: false,
+			},
 		],
 
 		description:
@@ -228,6 +336,24 @@ export const products = [
 				url: "/images/Mac Studio.webp",
 				alt: "Mac Studio M2 Max Silver",
 				isMain: true,
+			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=800&q=80",
+				alt: "Mac Studio - Setup",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1593062096033-9a26b09da705?w=800&q=80",
+				alt: "Mac Studio - Workspace",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1547082299-de196ea013d6?w=800&q=80",
+				alt: "Mac Studio - Cổng kết nối",
+				isMain: false,
 			},
 		],
 
@@ -269,6 +395,24 @@ export const products = [
 				alt: "AirPods Max Space Gray",
 				isMain: true,
 			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80",
+				alt: "AirPods Max - Premium headphones",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&q=80",
+				alt: "AirPods Max - Ear cup detail",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=800&q=80",
+				alt: "AirPods Max - Lifestyle",
+				isMain: false,
+			},
 		],
 
 		description:
@@ -302,6 +446,24 @@ export const products = [
 				alt: "Samsung Galaxy Tab S9 Ultra Graphite",
 				isMain: true,
 			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1632882765546-1ee75f53becb?w=800&q=80",
+				alt: "Galaxy Tab S9 Ultra - Mặt trước",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1589739900243-4b52cd9b104e?w=800&q=80",
+				alt: "Galaxy Tab S9 Ultra - S Pen",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1623126908029-58cb08a2b272?w=800&q=80",
+				alt: "Galaxy Tab S9 Ultra - Productivity",
+				isMain: false,
+			},
 		],
 
 		description:
@@ -334,6 +496,24 @@ export const products = [
 				url: "/images/Sony-MX5.webp",
 				alt: "Sony WH-1000XM5 Black",
 				isMain: true,
+			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=800&q=80",
+				alt: "Sony WH-1000XM5 - Side view",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80",
+				alt: "Sony WH-1000XM5 - Premium audio",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=800&q=80",
+				alt: "Sony WH-1000XM5 - Music lifestyle",
+				isMain: false,
 			},
 		],
 
@@ -373,6 +553,24 @@ export const products = [
 				url: "/images/Apple Watch.webp",
 				alt: "Apple Watch Ultra 2 Titanium with Trail Loop",
 				isMain: true,
+			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1544117519-31a4b719223d?w=800&q=80",
+				alt: "Apple Watch Ultra 2 - Smart watch",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=800&q=80",
+				alt: "Apple Watch Ultra 2 - On wrist",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1551816230-ef5deaed4a26?w=800&q=80",
+				alt: "Apple Watch Ultra 2 - Workout",
+				isMain: false,
 			},
 		],
 
@@ -415,6 +613,24 @@ export const products = [
 				alt: "Samsung Galaxy S24 Ultra Titanium Gray",
 				isMain: true,
 			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=800&q=80",
+				alt: "Samsung Galaxy S24 Ultra - Mặt trước",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=800&q=80",
+				alt: "Samsung Galaxy S24 Ultra - Camera",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1580910051074-3eb694886f4b?w=800&q=80",
+				alt: "Samsung Galaxy S24 Ultra - Góc nghiêng",
+				isMain: false,
+			},
 		],
 
 		description:
@@ -447,6 +663,24 @@ export const products = [
 				url: "/images/Another phone.webp",
 				alt: "Xiaomi 14 Ultra Black",
 				isMain: true,
+			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1512054502232-10a0a035d672?w=800&q=80",
+				alt: "Xiaomi 14 Ultra - Mặt trước",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=800&q=80",
+				alt: "Xiaomi 14 Ultra - Camera Leica",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1567581935884-3349723552ca?w=800&q=80",
+				alt: "Xiaomi 14 Ultra - Trong tay",
+				isMain: false,
 			},
 		],
 
@@ -481,6 +715,24 @@ export const products = [
 				alt: "OPPO Find X7 Ultra Ocean Blue",
 				isMain: true,
 			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1533228100845-08145b01de14?w=800&q=80",
+				alt: "OPPO Find X7 Ultra - Mặt trước",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1570891836654-d4961a7b6929?w=800&q=80",
+				alt: "OPPO Find X7 Ultra - Camera Hasselblad",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=800&q=80",
+				alt: "OPPO Find X7 Ultra - Góc nghiêng",
+				isMain: false,
+			},
 		],
 
 		description:
@@ -513,6 +765,24 @@ export const products = [
 				url: "/images/123.webp",
 				alt: "OnePlus 12 Flowy Emerald",
 				isMain: true,
+			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=800&q=80",
+				alt: "OnePlus 12 - Mặt trước",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1604671368394-2240d0b1bb6c?w=800&q=80",
+				alt: "OnePlus 12 - Camera Hasselblad",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1596558450255-7c0b7be9d56a?w=800&q=80",
+				alt: "OnePlus 12 - Trong tay",
+				isMain: false,
 			},
 		],
 
@@ -548,6 +818,24 @@ export const products = [
 				alt: "Dell XPS 15 Platinum Silver",
 				isMain: true,
 			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&q=80",
+				alt: "Dell XPS 15 - Góc nghiêng",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=800&q=80",
+				alt: "Dell XPS 15 - Màn hình OLED",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=800&q=80",
+				alt: "Dell XPS 15 - Workspace",
+				isMain: false,
+			},
 		],
 
 		description:
@@ -581,6 +869,24 @@ export const products = [
 				alt: "ASUS ROG Zephyrus G14 Moonlight White",
 				isMain: true,
 			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=800&q=80",
+				alt: "ASUS ROG - Gaming setup",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1625842268584-8f3296236761?w=800&q=80",
+				alt: "ASUS ROG - RGB keyboard",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=800&q=80",
+				alt: "ASUS ROG - Góc nghiêng",
+				isMain: false,
+			},
 		],
 
 		description:
@@ -613,6 +919,24 @@ export const products = [
 				url: "/images/Macbook.webp",
 				alt: "Lenovo ThinkPad X1 Carbon Black",
 				isMain: true,
+			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=800&q=80",
+				alt: "ThinkPad X1 Carbon - Mặt trước",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=800&q=80",
+				alt: "ThinkPad X1 Carbon - Business setup",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80",
+				alt: "ThinkPad X1 Carbon - Coding",
+				isMain: false,
 			},
 		],
 
@@ -648,6 +972,24 @@ export const products = [
 				alt: "HP OMEN 45L Gaming Desktop",
 				isMain: true,
 			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=800&q=80",
+				alt: "HP OMEN - Gaming setup",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1600861194942-f883de0dfe96?w=800&q=80",
+				alt: "HP OMEN - RGB Interior",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=800&q=80",
+				alt: "HP OMEN - Case detail",
+				isMain: false,
+			},
 		],
 
 		description:
@@ -681,6 +1023,24 @@ export const products = [
 				alt: "Dell OptiPlex 7010 Tower",
 				isMain: true,
 			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1591238372338-23a244a965d5?w=800&q=80",
+				alt: "Dell OptiPlex - Office setup",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=800&q=80",
+				alt: "Dell OptiPlex - Business workspace",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+				alt: "Dell OptiPlex - Detail",
+				isMain: false,
+			},
 		],
 
 		description:
@@ -713,6 +1073,24 @@ export const products = [
 				url: "/images/mac mini.webp",
 				alt: "Intel NUC 13 Extreme Dragon Canyon",
 				isMain: true,
+			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1624705002806-5d72df19c3ad?w=800&q=80",
+				alt: "Intel NUC - Mini PC setup",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1601944179066-29786cb9d32a?w=800&q=80",
+				alt: "Intel NUC - Compact design",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
+				alt: "Intel NUC - Tech detail",
+				isMain: false,
 			},
 		],
 
@@ -748,6 +1126,24 @@ export const products = [
 				alt: "Samsung Odyssey OLED G9",
 				isMain: true,
 			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=800&q=80",
+				alt: "Samsung Odyssey OLED G9 - Gaming setup",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+				alt: "Samsung Odyssey OLED G9 - Curved detail",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1600861194942-f883de0dfe96?w=800&q=80",
+				alt: "Samsung Odyssey OLED G9 - RGB lighting",
+				isMain: false,
+			},
 		],
 
 		description:
@@ -780,6 +1176,24 @@ export const products = [
 				url: "/images/studio-display-main.webp",
 				alt: "LG UltraFine 27 inch 5K",
 				isMain: true,
+			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=800&q=80",
+				alt: "LG UltraFine - Workspace",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1527443060795-0402a18906c9?w=800&q=80",
+				alt: "LG UltraFine - Với MacBook",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80",
+				alt: "LG UltraFine - 5K Display",
+				isMain: false,
 			},
 		],
 
@@ -814,6 +1228,24 @@ export const products = [
 				alt: "ASUS ProArt PA32UCG",
 				isMain: true,
 			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800&q=80",
+				alt: "ASUS ProArt - Professional workspace",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=800&q=80",
+				alt: "ASUS ProArt - Color grading",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+				alt: "ASUS ProArt - Mini LED detail",
+				isMain: false,
+			},
 		],
 
 		description:
@@ -846,6 +1278,24 @@ export const products = [
 				url: "/images/dell monitor.webp",
 				alt: "Dell UltraSharp U2723DE",
 				isMain: true,
+			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1527443060795-0402a18906c9?w=800&q=80",
+				alt: "Dell UltraSharp - Office setup",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=800&q=80",
+				alt: "Dell UltraSharp - Professional desk",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80",
+				alt: "Dell UltraSharp - USB-C hub",
+				isMain: false,
 			},
 		],
 
@@ -881,6 +1331,24 @@ export const products = [
 				alt: "Logitech MX Master 3S Graphite",
 				isMain: true,
 			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800&q=80",
+				alt: "Logitech MX Master 3S - Ergonomic design",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=800&q=80",
+				alt: "Logitech MX Master 3S - Workspace",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1629131726692-1accd0c53ce0?w=800&q=80",
+				alt: "Logitech MX Master 3S - In use",
+				isMain: false,
+			},
 		],
 
 		description:
@@ -913,6 +1381,24 @@ export const products = [
 				url: "/images/keychrone q1 mouse.webp",
 				alt: "Keychron Q1 Pro Carbon Black",
 				isMain: true,
+			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=800&q=80",
+				alt: "Keychron Q1 Pro - Mechanical keyboard",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1595044426077-d36d9236d54a?w=800&q=80",
+				alt: "Keychron Q1 Pro - RGB backlighting",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=800&q=80",
+				alt: "Keychron Q1 Pro - Setup",
+				isMain: false,
 			},
 		],
 
@@ -953,6 +1439,24 @@ export const products = [
 				alt: "Anker 747 PowerCore 26K",
 				isMain: true,
 			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=800&q=80",
+				alt: "Anker PowerCore - Power bank",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=800&q=80",
+				alt: "Anker PowerCore - Charging device",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=800&q=80",
+				alt: "Anker PowerCore - Travel accessories",
+				isMain: false,
+			},
 		],
 
 		description:
@@ -985,6 +1489,24 @@ export const products = [
 				url: "/images/Razer mouse.webp",
 				alt: "Razer DeathAdder V3 Pro Black",
 				isMain: true,
+			},
+			{
+				id: 2,
+				url: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800&q=80",
+				alt: "Razer DeathAdder V3 Pro - Gaming mouse",
+				isMain: false,
+			},
+			{
+				id: 3,
+				url: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=800&q=80",
+				alt: "Razer DeathAdder V3 Pro - Gaming setup",
+				isMain: false,
+			},
+			{
+				id: 4,
+				url: "https://images.unsplash.com/photo-1629131726692-1accd0c53ce0?w=800&q=80",
+				alt: "Razer DeathAdder V3 Pro - Ergonomic shape",
+				isMain: false,
 			},
 		],
 
