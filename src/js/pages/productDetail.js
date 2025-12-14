@@ -28,9 +28,9 @@ if (targetProduct) {
          <p class="product-detail-price fs-h4">${targetProduct.price.toLocaleString("vi-VN")}đ</p>
            <div class="product-detail-actions">
             <div class="quantity-controls">
-                <button class="btn-quantity" data-decrease aria-label="Decrease quantity">-</button>
+                <button class="btn-quantity" data-decrease aria-label="Giảm số lượng">-</button>
                 <span class="quantity-value">${targetProduct.quantity || 1}</span>
-                <button class="btn-quantity" data-increase aria-label="Increase quantity">+</button>
+                <button class="btn-quantity" data-increase aria-label="Tăng số lượng">+</button>
             </div>
      
             <button class="btn btn--primary btn--lg btn-buy-now">Thêm vào giỏ</button>
