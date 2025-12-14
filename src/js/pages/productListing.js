@@ -1,6 +1,6 @@
 import { appState } from "../data";
-import { renderProducts } from "../utils";
 import { sortHandler } from "../features/productFilter";
+import { renderProducts } from "../utils";
 
 const urlParams = new URLSearchParams(window.location.search);
 const categoryName = urlParams.get(`category`) ?? "all";

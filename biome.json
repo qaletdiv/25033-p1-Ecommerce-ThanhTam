@@ -10,7 +10,7 @@
 
 	"files": {
 		"ignoreUnknown": true,
-		"ignore": ["**/*.css"]
+		"includes": ["**/*.js", "**/*.html", "**/*.json"]
 	},
 
 	"formatter": {
