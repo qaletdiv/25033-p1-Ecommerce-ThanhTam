@@ -14,6 +14,18 @@
 	grid-template-columns: 1fr 0.8fr;
 	gap: 2rem;
 	align-items: flex-start;
+
+	@media (--md) {
+		grid-template-columns: 1fr;
+
+		> .cart-summary-section {
+			order: 1;
+		}
+
+		> .payment-form-section {
+			order: 2;
+		}
+	}
 }
 
 .payment-card {
