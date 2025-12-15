@@ -9,12 +9,48 @@ const categoriesEl = document.getElementById("categories-container");
 const filterEl = document.getElementById("filter-container");
 const productContainerEl = document.getElementById("products-container");
 const sortEl = document.getElementById("sort-options");
+const paginationContainer = document.querySelector(".pagination-container");
 
+let currentPage = 1;
+const itemsPerPage = 10;
+let totalItem = appState.productList.length;
+let totalPages = Math.ceil(totalItem / itemsPerPage);
+let indexStart = (currentPage - 1) * itemsPerPage;
+let indexEnd = indexStart + itemsPerPage;
+let paginationArr = Array.from({ length: totalPages }, (v, i) => i + 1);
+let currentItems = appState.productList.slice(indexStart, indexEnd);
+let displayedProduct = appState.productList;
+
+function renderPagination(arr, container) {
+    const items = arr.map((num) => {
+        const li = document.createElement("li");
+        li.innerHTML = `<a href="#products-listing" data-index=${num} class="btn btn--sm btn--outline btn--icon-only">${num}</a>`;
+        return li;
+    });
+    container.replaceChildren(...items);
+}
+
+function paginationHandler(e, productList) {
+    if (e.target.tagName !== "A") return;
+    const currentIndex = e.target.dataset.index;
+    if (currentIndex) {
+        currentPage = currentIndex;
+        indexStart = (currentPage - 1) * itemsPerPage;
+        indexEnd = indexStart + itemsPerPage;
+        const currentItems = productList.slice(indexStart, indexEnd);
+        renderProducts(currentItems, productContainerEl);
+    }
+}
+
+paginationContainer.addEventListener("click", (e) => {
+    paginationHandler(e, displayedProduct);
+});
 //* Render product theo category name
-
 if (categoryName === "all") {
     pageTitle.textContent = "Toàn bộ sản phẩm";
-    renderProducts(appState.productList, productContainerEl);
+    currentItems = appState.productList.slice(indexStart, indexEnd);
+    renderProducts(currentItems, productContainerEl);
+    renderPagination(paginationArr, paginationContainer);
 }
 
 function updateCurrentCategory(category) {
@@ -45,19 +81,37 @@ categoriesEl.addEventListener("click", (e) => {
     sortEl.value = "featured";
 
     if (e.target.id === "show-all-btn") {
-        renderProducts(appState.productList, productContainerEl);
+        currentPage = 1;
+        displayedProduct = appState.productList;
+        totalItem = appState.productList.length;
+        totalPages = Math.ceil(totalItem / itemsPerPage);
+        indexStart = (currentPage - 1) * itemsPerPage;
+        indexEnd = indexStart + itemsPerPage;
+        paginationArr = Array.from({ length: totalPages }, (v, i) => i + 1);
+        currentItems = appState.productList.slice(indexStart, indexEnd);
         pageTitleEl.textContent = "Toàn bộ sản phẩm";
         productContainerEl.dataset.category = "all";
+        renderProducts(currentItems, productContainerEl);
+        renderPagination(paginationArr, paginationContainer);
     }
 
     if (!matchCategoryProducts) {
         return;
     } else {
-        renderProducts(matchCategoryProducts, productContainerEl);
+        currentPage = 1;
+        totalItem = matchCategoryProducts.length;
+        totalPages = Math.ceil(totalItem / itemsPerPage);
+        indexStart = (currentPage - 1) * itemsPerPage;
+        indexEnd = indexStart + itemsPerPage;
+        paginationArr = Array.from({ length: totalPages }, (v, i) => i + 1);
+        currentItems = matchCategoryProducts.slice(indexStart, indexEnd);
+        renderProducts(currentItems, productContainerEl);
+        renderPagination(paginationArr, paginationContainer);
+        displayedProduct = matchCategoryProducts;
     }
 
     pageTitleEl.textContent =
-        productId.toUpperCase().charAt(0).toUpperCase() + productId.slice(1);
+        productId.charAt(0).toUpperCase() + productId.slice(1);
 
     updateCurrentCategory(productId);
 
