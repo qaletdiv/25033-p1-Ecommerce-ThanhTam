@@ -48,8 +48,8 @@ wrangler login
 
 - **Trang chủ:** Sản phẩm nổi bật, thanh tìm kiếm, navigation bar với trạng thái login
 - **Danh mục sản phẩm:** Browse categories với thumbnails (Collection page)
-- **Danh sách sản phẩm:** Hiển thị grid, lọc theo danh mục và khoảng giá
-- **Chi tiết sản phẩm:** Thông tin đầy đủ, chọn số lượng, sản phẩm liên quan
+- **Danh sách sản phẩm:** Hiển thị grid, phân trang, lọc theo danh mục và khoảng giá
+- **Chi tiết sản phẩm:** Thông tin đầy đủ, gallery nhiều ảnh, chọn số lượng, sản phẩm liên quan
 - **Đăng ký / Đăng nhập:** Xác thực người dùng qua localStorage
 - **Giỏ hàng:** Quản lý sản phẩm, tăng/giảm số lượng, tính tổng tiền tự động
 - **Thanh toán:** Form giao hàng với tỉnh/thành, chọn phương thức thanh toán (COD, Banking, E-Wallet)
@@ -87,4 +87,5 @@ src/
 - Dùng mockup data (28 products, 6 categories)
 - Validation từ client-side
 - Organized codebase theo feature-based structure
+- Responsive design cho mobile và desktop
 - Category images từ Unsplash (free to use)
